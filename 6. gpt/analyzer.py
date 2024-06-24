@@ -3,6 +3,7 @@ import json
 
 
 class PortScanAnalyzer:
+    
     @staticmethod
     def llama(nmap_output: str):
         # 使用LocalAI本地部署，LocalAI api是OpenAI api的仿写
