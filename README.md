@@ -2,7 +2,7 @@
 
 ## Description of folders
 
-gpt: use gpt to analyse the scan repo
+gpt: use gpt to analyse the scan repos
 portScan: scan ports and hosts
 softwareScan：scan software that may contain vuls in targeted host
 sysScan: scan sys vul that may contain
