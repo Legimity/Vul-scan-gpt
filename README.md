@@ -1,5 +1,7 @@
 # Vul-scan-gpt
 
+We intend to build a tool to automate the penetration process.
+
 ## Description of folders
 
 gpt: use gpt to analyse the scan repos  
