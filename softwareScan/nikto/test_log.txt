@@ -1,0 +1,42 @@
+Nikto scan result:
+ - Nikto v2.5.0
+---------------------------------------------------------------------------
++ Multiple IPs found: 58.192.118.145, 2001:da8:1002:d002:58:192:118:145
++ Target IP:          58.192.118.145
++ Target Hostname:    cyber.seu.edu.cn
++ Target Port:        443
+---------------------------------------------------------------------------
++ SSL Info:        Subject:  /C=CN/ST=\xE6\xB1\x9F\xE8\x8B\x8F\xE7\x9C\x81/O=\xE4\xB8\x9C\xE5\x8D\x97\xE5\xA4\xA7\xE5\xAD\xA6/CN=*.seu.edu.cn
+                   Altnames: *.seu.edu.cn, seu.edu.cn
+                   Ciphers:  TLS_AES_256_GCM_SHA384
+                   Issuer:   /C=CN/O=TrustAsia Technologies, Inc./CN=TrustAsia RSA OV TLS CA G3
++ Start Time:         2024-06-26 15:04:30 (GMT8)
+---------------------------------------------------------------------------
++ Server: ******
++ /: RFC-1918 IP address found in the 'NSC_xfcqmvt-05-iuuqt' cookie. The IP is "10.64.123.25".
++ /: Uncommon header 'frame-options' found, with contents: SAMEORIGIN.
++ /: The site uses TLS and the Strict-Transport-Security HTTP header is not defined. See: https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Strict-Transport-Security
++ /: The X-Content-Type-Options header is not set. This could allow the user agent to render the content of the site in a different fashion to the MIME type. See: https://www.netsparker.com/web-vulnerability-scanner/vulnerabilities/missing-content-type-header/
++ /eP02e0bK.JSP: Retrieved x-application-context header: application.
++ /eP02e0bK.JSP: Uncommon header 'x-application-context' found, with contents: application.
++ Server is using a wildcard certificate: *.seu.edu.cn. See: https://en.wikipedia.org/wiki/Wildcard_certificate
++ : Server banner changed from '******' to 'nginx/1.16.0'.
++ /: The Content-Encoding header is set to "deflate" which may mean that the server is vulnerable to the BREACH attack. See: http://breachattack.com/
++ OPTIONS: Allowed HTTP Methods: HEAD, GET, POST, OPTIONS .
++ /login.jsp: Cookie JSESSIONID created without the secure flag. See: https://developer.mozilla.org/en-US/docs/Web/HTTP/Cookies
++ /cm/: This might be interesting: potential country code (Cameroon).
++ /cg/: This might be interesting: potential country code (Congo).
++ /gq/: This might be interesting: potential country code (Equatorial Guinea).
++ /tf/: This might be interesting: potential country code (French Southern Territories).
++ /gt/: This might be interesting: potential country code (Guatemala).
++ /gn/: This might be interesting: potential country code (Guinea).
++ /gw/: This might be interesting: potential country code (Guinea-bissau).
++ /lb/: This might be interesting: potential country code (Lebanon).
++ /mq/: This might be interesting: potential country code (Martinique).
++ /ws/: This might be interesting: potential country code (Samoa).
++ /sc/: This might be interesting: potential country code (Seychelles).
++ /ch/: This might be interesting: potential country code (Switzerland).
++ 8936 requests: 0 error(s) and 23 item(s) reported on remote host
++ End Time:           2024-06-26 15:11:00 (GMT8) (390 seconds)
+---------------------------------------------------------------------------
++ 1 host(s) tested
