@@ -1,7 +1,6 @@
 from typing import Optional
 from gpt.analyzer import PortScanAnalyzer
 import nmap
-from utils import DataProcessor
 
 
 nm = nmap.PortScanner()
