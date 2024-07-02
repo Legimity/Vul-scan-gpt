@@ -1,7 +1,7 @@
 from typing import Optional
 from gpt.analyzer import PortScanAnalyzer
 import nmap
-from utils import DataProcessor
+from utils.data_processor import DataProcessor
 
 
 nm = nmap.PortScanner()
@@ -32,6 +32,6 @@ class PortScanner:
         nm.scan(ip, port, arguments=self.profile_arguments.get(profile))
         json_data = nm.analyse_nmap_xml_scan()
         scan_result = json_data["scan"]
-        analyze_data = DataProcessor.process_nmap_result(scan_result)
+        analyze_data = DataProcessor.process_nmap_result(nm, scan_result)
         response = analyzer.llama(str(analyze_data))
         return response

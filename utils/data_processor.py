@@ -1,7 +1,7 @@
 from nmap import PortScannerHostDict
 import nmap
 
-nm = nmap.PortScanner()
+# nm = nmap.PortScanner()
 
 """
 DataProcessor: 数据处理类，提供对各种扫描结果对处理，处理完之后的数据用作大模型的输入
@@ -11,7 +11,7 @@ class DataProcessor:
     process_nmap_result: 处理nmap扫描结果
     """
     @staticmethod
-    def process_nmap_result(nmap_result: dict[str, PortScannerHostDict]):
+    def process_nmap_result(nm: nmap, nmap_result: dict[str, PortScannerHostDict]):
         extracted_data = {}
         for ip, details in nmap_result.items():
             open_ports = {}

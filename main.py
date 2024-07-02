@@ -1,5 +1,5 @@
-from analyzer import PortScanAnalyzer
-from port_scan import PortScanner
+from gpt.analyzer import PortScanAnalyzer
+from portScan.port_scan import PortScanner
 import argparse
 
 
