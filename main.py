@@ -19,8 +19,8 @@ def parse_arguments():
     parser = argparse.ArgumentParser(
         description="A vulnerability scanning tool combined with artificial intelligence for Xin-Chuang"
     )
-    parser.add_argument("--ip", type=str, help="Target IP", required=True)
-    parser.add_argument("--port", type=str, help="Target Port", required=True)
+    parser.add_argument("-ip","--ip", type=str, help="Target IP", required=True)
+    parser.add_argument("-p", "--port", type=str, help="Target Port", required=True)
     parser.add_argument(
         "--choice",
         type=int,
@@ -38,9 +38,10 @@ def parse_arguments():
 
 
 def main():
+    args = parse_arguments()
+    
     # Nmap port scan 端口扫描
     logger.info("Starting Nmap port scan...")
-    args = parse_arguments()
     port_scan = PortScanner()
     analyzer = PortScanAnalyzer()
     response = port_scan.scanner(args.ip, args.port, args.choice, analyzer)
@@ -62,6 +63,7 @@ def main():
     execution_time = end_time - start_time
     # time count, nikto may cost many time i'm afraid
     logger.info(f"Execution time: {execution_time} seconds")
+    # [21:42:28] - INFO - Execution time: 670.4677515029907 seconds?????
     # TODO：这里返回了nikto的扫描结果，需要进一步交给gpt处理
     print(to_be_analyse_by_gpt)
 

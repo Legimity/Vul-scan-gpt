@@ -1,4 +1,5 @@
 # Reference: https://platform.openai.com/docs/guides/function-calling
+# Reference: https://github.com/QwenLM/Qwen-Agent/blob/main/examples/function_calling.py
 import json
 import os
 from typing import Optional
@@ -23,6 +24,12 @@ def nmapScan(
   
   return scan_result
 
+
+# TODO: niktoScan left to be implemented
+def niktoScan(ip: Optional[str],port:Optional[str]) -> str:
+    return "!!!!there exists some vulnerabilities in the target"
+
+
 # test
 def testScan(ip,port):   
     # print(f"'ip':{ip},'port':{port}")
@@ -44,7 +51,7 @@ def testScan(ip,port):
     messages = [message_dict]
     functions = [{
         'name': 'nmapScan',
-        'description': 'Scanning the network for a given URL',
+        'description': 'Scanning the network for a given URL using nmap',
         'parameters': {
             'type': 'object',
             'properties': {
@@ -58,7 +65,24 @@ def testScan(ip,port):
                 },
             },
             'required': ['ip','port'],
-        },
+        },      
+    },
+    {
+        'name': 'niktoScan',
+        'description': 'Scanning the network for a given URL using nikto',
+        'parameters': {
+            'type': 'object',
+            'properties': {
+                'ip': {
+                    'type': 'string',
+                    'description': 'the ip of the target',
+                },
+                'port': {
+                    'type': 'string',
+                    'description': 'the port of the target',
+                },
+            },}
+        
     }]
 
     print('# Assistant Response 1:')
@@ -69,12 +93,12 @@ def testScan(ip,port):
             functions=functions,
             stream=True,
             # Note: extra_generate_cfg is optional
-            # extra_generate_cfg=dict(
-            #     # Note: if function_choice='auto', let the model decide whether to call a function or not
-            #     # function_choice='auto',  # 'auto' is the default if function_choice is not set
-            #     # Note: set function_choice='get_current_weather' to force the model to call this function
-            #     function_choice='get_current_weather',
-            # ),
+            extra_generate_cfg=dict(
+                # Note: if function_choice='auto', let the model decide whether to call a function or not
+                # function_choice='auto',  # 'auto' is the default if function_choice is not set
+                # Note: set function_choice='get_current_weather' to force the model to call this function
+                function_choice='auto',
+            ),
     ):
         # print(responses)
         last_response=responses
@@ -89,6 +113,7 @@ def testScan(ip,port):
         # Step 3: call the function
         available_functions = {
             'nmapScan': nmapScan,
+            'niktoScan': niktoScan,
         }  # only one function in this example, but you can have multiple
         function_name = last_response['function_call']['name']
         function_to_call = available_functions[function_name]
@@ -126,5 +151,4 @@ if __name__ == '__main__':
     ip =input("input ip:")
     port =input("input port:")
     testScan(ip,port)
-    
     
