@@ -11,22 +11,22 @@ and maintain connections.
 import os.path
 import socket
 
-from thirdparty.urllib3.poolmanager import PoolManager, proxy_from_url
-from thirdparty.urllib3.response import HTTPResponse
-from thirdparty.urllib3.util import parse_url
-from thirdparty.urllib3.util import Timeout as TimeoutSauce
-from thirdparty.urllib3.util.retry import Retry
-from thirdparty.urllib3.exceptions import ClosedPoolError
-from thirdparty.urllib3.exceptions import ConnectTimeoutError
-from thirdparty.urllib3.exceptions import HTTPError as _HTTPError
-from thirdparty.urllib3.exceptions import MaxRetryError
-from thirdparty.urllib3.exceptions import NewConnectionError
-from thirdparty.urllib3.exceptions import ProxyError as _ProxyError
-from thirdparty.urllib3.exceptions import ProtocolError
-from thirdparty.urllib3.exceptions import ReadTimeoutError
-from thirdparty.urllib3.exceptions import SSLError as _SSLError
-from thirdparty.urllib3.exceptions import ResponseError
-from thirdparty.urllib3.exceptions import LocationValueError
+from lib.vulmap.thirdparty.urllib3.poolmanager import PoolManager, proxy_from_url
+from lib.vulmap.thirdparty.urllib3.response import HTTPResponse
+from lib.vulmap.thirdparty.urllib3.util import parse_url
+from lib.vulmap.thirdparty.urllib3.util import Timeout as TimeoutSauce
+from lib.vulmap.thirdparty.urllib3.util.retry import Retry
+from lib.vulmap.thirdparty.urllib3.exceptions import ClosedPoolError
+from lib.vulmap.thirdparty.urllib3.exceptions import ConnectTimeoutError
+from lib.vulmap.thirdparty.urllib3.exceptions import HTTPError as _HTTPError
+from lib.vulmap.thirdparty.urllib3.exceptions import MaxRetryError
+from lib.vulmap.thirdparty.urllib3.exceptions import NewConnectionError
+from lib.vulmap.thirdparty.urllib3.exceptions import ProxyError as _ProxyError
+from lib.vulmap.thirdparty.urllib3.exceptions import ProtocolError
+from lib.vulmap.thirdparty.urllib3.exceptions import ReadTimeoutError
+from lib.vulmap.thirdparty.urllib3.exceptions import SSLError as _SSLError
+from lib.vulmap.thirdparty.urllib3.exceptions import ResponseError
+from lib.vulmap.thirdparty.urllib3.exceptions import LocationValueError
 
 from .models import Response
 from .compat import urlparse, basestring
@@ -41,7 +41,7 @@ from .exceptions import (ConnectionError, ConnectTimeout, ReadTimeout, SSLError,
 from .auth import _basic_auth_str
 
 try:
-    from thirdparty.urllib3.contrib.socks import SOCKSProxyManager
+    from lib.vulmap.thirdparty.urllib3.contrib.socks import SOCKSProxyManager
 except ImportError:
     def SOCKSProxyManager(*args, **kwargs):
         raise InvalidSchema("Missing dependencies for SOCKS support.")

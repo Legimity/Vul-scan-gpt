@@ -6,11 +6,11 @@ from __future__ import absolute_import, division, print_function
 
 import struct
 
-from thirdparty.cryptography.hazmat.backends import _get_backend
-from thirdparty.cryptography.hazmat.primitives.ciphers import Cipher
-from thirdparty.cryptography.hazmat.primitives.ciphers.algorithms import AES
-from thirdparty.cryptography.hazmat.primitives.ciphers.modes import ECB
-from thirdparty.cryptography.hazmat.primitives.constant_time import bytes_eq
+from lib.vulmap.thirdparty.cryptography.hazmat.backends import _get_backend
+from lib.vulmap.thirdparty.cryptography.hazmat.primitives.ciphers import Cipher
+from lib.vulmap.thirdparty.cryptography.hazmat.primitives.ciphers.algorithms import AES
+from lib.vulmap.thirdparty.cryptography.hazmat.primitives.ciphers.modes import ECB
+from lib.vulmap.thirdparty.cryptography.hazmat.primitives.constant_time import bytes_eq
 
 
 def _wrap_core(wrapping_key, a, r, backend):

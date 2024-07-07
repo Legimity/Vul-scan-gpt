@@ -4,15 +4,15 @@
 
 from __future__ import absolute_import, division, print_function
 
-from thirdparty.cryptography import utils
-from thirdparty.cryptography.hazmat._der import (
+from lib.vulmap.thirdparty.cryptography import utils
+from lib.vulmap.thirdparty.cryptography.hazmat._der import (
     DERReader,
     INTEGER,
     SEQUENCE,
     encode_der,
     encode_der_integer,
 )
-from thirdparty.cryptography.hazmat.primitives import hashes
+from lib.vulmap.thirdparty.cryptography.hazmat.primitives import hashes
 
 
 def decode_dss_signature(signature):

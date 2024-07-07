@@ -4,19 +4,19 @@ import re
 import time
 import struct
 import socket
-from thirdparty import requests
+from lib.vulmap.thirdparty import requests
 import threading
-from module.time import now
-from module.color import color
-from module.allcheck import os_check
-from module import globals
-from core.verify import verify
-from module.md5 import random_md5
+from lib.vulmap.module.time import now
+from lib.vulmap.module.color import color
+from lib.vulmap.module.allcheck import os_check
+from lib.vulmap.module import globals
+from lib.vulmap.core.verify import verify
+from lib.vulmap.module.md5 import random_md5
 from urllib.parse import urlparse
-from core.verify import misinformation
-from thirdparty.requests.compat import urljoin
-from thirdparty.requests_toolbelt.utils import dump
-from module.api.dns import dns_result, dns_request
+from lib.vulmap.core.verify import misinformation
+from lib.vulmap.thirdparty.requests.compat import urljoin
+from lib.vulmap.thirdparty.requests_toolbelt.utils import dump
+from lib.vulmap.module.api.dns import dns_result, dns_request
 
 
 class OracleWeblogic():

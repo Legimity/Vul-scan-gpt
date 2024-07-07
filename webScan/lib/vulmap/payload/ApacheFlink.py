@@ -1,12 +1,12 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
-from thirdparty import requests
-from thirdparty.requests.compat import urljoin
+from lib.vulmap.thirdparty import requests
+from lib.vulmap.thirdparty.requests.compat import urljoin
 import threading
-from core.verify import verify
-from module import globals
-from module.md5 import random_md5
-from thirdparty.requests_toolbelt.utils import dump
+from lib.vulmap.core.verify import verify
+from lib.vulmap.module import globals
+from lib.vulmap.module.md5 import random_md5
+from lib.vulmap.thirdparty.requests_toolbelt.utils import dump
 
 
 class ApacheFlink():

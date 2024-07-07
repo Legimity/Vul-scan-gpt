@@ -8,7 +8,7 @@ import abc
 
 import six
 
-from thirdparty.cryptography import utils
+from lib.vulmap.thirdparty.cryptography import utils
 
 
 @six.add_metaclass(abc.ABCMeta)

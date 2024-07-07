@@ -1,13 +1,13 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
 import threading
-from core.verify import verify
-from module import globals
-from module.api.dns import dns_request
-from module.api.dns import dns_result
-from thirdparty import requests
-from thirdparty.requests.compat import urljoin
-from thirdparty.requests_toolbelt.utils import dump
+from lib.vulmap.core.verify import verify
+from lib.vulmap.module import globals
+from lib.vulmap.module.api.dns import dns_request
+from lib.vulmap.module.api.dns import dns_result
+from lib.vulmap.thirdparty import requests
+from lib.vulmap.thirdparty.requests.compat import urljoin
+from lib.vulmap.thirdparty.requests_toolbelt.utils import dump
 
 
 class ApacheOFBiz():

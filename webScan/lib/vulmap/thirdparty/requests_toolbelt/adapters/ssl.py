@@ -9,9 +9,9 @@ in this blog post:
 https://lukasa.co.uk/2013/01/Choosing_SSL_Version_In_Requests/
 
 """
-from thirdparty import requests
+from lib.vulmap.thirdparty import requests
 
-from thirdparty.requests.adapters import HTTPAdapter
+from lib.vulmap.thirdparty.requests.adapters import HTTPAdapter
 
 from .._compat import poolmanager
 
@@ -26,9 +26,9 @@ class SSLAdapter(HTTPAdapter):
 
     Example usage:
 
-        >>> from thirdparty import requests
+        >>> from lib.vulmap.thirdparty import requests
         >>> import ssl
-        >>> from thirdparty.requests_toolbelt import SSLAdapter
+        >>> from lib.vulmap.thirdparty.requests_toolbelt import SSLAdapter
         >>> s = requests.Session()
         >>> s.mount('https://', SSLAdapter(ssl.PROTOCOL_TLSv1))
 

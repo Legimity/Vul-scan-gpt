@@ -10,9 +10,9 @@ from enum import Enum
 
 import six
 
-from thirdparty.cryptography import x509
-from thirdparty.cryptography.hazmat.primitives import hashes
-from thirdparty.cryptography.x509.base import (
+from lib.vulmap.thirdparty.cryptography import x509
+from lib.vulmap.thirdparty.cryptography.hazmat.primitives import hashes
+from lib.vulmap.thirdparty.cryptography.x509.base import (
     _EARLIEST_UTC_TIME,
     _convert_to_naive_utc_time,
     _reject_duplicate_extension,
@@ -69,13 +69,13 @@ _CERT_STATUS_TO_ENUM = {x.value: x for x in OCSPCertStatus}
 
 
 def load_der_ocsp_request(data):
-    from thirdparty.cryptography.hazmat.backends.openssl.backend import backend
+    from lib.vulmap.thirdparty.cryptography.hazmat.backends.openssl.backend import backend
 
     return backend.load_der_ocsp_request(data)
 
 
 def load_der_ocsp_response(data):
-    from thirdparty.cryptography.hazmat.backends.openssl.backend import backend
+    from lib.vulmap.thirdparty.cryptography.hazmat.backends.openssl.backend import backend
 
     return backend.load_der_ocsp_response(data)
 
@@ -109,7 +109,7 @@ class OCSPRequestBuilder(object):
         )
 
     def build(self):
-        from thirdparty.cryptography.hazmat.backends.openssl.backend import backend
+        from lib.vulmap.thirdparty.cryptography.hazmat.backends.openssl.backend import backend
 
         if self._request is None:
             raise ValueError("You must add a certificate before building")
@@ -274,7 +274,7 @@ class OCSPResponseBuilder(object):
         )
 
     def sign(self, private_key, algorithm):
-        from thirdparty.cryptography.hazmat.backends.openssl.backend import backend
+        from lib.vulmap.thirdparty.cryptography.hazmat.backends.openssl.backend import backend
 
         if self._response is None:
             raise ValueError("You must add a response before signing")
@@ -287,7 +287,7 @@ class OCSPResponseBuilder(object):
 
     @classmethod
     def build_unsuccessful(cls, response_status):
-        from thirdparty.cryptography.hazmat.backends.openssl.backend import backend
+        from lib.vulmap.thirdparty.cryptography.hazmat.backends.openssl.backend import backend
 
         if not isinstance(response_status, OCSPResponseStatus):
             raise TypeError(

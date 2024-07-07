@@ -8,13 +8,13 @@ import struct
 
 import six
 
-from thirdparty.cryptography.exceptions import UnsupportedAlgorithm, _Reasons
-from thirdparty.cryptography.hazmat.backends import _get_backend
-from thirdparty.cryptography.hazmat.backends.interfaces import HMACBackend
-from thirdparty.cryptography.hazmat.primitives import constant_time, hmac
-from thirdparty.cryptography.hazmat.primitives.hashes import SHA1, SHA256, SHA512
-from thirdparty.cryptography.hazmat.primitives.twofactor import InvalidToken
-from thirdparty.cryptography.hazmat.primitives.twofactor.utils import _generate_uri
+from lib.vulmap.thirdparty.cryptography.exceptions import UnsupportedAlgorithm, _Reasons
+from lib.vulmap.thirdparty.cryptography.hazmat.backends import _get_backend
+from lib.vulmap.thirdparty.cryptography.hazmat.backends.interfaces import HMACBackend
+from lib.vulmap.thirdparty.cryptography.hazmat.primitives import constant_time, hmac
+from lib.vulmap.thirdparty.cryptography.hazmat.primitives.hashes import SHA1, SHA256, SHA512
+from lib.vulmap.thirdparty.cryptography.hazmat.primitives.twofactor import InvalidToken
+from lib.vulmap.thirdparty.cryptography.hazmat.primitives.twofactor.utils import _generate_uri
 
 
 class HOTP(object):

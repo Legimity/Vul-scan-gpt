@@ -2,7 +2,7 @@
 # -*- coding: utf-8 -*-
 import time
 from datetime import datetime
-from module.color import color
+from lib.vulmap.module.color import color
 
 
 class Timed:

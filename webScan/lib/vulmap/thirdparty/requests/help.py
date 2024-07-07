@@ -6,14 +6,14 @@ import platform
 import sys
 import ssl
 
-from thirdparty import idna
-from thirdparty import urllib3
-from thirdparty import chardet
+from lib.vulmap.thirdparty import idna
+from lib.vulmap.thirdparty import urllib3
+from lib.vulmap.thirdparty import chardet
 
 from . import __version__ as requests_version
 
 try:
-    from thirdparty.urllib3.contrib import pyopenssl
+    from lib.vulmap.thirdparty.urllib3.contrib import pyopenssl
 except ImportError:
     pyopenssl = None
     OpenSSL = None

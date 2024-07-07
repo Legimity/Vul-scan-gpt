@@ -4,15 +4,15 @@
 
 from __future__ import absolute_import, division, print_function
 
-from thirdparty.cryptography import utils
-from thirdparty.cryptography.exceptions import (
+from lib.vulmap.thirdparty.cryptography import utils
+from lib.vulmap.thirdparty.cryptography.exceptions import (
     AlreadyFinalized,
     UnsupportedAlgorithm,
     _Reasons,
 )
-from thirdparty.cryptography.hazmat.backends import _get_backend
-from thirdparty.cryptography.hazmat.backends.interfaces import HMACBackend
-from thirdparty.cryptography.hazmat.primitives import hashes
+from lib.vulmap.thirdparty.cryptography.hazmat.backends import _get_backend
+from lib.vulmap.thirdparty.cryptography.hazmat.backends.interfaces import HMACBackend
+from lib.vulmap.thirdparty.cryptography.hazmat.primitives import hashes
 
 
 @utils.register_interface(hashes.HashContext)

@@ -40,8 +40,8 @@ is at <https://requests.readthedocs.io>.
 :license: Apache 2.0, see LICENSE for more details.
 """
 
-from thirdparty import urllib3
-from thirdparty import chardet
+from lib.vulmap.thirdparty import urllib3
+from lib.vulmap.thirdparty import chardet
 import warnings
 from .exceptions import RequestsDependencyWarning
 
@@ -108,7 +108,7 @@ except ImportError:
     pass
 
 # urllib3's DependencyWarnings should be silenced.
-from thirdparty.urllib3.exceptions import DependencyWarning
+from lib.vulmap.thirdparty.urllib3.exceptions import DependencyWarning
 warnings.simplefilter('ignore', DependencyWarning)
 
 from .__version__ import __title__, __description__, __url__, __version__

@@ -2,8 +2,8 @@ import io
 import socket
 import ssl
 
-from thirdparty.urllib3.exceptions import ProxySchemeUnsupported
-from thirdparty.urllib3.packages import six
+from lib.vulmap.thirdparty.urllib3.exceptions import ProxySchemeUnsupported
+from lib.vulmap.thirdparty.urllib3.packages import six
 
 SSL_BLOCKSIZE = 16384
 

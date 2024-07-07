@@ -4,15 +4,15 @@
 
 from __future__ import absolute_import, division, print_function
 
-from thirdparty.cryptography import utils
-from thirdparty.cryptography.exceptions import (
+from lib.vulmap.thirdparty.cryptography import utils
+from lib.vulmap.thirdparty.cryptography.exceptions import (
     AlreadyFinalized,
     UnsupportedAlgorithm,
     _Reasons,
 )
-from thirdparty.cryptography.hazmat.backends import _get_backend
-from thirdparty.cryptography.hazmat.backends.interfaces import CMACBackend
-from thirdparty.cryptography.hazmat.primitives import ciphers
+from lib.vulmap.thirdparty.cryptography.hazmat.backends import _get_backend
+from lib.vulmap.thirdparty.cryptography.hazmat.backends.interfaces import CMACBackend
+from lib.vulmap.thirdparty.cryptography.hazmat.primitives import ciphers
 
 
 class CMAC(object):

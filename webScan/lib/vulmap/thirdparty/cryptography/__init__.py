@@ -7,7 +7,7 @@ from __future__ import absolute_import, division, print_function
 import sys
 import warnings
 
-from thirdparty.cryptography.__about__ import (
+from lib.vulmap.thirdparty.cryptography.__about__ import (
     __author__,
     __copyright__,
     __email__,
@@ -17,7 +17,7 @@ from thirdparty.cryptography.__about__ import (
     __uri__,
     __version__,
 )
-from thirdparty.cryptography.utils import CryptographyDeprecationWarning
+from lib.vulmap.thirdparty.cryptography.utils import CryptographyDeprecationWarning
 
 
 __all__ = [

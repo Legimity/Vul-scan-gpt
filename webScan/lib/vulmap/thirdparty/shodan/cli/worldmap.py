@@ -17,8 +17,8 @@ import locale
 import random
 import time
 
-from thirdparty.shodan.exception import APIError
-from thirdparty.shodan.helpers import get_ip
+from lib.vulmap.thirdparty.shodan.exception import APIError
+from lib.vulmap.thirdparty.shodan.helpers import get_ip
 
 
 MAPS = {
@@ -249,8 +249,8 @@ def launch_map(api):
 
 def main(argv=None):
     """ Main function / entry point """
-    from thirdparty.shodan import Shodan
-    from thirdparty.shodan.cli.helpers import get_api_key
+    from lib.vulmap.thirdparty.shodan import Shodan
+    from lib.vulmap.thirdparty.shodan.cli.helpers import get_api_key
 
     api = Shodan(get_api_key())
     return launch_map(api)

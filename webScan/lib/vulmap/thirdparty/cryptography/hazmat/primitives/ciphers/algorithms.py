@@ -4,12 +4,12 @@
 
 from __future__ import absolute_import, division, print_function
 
-from thirdparty.cryptography import utils
-from thirdparty.cryptography.hazmat.primitives.ciphers import (
+from lib.vulmap.thirdparty.cryptography import utils
+from lib.vulmap.thirdparty.cryptography.hazmat.primitives.ciphers import (
     BlockCipherAlgorithm,
     CipherAlgorithm,
 )
-from thirdparty.cryptography.hazmat.primitives.ciphers.modes import ModeWithNonce
+from lib.vulmap.thirdparty.cryptography.hazmat.primitives.ciphers.modes import ModeWithNonce
 
 
 def _verify_key_size(algorithm, key):

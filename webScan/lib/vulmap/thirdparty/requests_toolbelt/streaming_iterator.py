@@ -10,7 +10,7 @@ need to provide the data as an iterator. This class will allow you to specify
 the size and stream the data without using a chunked transfer-encoding.
 
 """
-from thirdparty.requests.utils import super_len
+from lib.vulmap.thirdparty.requests.utils import super_len
 
 from .multipart.encoder import CustomBytesIO, encode_with
 
@@ -33,9 +33,9 @@ class StreamingIterator(object):
 
     .. code-block:: python
 
-        from thirdparty.requests_toolbelt import StreamingIterator
+        from lib.vulmap.thirdparty.requests_toolbelt import StreamingIterator
 
-        from thirdparty import requests
+        from lib.vulmap.thirdparty import requests
 
         # Let iterator be some generator that you already have and size be
         # the size of the data produced by the iterator

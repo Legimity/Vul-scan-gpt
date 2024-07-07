@@ -34,16 +34,16 @@ CONSTRUCTOR_STRICT_IS_DEPRECATED = major == 3 and minor == 3
 CONSTRUCTOR_TAKES_CONVERT_CHARREFS = major == 3 and minor >= 4
 
 
-from thirdparty.bs4.element import (
+from lib.vulmap.thirdparty.bs4.element import (
     CData,
     Comment,
     Declaration,
     Doctype,
     ProcessingInstruction,
     )
-from thirdparty.bs4.dammit import EntitySubstitution, UnicodeDammit
+from lib.vulmap.thirdparty.bs4.dammit import EntitySubstitution, UnicodeDammit
 
-from thirdparty.bs4.builder import (
+from lib.vulmap.thirdparty.bs4.builder import (
     HTML,
     HTMLTreeBuilder,
     STRICT,

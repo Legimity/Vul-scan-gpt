@@ -3,7 +3,7 @@ Core components for click_plugins
 """
 
 
-from thirdparty import click
+from lib.vulmap.thirdparty import click
 
 import os
 import sys

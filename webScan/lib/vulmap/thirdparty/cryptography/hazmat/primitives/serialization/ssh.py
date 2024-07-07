@@ -11,12 +11,12 @@ import struct
 
 import six
 
-from thirdparty.cryptography import utils
-from thirdparty.cryptography.exceptions import UnsupportedAlgorithm
-from thirdparty.cryptography.hazmat.backends import _get_backend
-from thirdparty.cryptography.hazmat.primitives.asymmetric import dsa, ec, ed25519, rsa
-from thirdparty.cryptography.hazmat.primitives.ciphers import Cipher, algorithms, modes
-from thirdparty.cryptography.hazmat.primitives.serialization import (
+from lib.vulmap.thirdparty.cryptography import utils
+from lib.vulmap.thirdparty.cryptography.exceptions import UnsupportedAlgorithm
+from lib.vulmap.thirdparty.cryptography.hazmat.backends import _get_backend
+from lib.vulmap.thirdparty.cryptography.hazmat.primitives.asymmetric import dsa, ec, ed25519, rsa
+from lib.vulmap.thirdparty.cryptography.hazmat.primitives.ciphers import Cipher, algorithms, modes
+from lib.vulmap.thirdparty.cryptography.hazmat.primitives.serialization import (
     Encoding,
     NoEncryption,
     PrivateFormat,

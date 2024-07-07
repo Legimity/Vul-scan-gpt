@@ -12,22 +12,22 @@ from enum import Enum
 
 import six
 
-from thirdparty.cryptography import utils
-from thirdparty.cryptography.hazmat._der import (
+from lib.vulmap.thirdparty.cryptography import utils
+from lib.vulmap.thirdparty.cryptography.hazmat._der import (
     BIT_STRING,
     DERReader,
     OBJECT_IDENTIFIER,
     SEQUENCE,
 )
-from thirdparty.cryptography.hazmat.primitives import constant_time, serialization
-from thirdparty.cryptography.hazmat.primitives.asymmetric.ec import EllipticCurvePublicKey
-from thirdparty.cryptography.hazmat.primitives.asymmetric.rsa import RSAPublicKey
-from thirdparty.cryptography.x509.certificate_transparency import (
+from lib.vulmap.thirdparty.cryptography.hazmat.primitives import constant_time, serialization
+from lib.vulmap.thirdparty.cryptography.hazmat.primitives.asymmetric.ec import EllipticCurvePublicKey
+from lib.vulmap.thirdparty.cryptography.hazmat.primitives.asymmetric.rsa import RSAPublicKey
+from lib.vulmap.thirdparty.cryptography.x509.certificate_transparency import (
     SignedCertificateTimestamp,
 )
-from thirdparty.cryptography.x509.general_name import GeneralName, IPAddress, OtherName
-from thirdparty.cryptography.x509.name import RelativeDistinguishedName
-from thirdparty.cryptography.x509.oid import (
+from lib.vulmap.thirdparty.cryptography.x509.general_name import GeneralName, IPAddress, OtherName
+from lib.vulmap.thirdparty.cryptography.x509.name import RelativeDistinguishedName
+from lib.vulmap.thirdparty.cryptography.x509.oid import (
     CRLEntryExtensionOID,
     ExtensionOID,
     OCSPExtensionOID,

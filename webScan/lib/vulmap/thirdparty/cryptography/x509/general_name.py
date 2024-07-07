@@ -10,9 +10,9 @@ from email.utils import parseaddr
 
 import six
 
-from thirdparty.cryptography import utils
-from thirdparty.cryptography.x509.name import Name
-from thirdparty.cryptography.x509.oid import ObjectIdentifier
+from lib.vulmap.thirdparty.cryptography import utils
+from lib.vulmap.thirdparty.cryptography.x509.name import Name
+from lib.vulmap.thirdparty.cryptography.x509.oid import ObjectIdentifier
 
 
 _GENERAL_NAMES = {

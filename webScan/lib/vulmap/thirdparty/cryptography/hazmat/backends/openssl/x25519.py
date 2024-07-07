@@ -4,10 +4,10 @@
 
 from __future__ import absolute_import, division, print_function
 
-from thirdparty.cryptography import utils
-from thirdparty.cryptography.hazmat.backends.openssl.utils import _evp_pkey_derive
-from thirdparty.cryptography.hazmat.primitives import serialization
-from thirdparty.cryptography.hazmat.primitives.asymmetric.x25519 import (
+from lib.vulmap.thirdparty.cryptography import utils
+from lib.vulmap.thirdparty.cryptography.hazmat.backends.openssl.utils import _evp_pkey_derive
+from lib.vulmap.thirdparty.cryptography.hazmat.primitives import serialization
+from lib.vulmap.thirdparty.cryptography.hazmat.primitives.asymmetric.x25519 import (
     X25519PrivateKey,
     X25519PublicKey,
 )

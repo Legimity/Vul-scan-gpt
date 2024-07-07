@@ -6,17 +6,17 @@ from __future__ import absolute_import, division, print_function
 
 import sys
 
-from thirdparty.cryptography import utils
-from thirdparty.cryptography.exceptions import (
+from lib.vulmap.thirdparty.cryptography import utils
+from lib.vulmap.thirdparty.cryptography.exceptions import (
     AlreadyFinalized,
     InvalidKey,
     UnsupportedAlgorithm,
     _Reasons,
 )
-from thirdparty.cryptography.hazmat.backends import _get_backend
-from thirdparty.cryptography.hazmat.backends.interfaces import ScryptBackend
-from thirdparty.cryptography.hazmat.primitives import constant_time
-from thirdparty.cryptography.hazmat.primitives.kdf import KeyDerivationFunction
+from lib.vulmap.thirdparty.cryptography.hazmat.backends import _get_backend
+from lib.vulmap.thirdparty.cryptography.hazmat.backends.interfaces import ScryptBackend
+from lib.vulmap.thirdparty.cryptography.hazmat.primitives import constant_time
+from lib.vulmap.thirdparty.cryptography.hazmat.primitives.kdf import KeyDerivationFunction
 
 
 # This is used by the scrypt tests to skip tests that require more memory

@@ -48,12 +48,12 @@ compression in Python 2 (see `CRIME attack`_).
 from __future__ import absolute_import
 
 import OpenSSL.SSL
-from thirdparty.cryptography import x509
-from thirdparty.cryptography.hazmat.backends.openssl import backend as openssl_backend
-from thirdparty.cryptography.hazmat.backends.openssl.x509 import _Certificate
+from lib.vulmap.thirdparty.cryptography import x509
+from lib.vulmap.thirdparty.cryptography.hazmat.backends.openssl import backend as openssl_backend
+from lib.vulmap.thirdparty.cryptography.hazmat.backends.openssl.x509 import _Certificate
 
 try:
-    from thirdparty.cryptography.x509 import UnsupportedExtension
+    from lib.vulmap.thirdparty.cryptography.x509 import UnsupportedExtension
 except ImportError:
     # UnsupportedExtension is gone in cryptography >= 2.1.0
     class UnsupportedExtension(Exception):
@@ -146,7 +146,7 @@ def _validate_dependencies_met():
     Throws `ImportError` if they are not met.
     """
     # Method added in `cryptography==1.1`; not available in older versions
-    from thirdparty.cryptography.x509.extensions import Extensions
+    from lib.vulmap.thirdparty.cryptography.x509.extensions import Extensions
 
     if getattr(Extensions, "get_extension_for_class", None) is None:
         raise ImportError(
@@ -186,7 +186,7 @@ def _dnsname_to_stdlib(name):
         that we can't just safely call `idna.encode`: it can explode for
         wildcard names. This avoids that problem.
         """
-        from thirdparty import idna
+        from lib.vulmap.thirdparty import idna
 
         try:
             for prefix in [u"*.", u"."]:

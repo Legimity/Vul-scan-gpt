@@ -6,7 +6,7 @@ requests_toolbelt.adapters.host_header_ssl
 This file contains an implementation of the HostHeaderSSLAdapter.
 """
 
-from thirdparty.requests.adapters import HTTPAdapter
+from lib.vulmap.thirdparty.requests.adapters import HTTPAdapter
 
 
 class HostHeaderSSLAdapter(HTTPAdapter):

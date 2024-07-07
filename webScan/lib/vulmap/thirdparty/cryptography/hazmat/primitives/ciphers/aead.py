@@ -6,9 +6,9 @@ from __future__ import absolute_import, division, print_function
 
 import os
 
-from thirdparty.cryptography import exceptions, utils
-from thirdparty.cryptography.hazmat.backends.openssl import aead
-from thirdparty.cryptography.hazmat.backends.openssl.backend import backend
+from lib.vulmap.thirdparty.cryptography import exceptions, utils
+from lib.vulmap.thirdparty.cryptography.hazmat.backends.openssl import aead
+from lib.vulmap.thirdparty.cryptography.hazmat.backends.openssl.backend import backend
 
 
 class ChaCha20Poly1305(object):

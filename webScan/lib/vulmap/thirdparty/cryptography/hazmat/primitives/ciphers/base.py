@@ -8,17 +8,17 @@ import abc
 
 import six
 
-from thirdparty.cryptography import utils
-from thirdparty.cryptography.exceptions import (
+from lib.vulmap.thirdparty.cryptography import utils
+from lib.vulmap.thirdparty.cryptography.exceptions import (
     AlreadyFinalized,
     AlreadyUpdated,
     NotYetFinalized,
     UnsupportedAlgorithm,
     _Reasons,
 )
-from thirdparty.cryptography.hazmat.backends import _get_backend
-from thirdparty.cryptography.hazmat.backends.interfaces import CipherBackend
-from thirdparty.cryptography.hazmat.primitives.ciphers import modes
+from lib.vulmap.thirdparty.cryptography.hazmat.backends import _get_backend
+from lib.vulmap.thirdparty.cryptography.hazmat.backends.interfaces import CipherBackend
+from lib.vulmap.thirdparty.cryptography.hazmat.primitives.ciphers import modes
 
 
 @six.add_metaclass(abc.ABCMeta)

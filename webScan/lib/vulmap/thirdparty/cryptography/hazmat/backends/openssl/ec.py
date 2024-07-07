@@ -4,19 +4,19 @@
 
 from __future__ import absolute_import, division, print_function
 
-from thirdparty.cryptography import utils
-from thirdparty.cryptography.exceptions import (
+from lib.vulmap.thirdparty.cryptography import utils
+from lib.vulmap.thirdparty.cryptography.exceptions import (
     InvalidSignature,
     UnsupportedAlgorithm,
     _Reasons,
 )
-from thirdparty.cryptography.hazmat.backends.openssl.utils import (
+from lib.vulmap.thirdparty.cryptography.hazmat.backends.openssl.utils import (
     _calculate_digest_and_algorithm,
     _check_not_prehashed,
     _warn_sign_verify_deprecated,
 )
-from thirdparty.cryptography.hazmat.primitives import hashes, serialization
-from thirdparty.cryptography.hazmat.primitives.asymmetric import (
+from lib.vulmap.thirdparty.cryptography.hazmat.primitives import hashes, serialization
+from lib.vulmap.thirdparty.cryptography.hazmat.primitives.asymmetric import (
     AsymmetricSignatureContext,
     AsymmetricVerificationContext,
     ec,

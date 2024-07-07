@@ -7,7 +7,7 @@ import gzip
 import itertools
 import os
 import sys
-from thirdparty.ipaddress.ipaddress import ip_network, ip_address
+from lib.vulmap.thirdparty.ipaddress.ipaddress import ip_network, ip_address
 
 from .settings import SHODAN_CONFIG_DIR
 

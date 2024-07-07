@@ -4,8 +4,8 @@
 
 from __future__ import absolute_import, division, print_function
 
-from thirdparty.cryptography.x509 import certificate_transparency
-from thirdparty.cryptography.x509.base import (
+from lib.vulmap.thirdparty.cryptography.x509 import certificate_transparency
+from lib.vulmap.thirdparty.cryptography.x509.base import (
     AttributeNotFound,
     Certificate,
     CertificateBuilder,
@@ -25,7 +25,7 @@ from thirdparty.cryptography.x509.base import (
     load_pem_x509_csr,
     random_serial_number,
 )
-from thirdparty.cryptography.x509.extensions import (
+from lib.vulmap.thirdparty.cryptography.x509.extensions import (
     AccessDescription,
     AuthorityInformationAccess,
     AuthorityKeyIdentifier,
@@ -68,7 +68,7 @@ from thirdparty.cryptography.x509.extensions import (
     UnrecognizedExtension,
     UserNotice,
 )
-from thirdparty.cryptography.x509.general_name import (
+from lib.vulmap.thirdparty.cryptography.x509.general_name import (
     DNSName,
     DirectoryName,
     GeneralName,
@@ -80,12 +80,12 @@ from thirdparty.cryptography.x509.general_name import (
     UnsupportedGeneralNameType,
     _GENERAL_NAMES,
 )
-from thirdparty.cryptography.x509.name import (
+from lib.vulmap.thirdparty.cryptography.x509.name import (
     Name,
     NameAttribute,
     RelativeDistinguishedName,
 )
-from thirdparty.cryptography.x509.oid import (
+from lib.vulmap.thirdparty.cryptography.x509.oid import (
     AuthorityInformationAccessOID,
     CRLEntryExtensionOID,
     CertificatePoliciesOID,

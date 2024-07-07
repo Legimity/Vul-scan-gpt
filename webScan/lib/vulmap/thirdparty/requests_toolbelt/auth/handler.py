@@ -8,8 +8,8 @@ This holds all of the implementation details of the Authentication Handler.
 
 """
 
-from thirdparty.requests.auth import AuthBase, HTTPBasicAuth
-from thirdparty.requests.compat import urlparse, urlunparse
+from lib.vulmap.thirdparty.requests.auth import AuthBase, HTTPBasicAuth
+from lib.vulmap.thirdparty.requests.compat import urlparse, urlunparse
 
 
 class AuthHandler(AuthBase):
@@ -22,10 +22,10 @@ class AuthHandler(AuthBase):
 
     .. code-block:: python
 
-        from thirdparty.requests import HTTPDigestAuth
-        from thirdparty.requests_toolbelt.auth.handler import AuthHandler
+        from lib.vulmap.thirdparty.requests import HTTPDigestAuth
+        from lib.vulmap.thirdparty.requests_toolbelt.auth.handler import AuthHandler
 
-        from thirdparty import requests
+        from lib.vulmap.thirdparty import requests
 
         auth = AuthHandler({
             'https://api.github.com': ('sigmavirus24', 'fakepassword'),
@@ -107,7 +107,7 @@ class AuthHandler(AuthBase):
 
         .. code-block:: python
 
-            from thirdparty import requests
+            from lib.vulmap.thirdparty import requests
             a = AuthHandler({'example.com', ('foo', 'bar')})
             strategy = a.get_strategy_for('http://example.com/example')
             assert isinstance(strategy, requests.auth.HTTPBasicAuth)

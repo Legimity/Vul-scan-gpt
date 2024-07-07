@@ -1,6 +1,6 @@
 """Module implementing the Pool for :mod:``requests_toolbelt.threaded``."""
 import multiprocessing
-from thirdparty import requests
+from lib.vulmap.thirdparty import requests
 
 from . import thread
 from .._compat import queue

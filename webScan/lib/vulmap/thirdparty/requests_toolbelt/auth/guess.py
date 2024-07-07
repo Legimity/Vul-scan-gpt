@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 """The module containing the code for GuessAuth."""
-from thirdparty.requests import auth
-from thirdparty.requests import cookies
+from lib.vulmap.thirdparty.requests import auth
+from lib.vulmap.thirdparty.requests import cookies
 
 from . import _digest_auth_compat as auth_compat, http_proxy_digest
 

@@ -25,36 +25,36 @@ The following commands are currently supported:
 
 """
 
-from thirdparty import click
+from lib.vulmap.thirdparty import click
 import csv
 import os
 import os.path
 import pkg_resources
-from thirdparty import shodan
+from lib.vulmap.thirdparty import shodan
 import thirdparty.shodan.helpers as helpers
 import threading
-from thirdparty import requests
+from lib.vulmap.thirdparty import requests
 import time
 
 # The file converters that are used to go from .json.gz to various other formats
-from thirdparty.shodan.cli.converter import CsvConverter, KmlConverter, GeoJsonConverter, ExcelConverter, ImagesConverter
+from lib.vulmap.thirdparty.shodan.cli.converter import CsvConverter, KmlConverter, GeoJsonConverter, ExcelConverter, ImagesConverter
 
 # Constants
-from thirdparty.shodan.cli.settings import SHODAN_CONFIG_DIR, COLORIZE_FIELDS
+from lib.vulmap.thirdparty.shodan.cli.settings import SHODAN_CONFIG_DIR, COLORIZE_FIELDS
 
 # Helper methods
-from thirdparty.shodan.cli.helpers import async_spinner, get_api_key, escape_data, timestr, open_streaming_file, get_banner_field, match_filters
-from thirdparty.shodan.cli.host import HOST_PRINT
+from lib.vulmap.thirdparty.shodan.cli.helpers import async_spinner, get_api_key, escape_data, timestr, open_streaming_file, get_banner_field, match_filters
+from lib.vulmap.thirdparty.shodan.cli.host import HOST_PRINT
 
 # Allow 3rd-parties to develop custom commands
-from thirdparty.click_plugins.core import with_plugins
+from lib.vulmap.thirdparty.click_plugins.core import with_plugins
 from pkg_resources import iter_entry_points
 
 # Large subcommands are stored in separate modules
-from thirdparty.shodan.cli.alert import alert
-from thirdparty.shodan.cli.data import data
-from thirdparty.shodan.cli.organization import org
-from thirdparty.shodan.cli.scan import scan
+from lib.vulmap.thirdparty.shodan.cli.alert import alert
+from lib.vulmap.thirdparty.shodan.cli.data import data
+from lib.vulmap.thirdparty.shodan.cli.organization import org
+from lib.vulmap.thirdparty.shodan.cli.scan import scan
 
 
 # Make "-h" work like "--help"
@@ -815,7 +815,7 @@ def radar():
     key = get_api_key()
     api = shodan.Shodan(key)
 
-    from thirdparty.shodan.cli.worldmap import launch_map
+    from lib.vulmap.thirdparty.shodan.cli.worldmap import launch_map
 
     try:
         launch_map(api)
