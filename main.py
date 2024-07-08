@@ -10,7 +10,8 @@ import time
 from utils.banner import banner
 import subprocess
 print(banner())
-
+import sys
+sys.path.append('./webScan')
 
 # 配置日志记录器
 logger = ColoredLogger().get_logger()
@@ -52,22 +53,21 @@ def main():
     logger.info("Starting Web scan...")
     target_url = f'{args.ip}:{args.port}'
 
+    # # 使用 subprocess 执行多条命令
+    # command = 'echo Hello && python webScan/web_scan.py '
+    # result = subprocess.run(command, shell=True, stdout=subprocess.PIPE)
+    # print(result.stdout.decode())
 
-    # 使用 subprocess 执行多条命令
-    command = 'echo Hello && python webScan/web_scan.py '
-    result = subprocess.run(command, shell=True, stdout=subprocess.PIPE)
-    print(result.stdout.decode())
+    try:
+        webscan_result = WebScan(target_url=target_url).run()
+    except Exception as e:
+        logger.error(f"Error occurred during web scan: {str(e)}")
+        webscan_result = None
+    # TODO: 这里应该返回了webScan的扫描结果，需要进一步交给gpt处理
+    # result = web_scan.run()
+    print(webscan_result)
 
-    # try:
-    #     webscan_result = WebScan(target_url=target_url).run()
-    # except Exception as e:
-    #     logger.error(f"Error occurred during web scan: {str(e)}")
-    #     webscan_result = None
-    # # TODO: 这里应该返回了webScan的扫描结果，需要进一步交给gpt处理
-    # # result = web_scan.run()
-    # print(webscan_result)
-
-    # nikto software-vul scan
+    # # nikto software-vul scan
     # logger.info("Starting Nikto software scan...")
     # start_time = time.time()
     # softwareScanner = SoftwareScanner()

@@ -55,8 +55,8 @@ class nmapScanner(BaseTool):
 
 
 @register_tool('niktoScan')
-class nmapScanner(BaseTool):
-  description = 'nikto scanner. return whether the host has some vulnerabilties.'
+class niktoScanner(BaseTool):
+  description = 'nikto scanner. Nikto aims to identify potential vulnerabilities and security issues on web servers and applications. Return whether the host has some vulnerabilties.'
   parameters = [{
       'name': 'ip',
       'type': 'string',
@@ -68,9 +68,10 @@ class nmapScanner(BaseTool):
         softwareScanner = SoftwareScanner()
         result_to_be_analyse_by_gpt = softwareScanner.nikto_scanner(target=ip)
         return  result_to_be_analyse_by_gpt
-  
+
+
 @register_tool('sqlmapExploit')
-class nmapScanner(BaseTool):
+class sqlmapScanner(BaseTool):
   description = 'sqlmap Exploiter. return whether the host vulnerabilties can be exploited and have access to the database.'
   parameters = [{
       'name': 'ip',
@@ -80,33 +81,29 @@ class nmapScanner(BaseTool):
   }]
   def call(self, params: str, **kwargs) -> str:
         return  "Using the vulnerabilties to get access to the database successfully"
-  # def nmapScan(
-  #   ip: Optional[str],
-  #   port: Optional[str],
-  #     ) -> str:
-  #   # nm.scan(ip, port, arguments='"-Pn -T4 -sV -sT"')
-  #   # json_data = nm.analyse_nmap_xml_scan()
-  #   # scan_result = json_data["scan"]
-    
-  #   # return scan_result
-  #   return "the host is up and port is open"
+  
+@register_tool('overallWebScanner')
+class webScanner(BaseTool):
+  description = 'web scanner. use three tools to scan whether the host has some vulnerablities'
+  parameters = [{
+      'name': 'ip',
+      'type': 'string',
+      'description':'Detailed description of the desired host ip, in English',
+      'required': True
+  }]
+  def call(self, params: str, **kwargs) -> str:
+        # return  "Using the vulnerabilties to get access to the database successfully"
+        # 使用 subprocess 执行多条命令
+        import subprocess
+        command = 'python webScan/web_scan.py '
+        result = subprocess.run(command, shell=True, stdout=subprocess.PIPE)
+        result= result.stdout.decode()
+        # print(result.stdout.decode())
+        return result
 
-  # # TODO: niktoScan left to be implemented
-  # def niktoScan(ip: Optional[str],port:Optional[str]) -> str:
-  #     return "!!!!there exists some vulnerabilities in the target"
 
-  # def sqlmapExploit(ip: Optional[str],port:Optional[str]) -> str:
-  #     return "Got access to the database "
 
-# # 初始化bot
-# # agent的提示词指令
-# system_instruction = '''You are a helpful webscanner assistant.
-# After receiving the user's request, you should:
-# - first use nmap to scan the network for a given URL and port,
-# - then use nikto to find the vulnerabilities of the host,
-# - and use sqlmapExploit to gain access to database.
-# - Finally, you should write a report to the user to summarize the results of the scan and exploitation.
-# '''
+
 
 
 def init_agent_service():
@@ -116,15 +113,23 @@ def init_agent_service():
                'api_key': api_key,}
     
     # tools = ['nmapScan', 'niktoScan','sqlmapExploit']
-    tools = ['nmapScan','niktoScan','sqlmapExploit']
+    tools = ['nmapScan','niktoScan','sqlmapExploit','overallWebScanner']
     bot = Assistant(
         llm=llm_cfg,
         name='webScanner',
         description='scanner for web vulnerabilities and try to have access to the database.',
         function_list=tools,
-        system_message='you are an assistant for web scanning'
-        'Scanning the network for a given URL:127.0.0.1 and port 443 and analyze the vulnerabilties of the host.Then use the vulnerablities to get access to the database.',
-        
+        # system_message='you are an assistant for web scanning'
+        # 'Scanning the network for a given URL:127.0.0.1 and port 443 and analyze the vulnerabilties of the host.Then use the vulnerablities to get access to the database.',
+        # TODO: system message 应该可以控制ip 和port
+        system_message='''You are a helpful webscanner assistant.
+          After receiving the user's request, you should:
+          - first use nmap to scan the network for a given URL and port,
+          - then use nikto to find the vulnerabilities of the host,
+          - then use overallWebScanner to scan the web vulnerabilities of the host,
+          - and use sqlmapExploit to gain access to database.
+          - Finally, you should form a report to the user to summarize the results of the scan and exploitation. The report should be in the form of markdown.
+          '''
     )
     
     return bot
