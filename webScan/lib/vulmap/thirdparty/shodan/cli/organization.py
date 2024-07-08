@@ -1,7 +1,7 @@
 import click
-from thirdparty import shodan
+from lib.vulmap.thirdparty import shodan
 
-from thirdparty.shodan.cli.helpers import get_api_key, humanize_api_plan
+from lib.vulmap.thirdparty.shodan.cli.helpers import get_api_key, humanize_api_plan
 
 
 @click.group()

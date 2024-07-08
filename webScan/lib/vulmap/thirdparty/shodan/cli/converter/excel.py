@@ -3,7 +3,7 @@ from .base import Converter
 from ...helpers import iterate_files, get_ip
 
 from collections import defaultdict
-from thirdparty.xlsxwriter import Workbook
+from lib.vulmap.thirdparty.xlsxwriter import Workbook
 
 
 class ExcelConverter(Converter):

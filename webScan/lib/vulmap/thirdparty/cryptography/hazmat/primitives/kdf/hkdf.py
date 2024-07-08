@@ -6,17 +6,17 @@ from __future__ import absolute_import, division, print_function
 
 import six
 
-from thirdparty.cryptography import utils
-from thirdparty.cryptography.exceptions import (
+from lib.vulmap.thirdparty.cryptography import utils
+from lib.vulmap.thirdparty.cryptography.exceptions import (
     AlreadyFinalized,
     InvalidKey,
     UnsupportedAlgorithm,
     _Reasons,
 )
-from thirdparty.cryptography.hazmat.backends import _get_backend
-from thirdparty.cryptography.hazmat.backends.interfaces import HMACBackend
-from thirdparty.cryptography.hazmat.primitives import constant_time, hmac
-from thirdparty.cryptography.hazmat.primitives.kdf import KeyDerivationFunction
+from lib.vulmap.thirdparty.cryptography.hazmat.backends import _get_backend
+from lib.vulmap.thirdparty.cryptography.hazmat.backends.interfaces import HMACBackend
+from lib.vulmap.thirdparty.cryptography.hazmat.primitives import constant_time, hmac
+from lib.vulmap.thirdparty.cryptography.hazmat.primitives.kdf import KeyDerivationFunction
 
 
 @utils.register_interface(KeyDerivationFunction)

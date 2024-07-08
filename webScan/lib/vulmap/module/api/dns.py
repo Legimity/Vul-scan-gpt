@@ -1,10 +1,10 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
-from thirdparty import requests
-from module import globals
-from module.color import color
-from module.time import now
-from module.md5 import random_md5
+from lib.vulmap.thirdparty import requests
+from lib.vulmap.module import globals
+from lib.vulmap.module.color import color
+from lib.vulmap.module.time import now
+from lib.vulmap.module.md5 import random_md5
 import json
 import time
 

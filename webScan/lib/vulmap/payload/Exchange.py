@@ -1,18 +1,18 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
 import threading
-from thirdparty import requests
+from lib.vulmap.thirdparty import requests
 import re
 from urllib.parse import urlparse
 from urllib.parse import urlencode
-from thirdparty.tld import get_tld, get_fld
+from lib.vulmap.thirdparty.tld import get_tld, get_fld
 import json
 from struct import unpack
 from base64 import b64encode, b64decode
-from module import globals
-from core.verify import verify
-from module.api.dns import dns_result, dns_request
-from thirdparty.requests_toolbelt.utils import dump
+from lib.vulmap.module import globals
+from lib.vulmap.core.verify import verify
+from lib.vulmap.module.api.dns import dns_result, dns_request
+from lib.vulmap.thirdparty.requests_toolbelt.utils import dump
 
 
 class Exchange():

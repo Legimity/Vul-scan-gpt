@@ -8,7 +8,7 @@ A simple use-case is:
 
 .. code-block:: python
 
-    from thirdparty.requests_toolbelt import threaded
+    from lib.vulmap.thirdparty.requests_toolbelt import threaded
 
     urls_to_get = [{
         'url': 'https://api.github.com/users/sigmavirus24',
@@ -36,7 +36,7 @@ creating a callback function:
 
 .. code-block:: python
 
-    from thirdparty.requests_toolbelt import user_agent
+    from lib.vulmap.thirdparty.requests_toolbelt import user_agent
 
     def initialize_session(session):
         session.headers['User-Agent'] = user_agent('my-scraper', '0.1')

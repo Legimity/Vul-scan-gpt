@@ -1,5 +1,5 @@
 import sys
-from thirdparty import urllib3
+from lib.vulmap.thirdparty import urllib3
 
 # This code exists for backwards compatibility reasons.
 # I don't like it either. Just look the other way. :)

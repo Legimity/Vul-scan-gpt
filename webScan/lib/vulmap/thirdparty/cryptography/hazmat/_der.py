@@ -6,7 +6,7 @@ from __future__ import absolute_import, division, print_function
 
 import six
 
-from thirdparty.cryptography.utils import int_from_bytes, int_to_bytes
+from lib.vulmap.thirdparty.cryptography.utils import int_from_bytes, int_to_bytes
 
 
 # This module contains a lightweight DER encoder and decoder. See X.690 for the

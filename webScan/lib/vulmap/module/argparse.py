@@ -3,10 +3,10 @@
 import argparse
 
 
-def arg():
+def arg(target_url):
     parser = argparse.ArgumentParser(usage="python3 vulmap [options]", add_help=False)
     target = parser.add_argument_group("target", "you must to specify target")
-    target.add_argument("-u", "--url", dest="url", type=str, help=" target URL (e.g. -u \"http://example.com\")")
+    target.add_argument("-u", "--url", dest="url", type=str, help=" target URL (e.g. -u \"http://example.com\")",default=target_url)
     target.add_argument("-f", "--file", dest="file", help="select a target list file (e.g. -f \"list.txt\")")
     target.add_argument("--fofa", dest="fofa", metavar='keyword', type=str, help=" call fofa api to scan (e.g. --fofa \"app=Apache-Shiro\")")
     target.add_argument("--shodan", dest="shodan", metavar='keyword', type=str, help=" call shodan api to scan (e.g. --shodan \"Shiro\")")

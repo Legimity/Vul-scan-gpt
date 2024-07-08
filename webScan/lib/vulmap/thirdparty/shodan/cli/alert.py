@@ -1,12 +1,12 @@
 import click
 import csv
-from thirdparty import shodan
+from lib.vulmap.thirdparty import shodan
 
 from collections import defaultdict
 from operator import itemgetter
-from thirdparty.shodan import APIError
-from thirdparty.shodan.cli.helpers import get_api_key
-from thirdparty.shodan.helpers import open_file, write_banner
+from lib.vulmap.thirdparty.shodan import APIError
+from lib.vulmap.thirdparty.shodan.cli.helpers import get_api_key
+from lib.vulmap.thirdparty.shodan.helpers import open_file, write_banner
 from time import sleep
 
 

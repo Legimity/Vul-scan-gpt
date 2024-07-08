@@ -4,8 +4,8 @@
 
 from __future__ import absolute_import, division, print_function
 
-from thirdparty.cryptography.hazmat._oid import ObjectIdentifier
-from thirdparty.cryptography.hazmat.primitives import hashes
+from lib.vulmap.thirdparty.cryptography.hazmat._oid import ObjectIdentifier
+from lib.vulmap.thirdparty.cryptography.hazmat.primitives import hashes
 
 
 class ExtensionOID(object):

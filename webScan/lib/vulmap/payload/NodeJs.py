@@ -2,11 +2,11 @@
 # -*- coding: utf-8 -*-
 import time
 import threading
-from thirdparty import requests
-from module import globals
-from core.verify import verify
-from module.api.dns import dns_result, dns_request
-from thirdparty.requests_toolbelt.utils import dump
+from lib.vulmap.thirdparty import requests
+from lib.vulmap.module import globals
+from lib.vulmap.core.verify import verify
+from lib.vulmap.module.api.dns import dns_result, dns_request
+from lib.vulmap.thirdparty.requests_toolbelt.utils import dump
 
 
 class NodeJs():

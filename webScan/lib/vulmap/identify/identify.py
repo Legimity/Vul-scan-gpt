@@ -1,13 +1,13 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
-from thirdparty import requests
-from module.api.dns import dns_request, dns_result
+from lib.vulmap.thirdparty import requests
+from lib.vulmap.module.api.dns import dns_request, dns_result
 import time
-from module.color import color
-from module.time import now
-from module import globals
-from module.md5 import random_md5
-from thirdparty import urllib3
+from lib.vulmap.module.color import color
+from lib.vulmap.module.time import now
+from lib.vulmap.module import globals
+from lib.vulmap.module.md5 import random_md5
+from lib.vulmap.thirdparty import urllib3
 urllib3.disable_warnings()
 
 

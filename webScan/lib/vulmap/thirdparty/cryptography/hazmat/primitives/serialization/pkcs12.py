@@ -4,10 +4,10 @@
 
 from __future__ import absolute_import, division, print_function
 
-from thirdparty.cryptography import x509
-from thirdparty.cryptography.hazmat.backends import _get_backend
-from thirdparty.cryptography.hazmat.primitives import serialization
-from thirdparty.cryptography.hazmat.primitives.asymmetric import dsa, ec, rsa
+from lib.vulmap.thirdparty.cryptography import x509
+from lib.vulmap.thirdparty.cryptography.hazmat.backends import _get_backend
+from lib.vulmap.thirdparty.cryptography.hazmat.primitives import serialization
+from lib.vulmap.thirdparty.cryptography.hazmat.primitives.asymmetric import dsa, ec, rsa
 
 
 def load_key_and_certificates(data, password, backend=None):

@@ -1,12 +1,12 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
 import threading
-from module import globals
-from core.verify import verify
-from thirdparty import requests
-from core.verify import misinformation
-from module.md5 import random_md5
-from thirdparty.requests_toolbelt.utils import dump
+from lib.vulmap.module import globals
+from lib.vulmap.core.verify import verify
+from lib.vulmap.thirdparty import requests
+from lib.vulmap.core.verify import misinformation
+from lib.vulmap.module.md5 import random_md5
+from lib.vulmap.thirdparty.requests_toolbelt.utils import dump
 
 
 class ThinkPHP():

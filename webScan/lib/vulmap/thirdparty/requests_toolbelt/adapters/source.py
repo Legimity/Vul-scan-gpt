@@ -6,7 +6,7 @@ requests_toolbelt.source_adapter
 This file contains an implementation of the SourceAddressAdapter originally
 demonstrated on the Requests GitHub page.
 """
-from thirdparty.requests.adapters import HTTPAdapter
+from lib.vulmap.thirdparty.requests.adapters import HTTPAdapter
 
 from .._compat import poolmanager, basestring
 
@@ -35,8 +35,8 @@ class SourceAddressAdapter(HTTPAdapter):
 
     .. code-block:: python
 
-        from thirdparty import requests
-        from thirdparty.requests_toolbelt.adapters.source import SourceAddressAdapter
+        from lib.vulmap.thirdparty import requests
+        from lib.vulmap.thirdparty.requests_toolbelt.adapters.source import SourceAddressAdapter
 
         s = requests.Session()
         s.mount('http://', SourceAddressAdapter('10.10.10.10'))

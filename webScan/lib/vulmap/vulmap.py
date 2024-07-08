@@ -3,18 +3,17 @@
 # author: zhzyker
 # github: https://github.com/zhzyker/vulmap
 # If you have any problems, please give feedback to https://github.com/zhzyker/vulmap/issues
-from module.banner import banner
-print(banner())  # 显示随机banner
-from module.install import require
+from lib.vulmap.module.banner import banner
+from lib.vulmap.module.install import require
 require()
-from module.allcheck import version_check
-from module import globals
-from module.argparse import arg
-from module.license import vulmap_license
-from core.core import core
-from module.time import now
-from module.color import color
-from thirdparty import urllib3
+from lib.vulmap.module.allcheck import version_check
+from lib.vulmap.module import globals
+from lib.vulmap.module.argparse import arg
+from lib.vulmap.module.license import vulmap_license
+from lib.vulmap.core.core import core
+from lib.vulmap.module.time import now
+from lib.vulmap.module.color import color
+from lib.vulmap.thirdparty import urllib3
 urllib3.disable_warnings()
 
 

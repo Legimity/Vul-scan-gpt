@@ -1,11 +1,11 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
 import json
-from thirdparty import requests
+from lib.vulmap.thirdparty import requests
 import base64
-from module.color import color
-from module.time import now
-from module import globals
+from lib.vulmap.module.color import color
+from lib.vulmap.module.time import now
+from lib.vulmap.module import globals
 
 
 def fofa(fofa, size):

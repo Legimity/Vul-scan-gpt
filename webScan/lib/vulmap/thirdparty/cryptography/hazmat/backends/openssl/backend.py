@@ -13,16 +13,16 @@ from contextlib import contextmanager
 import six
 from six.moves import range
 
-from thirdparty.cryptography import utils, x509
-from thirdparty.cryptography.exceptions import UnsupportedAlgorithm, _Reasons
-from thirdparty.cryptography.hazmat._der import (
+from lib.vulmap.thirdparty.cryptography import utils, x509
+from lib.vulmap.thirdparty.cryptography.exceptions import UnsupportedAlgorithm, _Reasons
+from lib.vulmap.thirdparty.cryptography.hazmat._der import (
     INTEGER,
     NULL,
     SEQUENCE,
     encode_der,
     encode_der_integer,
 )
-from thirdparty.cryptography.hazmat.backends.interfaces import (
+from lib.vulmap.thirdparty.cryptography.hazmat.backends.interfaces import (
     CMACBackend,
     CipherBackend,
     DERSerializationBackend,
@@ -37,10 +37,10 @@ from thirdparty.cryptography.hazmat.backends.interfaces import (
     ScryptBackend,
     X509Backend,
 )
-from thirdparty.cryptography.hazmat.backends.openssl import aead
-from thirdparty.cryptography.hazmat.backends.openssl.ciphers import _CipherContext
-from thirdparty.cryptography.hazmat.backends.openssl.cmac import _CMACContext
-from thirdparty.cryptography.hazmat.backends.openssl.decode_asn1 import (
+from lib.vulmap.thirdparty.cryptography.hazmat.backends.openssl import aead
+from lib.vulmap.thirdparty.cryptography.hazmat.backends.openssl.ciphers import _CipherContext
+from lib.vulmap.thirdparty.cryptography.hazmat.backends.openssl.cmac import _CMACContext
+from lib.vulmap.thirdparty.cryptography.hazmat.backends.openssl.decode_asn1 import (
     _CRL_ENTRY_REASON_ENUM_TO_CODE,
     _CRL_EXTENSION_HANDLERS,
     _EXTENSION_HANDLERS_BASE,
@@ -51,31 +51,31 @@ from thirdparty.cryptography.hazmat.backends.openssl.decode_asn1 import (
     _REVOKED_EXTENSION_HANDLERS,
     _X509ExtensionParser,
 )
-from thirdparty.cryptography.hazmat.backends.openssl.dh import (
+from lib.vulmap.thirdparty.cryptography.hazmat.backends.openssl.dh import (
     _DHParameters,
     _DHPrivateKey,
     _DHPublicKey,
     _dh_params_dup,
 )
-from thirdparty.cryptography.hazmat.backends.openssl.dsa import (
+from lib.vulmap.thirdparty.cryptography.hazmat.backends.openssl.dsa import (
     _DSAParameters,
     _DSAPrivateKey,
     _DSAPublicKey,
 )
-from thirdparty.cryptography.hazmat.backends.openssl.ec import (
+from lib.vulmap.thirdparty.cryptography.hazmat.backends.openssl.ec import (
     _EllipticCurvePrivateKey,
     _EllipticCurvePublicKey,
 )
-from thirdparty.cryptography.hazmat.backends.openssl.ed25519 import (
+from lib.vulmap.thirdparty.cryptography.hazmat.backends.openssl.ed25519 import (
     _Ed25519PrivateKey,
     _Ed25519PublicKey,
 )
-from thirdparty.cryptography.hazmat.backends.openssl.ed448 import (
+from lib.vulmap.thirdparty.cryptography.hazmat.backends.openssl.ed448 import (
     _ED448_KEY_SIZE,
     _Ed448PrivateKey,
     _Ed448PublicKey,
 )
-from thirdparty.cryptography.hazmat.backends.openssl.encode_asn1 import (
+from lib.vulmap.thirdparty.cryptography.hazmat.backends.openssl.encode_asn1 import (
     _CRL_ENTRY_EXTENSION_ENCODE_HANDLERS,
     _CRL_EXTENSION_ENCODE_HANDLERS,
     _EXTENSION_ENCODE_HANDLERS,
@@ -86,50 +86,50 @@ from thirdparty.cryptography.hazmat.backends.openssl.encode_asn1 import (
     _encode_name_gc,
     _txt2obj_gc,
 )
-from thirdparty.cryptography.hazmat.backends.openssl.hashes import _HashContext
-from thirdparty.cryptography.hazmat.backends.openssl.hmac import _HMACContext
-from thirdparty.cryptography.hazmat.backends.openssl.ocsp import (
+from lib.vulmap.thirdparty.cryptography.hazmat.backends.openssl.hashes import _HashContext
+from lib.vulmap.thirdparty.cryptography.hazmat.backends.openssl.hmac import _HMACContext
+from lib.vulmap.thirdparty.cryptography.hazmat.backends.openssl.ocsp import (
     _OCSPRequest,
     _OCSPResponse,
 )
-from thirdparty.cryptography.hazmat.backends.openssl.poly1305 import (
+from lib.vulmap.thirdparty.cryptography.hazmat.backends.openssl.poly1305 import (
     _POLY1305_KEY_SIZE,
     _Poly1305Context,
 )
-from thirdparty.cryptography.hazmat.backends.openssl.rsa import (
+from lib.vulmap.thirdparty.cryptography.hazmat.backends.openssl.rsa import (
     _RSAPrivateKey,
     _RSAPublicKey,
 )
-from thirdparty.cryptography.hazmat.backends.openssl.x25519 import (
+from lib.vulmap.thirdparty.cryptography.hazmat.backends.openssl.x25519 import (
     _X25519PrivateKey,
     _X25519PublicKey,
 )
-from thirdparty.cryptography.hazmat.backends.openssl.x448 import (
+from lib.vulmap.thirdparty.cryptography.hazmat.backends.openssl.x448 import (
     _X448PrivateKey,
     _X448PublicKey,
 )
-from thirdparty.cryptography.hazmat.backends.openssl.x509 import (
+from lib.vulmap.thirdparty.cryptography.hazmat.backends.openssl.x509 import (
     _Certificate,
     _CertificateRevocationList,
     _CertificateSigningRequest,
     _RevokedCertificate,
 )
-from thirdparty.cryptography.hazmat.bindings.openssl import binding
-from thirdparty.cryptography.hazmat.primitives import hashes, serialization
-from thirdparty.cryptography.hazmat.primitives.asymmetric import (
+from lib.vulmap.thirdparty.cryptography.hazmat.bindings.openssl import binding
+from lib.vulmap.thirdparty.cryptography.hazmat.primitives import hashes, serialization
+from lib.vulmap.thirdparty.cryptography.hazmat.primitives.asymmetric import (
     dsa,
     ec,
     ed25519,
     ed448,
     rsa,
 )
-from thirdparty.cryptography.hazmat.primitives.asymmetric.padding import (
+from lib.vulmap.thirdparty.cryptography.hazmat.primitives.asymmetric.padding import (
     MGF1,
     OAEP,
     PKCS1v15,
     PSS,
 )
-from thirdparty.cryptography.hazmat.primitives.ciphers.algorithms import (
+from lib.vulmap.thirdparty.cryptography.hazmat.primitives.ciphers.algorithms import (
     AES,
     ARC4,
     Blowfish,
@@ -140,7 +140,7 @@ from thirdparty.cryptography.hazmat.primitives.ciphers.algorithms import (
     SEED,
     TripleDES,
 )
-from thirdparty.cryptography.hazmat.primitives.ciphers.modes import (
+from lib.vulmap.thirdparty.cryptography.hazmat.primitives.ciphers.modes import (
     CBC,
     CFB,
     CFB8,
@@ -150,9 +150,9 @@ from thirdparty.cryptography.hazmat.primitives.ciphers.modes import (
     OFB,
     XTS,
 )
-from thirdparty.cryptography.hazmat.primitives.kdf import scrypt
-from thirdparty.cryptography.hazmat.primitives.serialization import pkcs7, ssh
-from thirdparty.cryptography.x509 import ocsp
+from lib.vulmap.thirdparty.cryptography.hazmat.primitives.kdf import scrypt
+from lib.vulmap.thirdparty.cryptography.hazmat.primitives.serialization import pkcs7, ssh
+from lib.vulmap.thirdparty.cryptography.x509 import ocsp
 
 
 _MemoryBIO = collections.namedtuple("_MemoryBIO", ["bio", "char_ptr"])

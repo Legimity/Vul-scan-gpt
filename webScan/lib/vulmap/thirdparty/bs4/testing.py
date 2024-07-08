@@ -9,8 +9,8 @@ import copy
 import functools
 import unittest
 from unittest import TestCase
-from thirdparty.bs4 import BeautifulSoup
-from thirdparty.bs4.element import (
+from lib.vulmap.thirdparty.bs4 import BeautifulSoup
+from lib.vulmap.thirdparty.bs4.element import (
     CharsetMetaAttributeValue,
     Comment,
     ContentMetaAttributeValue,
@@ -21,7 +21,7 @@ from thirdparty.bs4.element import (
     Tag
 )
 
-from thirdparty.bs4.builder import HTMLParserTreeBuilder
+from lib.vulmap.thirdparty.bs4.builder import HTMLParserTreeBuilder
 default_builder = HTMLParserTreeBuilder
 
 BAD_DOCUMENT = """A bare string

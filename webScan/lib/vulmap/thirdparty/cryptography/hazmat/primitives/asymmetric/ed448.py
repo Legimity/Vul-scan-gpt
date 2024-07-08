@@ -8,14 +8,14 @@ import abc
 
 import six
 
-from thirdparty.cryptography.exceptions import UnsupportedAlgorithm, _Reasons
+from lib.vulmap.thirdparty.cryptography.exceptions import UnsupportedAlgorithm, _Reasons
 
 
 @six.add_metaclass(abc.ABCMeta)
 class Ed448PublicKey(object):
     @classmethod
     def from_public_bytes(cls, data):
-        from thirdparty.cryptography.hazmat.backends.openssl.backend import backend
+        from lib.vulmap.thirdparty.cryptography.hazmat.backends.openssl.backend import backend
 
         if not backend.ed448_supported():
             raise UnsupportedAlgorithm(
@@ -42,7 +42,7 @@ class Ed448PublicKey(object):
 class Ed448PrivateKey(object):
     @classmethod
     def generate(cls):
-        from thirdparty.cryptography.hazmat.backends.openssl.backend import backend
+        from lib.vulmap.thirdparty.cryptography.hazmat.backends.openssl.backend import backend
 
         if not backend.ed448_supported():
             raise UnsupportedAlgorithm(
@@ -53,7 +53,7 @@ class Ed448PrivateKey(object):
 
     @classmethod
     def from_private_bytes(cls, data):
-        from thirdparty.cryptography.hazmat.backends.openssl.backend import backend
+        from lib.vulmap.thirdparty.cryptography.hazmat.backends.openssl.backend import backend
 
         if not backend.ed448_supported():
             raise UnsupportedAlgorithm(

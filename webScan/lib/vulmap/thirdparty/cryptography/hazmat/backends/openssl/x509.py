@@ -7,22 +7,22 @@ from __future__ import absolute_import, division, print_function
 import datetime
 import operator
 
-from thirdparty.cryptography import utils, x509
-from thirdparty.cryptography.exceptions import UnsupportedAlgorithm
-from thirdparty.cryptography.hazmat.backends.openssl.decode_asn1 import (
+from lib.vulmap.thirdparty.cryptography import utils, x509
+from lib.vulmap.thirdparty.cryptography.exceptions import UnsupportedAlgorithm
+from lib.vulmap.thirdparty.cryptography.hazmat.backends.openssl.decode_asn1 import (
     _asn1_integer_to_int,
     _asn1_string_to_bytes,
     _decode_x509_name,
     _obj2txt,
     _parse_asn1_time,
 )
-from thirdparty.cryptography.hazmat.backends.openssl.encode_asn1 import (
+from lib.vulmap.thirdparty.cryptography.hazmat.backends.openssl.encode_asn1 import (
     _encode_asn1_int_gc,
     _txt2obj_gc,
 )
-from thirdparty.cryptography.hazmat.primitives import hashes, serialization
-from thirdparty.cryptography.hazmat.primitives.asymmetric import dsa, ec, rsa
-from thirdparty.cryptography.x509.name import _ASN1Type
+from lib.vulmap.thirdparty.cryptography.hazmat.primitives import hashes, serialization
+from lib.vulmap.thirdparty.cryptography.hazmat.primitives.asymmetric import dsa, ec, rsa
+from lib.vulmap.thirdparty.cryptography.x509.name import _ASN1Type
 
 
 @utils.register_interface(x509.Certificate)

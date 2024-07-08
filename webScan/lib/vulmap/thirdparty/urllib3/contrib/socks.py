@@ -41,7 +41,7 @@ with the proxy:
 from __future__ import absolute_import
 
 try:
-    from thirdparty.pysocks import socks
+    from lib.vulmap.thirdparty.pysocks import socks
 except ImportError:
     import warnings
 

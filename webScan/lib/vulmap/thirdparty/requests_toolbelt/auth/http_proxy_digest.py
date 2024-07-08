@@ -2,7 +2,7 @@
 """The module containing HTTPProxyDigestAuth."""
 import re
 
-from thirdparty.requests import cookies, utils
+from lib.vulmap.thirdparty.requests import cookies, utils
 
 from . import _digest_auth_compat as auth
 

@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
-from thirdparty.colorama import init
-from thirdparty.colorama import Fore, Back, Style, Cursor
+from lib.vulmap.thirdparty.colorama import init
+from lib.vulmap.thirdparty.colorama import Fore, Back, Style, Cursor
 init(autoreset=True)
 
 

@@ -1,7 +1,7 @@
 # Helper methods for printing `host` information to the terminal.
 import click
 
-from thirdparty.shodan.helpers import get_ip
+from lib.vulmap.thirdparty.shodan.helpers import get_ip
 
 
 def host_print_pretty(host, history=False):

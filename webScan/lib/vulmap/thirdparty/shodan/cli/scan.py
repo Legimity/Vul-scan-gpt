@@ -1,14 +1,14 @@
 import click
 import collections
 import datetime
-from thirdparty import shodan
+from lib.vulmap.thirdparty import shodan
 import thirdparty.shodan.helpers as helpers
 import socket
 import threading
 import time
 
-from thirdparty.shodan.cli.helpers import get_api_key, async_spinner
-from thirdparty.shodan.cli.settings import COLORIZE_FIELDS
+from lib.vulmap.thirdparty.shodan.cli.helpers import get_api_key, async_spinner
+from lib.vulmap.thirdparty.shodan.cli.settings import COLORIZE_FIELDS
 
 
 @click.group()

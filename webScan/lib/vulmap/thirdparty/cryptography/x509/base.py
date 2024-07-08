@@ -11,18 +11,18 @@ from enum import Enum
 
 import six
 
-from thirdparty.cryptography import utils
-from thirdparty.cryptography.hazmat.backends import _get_backend
-from thirdparty.cryptography.hazmat.primitives.asymmetric import (
+from lib.vulmap.thirdparty.cryptography import utils
+from lib.vulmap.thirdparty.cryptography.hazmat.backends import _get_backend
+from lib.vulmap.thirdparty.cryptography.hazmat.primitives.asymmetric import (
     dsa,
     ec,
     ed25519,
     ed448,
     rsa,
 )
-from thirdparty.cryptography.x509.extensions import Extension, ExtensionType
-from thirdparty.cryptography.x509.name import Name
-from thirdparty.cryptography.x509.oid import ObjectIdentifier
+from lib.vulmap.thirdparty.cryptography.x509.extensions import Extension, ExtensionType
+from lib.vulmap.thirdparty.cryptography.x509.name import Name
+from lib.vulmap.thirdparty.cryptography.x509.oid import ObjectIdentifier
 
 
 _EARLIEST_UTC_TIME = datetime.datetime(1950, 1, 1)

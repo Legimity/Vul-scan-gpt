@@ -1,9 +1,9 @@
 import click
-from thirdparty import requests
-from thirdparty import shodan
+from lib.vulmap.thirdparty import requests
+from lib.vulmap.thirdparty import shodan
 import thirdparty.shodan.helpers as helpers
 
-from thirdparty.shodan.cli.helpers import get_api_key
+from lib.vulmap.thirdparty.shodan.cli.helpers import get_api_key
 
 
 @click.group()
