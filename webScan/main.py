@@ -10,7 +10,6 @@ class WebScan:
         # 统一用这个输出
         result=''
 
-
         print("----加载TPscan----")
         f = io.StringIO()
         with contextlib.redirect_stdout(f):

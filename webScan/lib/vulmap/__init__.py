@@ -1,8 +1,5 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
-# author: zhzyker
-# github: https://github.com/zhzyker/vulmap
-# If you have any problems, please give feedback to https://github.com/zhzyker/vulmap/issues
 from lib.vulmap.module.banner import banner
 from lib.vulmap.module.install import require
 require()
