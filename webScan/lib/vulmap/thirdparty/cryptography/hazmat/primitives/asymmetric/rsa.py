@@ -14,10 +14,10 @@ except ImportError:
 
 import six
 
-from thirdparty.cryptography import utils
-from thirdparty.cryptography.exceptions import UnsupportedAlgorithm, _Reasons
-from thirdparty.cryptography.hazmat.backends import _get_backend
-from thirdparty.cryptography.hazmat.backends.interfaces import RSABackend
+from lib.vulmap.thirdparty.cryptography import utils
+from lib.vulmap.thirdparty.cryptography.exceptions import UnsupportedAlgorithm, _Reasons
+from lib.vulmap.thirdparty.cryptography.hazmat.backends import _get_backend
+from lib.vulmap.thirdparty.cryptography.hazmat.backends.interfaces import RSABackend
 
 
 @six.add_metaclass(abc.ABCMeta)

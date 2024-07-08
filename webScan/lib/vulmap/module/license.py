@@ -3,10 +3,10 @@
 import os
 import sys
 import time
-from module.allcheck import os_check
-from module.output import output_text
-from module.color import color
-from module.time import now
+from lib.vulmap.module.allcheck import os_check
+from lib.vulmap.module.output import output_text
+from lib.vulmap.module.color import color
+from lib.vulmap.module.time import now
 
 
 def vulmap_license():

@@ -12,7 +12,7 @@ import io
 import os
 from uuid import uuid4
 
-from thirdparty import requests
+from lib.vulmap.thirdparty import requests
 
 from .._compat import fields
 
@@ -32,8 +32,8 @@ class MultipartEncoder(object):
 
     .. code-block:: python
 
-        from thirdparty import requests
-        from thirdparty.requests_toolbelt import MultipartEncoder
+        from lib.vulmap.thirdparty import requests
+        from lib.vulmap.thirdparty.requests_toolbelt import MultipartEncoder
 
         encoder = MultipartEncoder({'field': 'value',
                                     'other_field', 'other_value'})
@@ -335,9 +335,9 @@ class MultipartEncoderMonitor(object):
 
     .. code-block:: python
 
-        from thirdparty.requests_toolbelt import (MultipartEncoder,
+        from lib.vulmap.thirdparty.requests_toolbelt import (MultipartEncoder,
                                        MultipartEncoderMonitor)
-        from thirdparty import requests
+        from lib.vulmap.thirdparty import requests
 
         def callback(monitor):
             # Do something with this information
@@ -354,8 +354,8 @@ class MultipartEncoderMonitor(object):
 
     .. code-block:: python
 
-        from thirdparty.requests_toolbelt import MultipartEncoderMonitor
-        from thirdparty import requests
+        from lib.vulmap.thirdparty.requests_toolbelt import MultipartEncoderMonitor
+        from lib.vulmap.thirdparty import requests
 
         def callback(monitor):
             # Do something with this information
@@ -588,8 +588,8 @@ class FileFromURLWrapper(object):
     .. code-block:: python
         # no session
 
-        from thirdparty import requests
-        from thirdparty.requests_toolbelt import MultipartEncoder, FileFromURLWrapper
+        from lib.vulmap.thirdparty import requests
+        from lib.vulmap.thirdparty.requests_toolbelt import MultipartEncoder, FileFromURLWrapper
 
         url = 'https://httpbin.org/image/png'
         streaming_encoder = MultipartEncoder(
@@ -605,8 +605,8 @@ class FileFromURLWrapper(object):
     .. code-block:: python
         # using a session
 
-        from thirdparty import requests
-        from thirdparty.requests_toolbelt import MultipartEncoder, FileFromURLWrapper
+        from lib.vulmap.thirdparty import requests
+        from lib.vulmap.thirdparty.requests_toolbelt import MultipartEncoder, FileFromURLWrapper
 
         session = requests.Session()
         url = 'https://httpbin.org/image/png'

@@ -8,9 +8,9 @@ import abc
 
 import six
 
-from thirdparty.cryptography import utils
-from thirdparty.cryptography.hazmat.primitives import hashes
-from thirdparty.cryptography.hazmat.primitives.asymmetric import rsa
+from lib.vulmap.thirdparty.cryptography import utils
+from lib.vulmap.thirdparty.cryptography.hazmat.primitives import hashes
+from lib.vulmap.thirdparty.cryptography.hazmat.primitives.asymmetric import rsa
 
 
 @six.add_metaclass(abc.ABCMeta)

@@ -6,9 +6,9 @@ __license__ = "MIT"
 import cProfile
 from io import StringIO
 from html.parser import HTMLParser
-from thirdparty import bs4
-from thirdparty.bs4 import BeautifulSoup, __version__
-from thirdparty.bs4.builder import builder_registry
+from lib.vulmap.thirdparty import bs4
+from lib.vulmap.thirdparty.bs4 import BeautifulSoup, __version__
+from lib.vulmap.thirdparty.bs4.builder import builder_registry
 
 import os
 import pstats
@@ -51,7 +51,7 @@ def diagnose(data):
 
     if 'html5lib' in basic_parsers:
         try:
-            from thirdparty import html5lib
+            from lib.vulmap.thirdparty import html5lib
             print("Found html5lib version %s" % html5lib.__version__)
         except ImportError as e:
             print (
@@ -216,7 +216,7 @@ def benchmark_parsers(num_elements=100000):
     b = time.time()
     print("Raw lxml parsed the markup in %.2fs." % (b-a))
 
-    from thirdparty import html5lib
+    from lib.vulmap.thirdparty import html5lib
     parser = html5lib.HTMLParser()
     a = time.time()
     parser.parse(data)

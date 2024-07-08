@@ -10,11 +10,11 @@ import threading
 import types
 import warnings
 
-from thirdparty import cryptography
-from thirdparty.cryptography import utils
-from thirdparty.cryptography.exceptions import InternalError
-from thirdparty.cryptography.hazmat.bindings._openssl import ffi, lib
-from thirdparty.cryptography.hazmat.bindings.openssl._conditional import CONDITIONAL_NAMES
+from lib.vulmap.thirdparty import cryptography
+from lib.vulmap.thirdparty.cryptography import utils
+from lib.vulmap.thirdparty.cryptography.exceptions import InternalError
+from lib.vulmap.thirdparty.cryptography.hazmat.bindings._openssl import ffi, lib
+from lib.vulmap.thirdparty.cryptography.hazmat.bindings.openssl._conditional import CONDITIONAL_NAMES
 
 _OpenSSLErrorWithText = collections.namedtuple(
     "_OpenSSLErrorWithText", ["code", "lib", "func", "reason", "reason_text"]

@@ -8,9 +8,9 @@ from enum import Enum
 
 import six
 
-from thirdparty.cryptography import utils
-from thirdparty.cryptography.hazmat.backends import _get_backend
-from thirdparty.cryptography.x509.oid import NameOID, ObjectIdentifier
+from lib.vulmap.thirdparty.cryptography import utils
+from lib.vulmap.thirdparty.cryptography.hazmat.backends import _get_backend
+from lib.vulmap.thirdparty.cryptography.x509.oid import NameOID, ObjectIdentifier
 
 
 class _ASN1Type(Enum):

@@ -1,4 +1,4 @@
-from thirdparty import requests
+from lib.vulmap.thirdparty import requests
 
 from ._compat import urljoin
 
@@ -10,7 +10,7 @@ class BaseUrlSession(requests.Session):
 
     .. code-block:: python
 
-        >>> from thirdparty.requests_toolbelt import sessions
+        >>> from lib.vulmap.thirdparty.requests_toolbelt import sessions
         >>> s = sessions.BaseUrlSession(
         ...     base_url='https://example.com/resource/')
         >>> r = s.get('sub-resource/' params={'foo': 'bar'})
@@ -33,7 +33,7 @@ class BaseUrlSession(requests.Session):
 
     .. code-block:: python
 
-        >>> from thirdparty.requests_toolbelt import sessions
+        >>> from lib.vulmap.thirdparty.requests_toolbelt import sessions
         >>> s = sessions.BaseUrlSession(
         ...     base_url='https://example.com/resource/')
         >>> r = s.get('/sub-resource/' params={'foo': 'bar'})

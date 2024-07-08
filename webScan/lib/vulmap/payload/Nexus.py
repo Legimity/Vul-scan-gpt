@@ -2,12 +2,12 @@
 # -*- coding: utf-8 -*-
 import re
 import base64
-from thirdparty import requests
+from lib.vulmap.thirdparty import requests
 import threading
-from module import globals
-from core.verify import verify
-from module.md5 import random_md5
-from thirdparty.requests_toolbelt.utils import dump
+from lib.vulmap.module import globals
+from lib.vulmap.core.verify import verify
+from lib.vulmap.module.md5 import random_md5
+from lib.vulmap.thirdparty.requests_toolbelt.utils import dump
 
 
 class Nexus():

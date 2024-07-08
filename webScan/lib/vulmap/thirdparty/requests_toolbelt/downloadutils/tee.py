@@ -39,7 +39,7 @@ def tee(response, fileobject, chunksize=_DEFAULT_CHUNKSIZE,
         for chunk in tee(resp, fileobject):
             # do stuff with chunk
 
-    :param response: Response from thirdparty.requests.
+    :param response: Response from lib.vulmap.thirdparty.requests.
     :type response: requests.Response
     :param fileobject: Writable file-like object.
     :type fileobject: file, io.BytesIO
@@ -77,7 +77,7 @@ def tee_to_file(response, filename, chunksize=_DEFAULT_CHUNKSIZE,
         for chunk in tee_to_file(resp, 'save_file'):
             # do stuff with chunk
 
-    :param response: Response from thirdparty.requests.
+    :param response: Response from lib.vulmap.thirdparty.requests.
     :type response: requests.Response
     :param str filename: Name of file in which we write the response content.
     :param int chunksize: (optional), Size of chunk to attempt to stream.
@@ -110,7 +110,7 @@ def tee_to_bytearray(response, bytearr, chunksize=_DEFAULT_CHUNKSIZE,
         for chunk in tee_to_bytearray(resp, b):
             # do stuff with chunk
 
-    :param response: Response from thirdparty.requests.
+    :param response: Response from lib.vulmap.thirdparty.requests.
     :type response: requests.Response
     :param bytearray bytearr: Array to add the streamed bytes to.
     :param int chunksize: (optional), Size of chunk to attempt to stream.

@@ -21,7 +21,7 @@ entry-points.
 """
 
 
-from thirdparty.click_plugins.core import with_plugins
+from lib.vulmap.thirdparty.click_plugins.core import with_plugins
 
 
 __version__ = '1.1.1'

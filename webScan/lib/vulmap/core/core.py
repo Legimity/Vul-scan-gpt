@@ -3,21 +3,21 @@
 import os
 from gevent import joinall
 
-from module import globals
-from module.time import now
-from module.color import color
-from module.output import output
-from module.dismap import dismap
-from module.dismap import dismap_getwebapps
-from module.banner import vul_list
-from module.proxy import proxy_set
-from module.allcheck import url_check
-from module.allcheck import survival_check
-from module.api.fofa import fofa
-from module.api.dns import dns_result, dns_request
-from module.api.shodan import shodan_api
-from core.scan import scan
-from identify.identify import Identify
+from lib.vulmap.module import globals
+from lib.vulmap.module.time import now
+from lib.vulmap.module.color import color
+from lib.vulmap.module.output import output
+from lib.vulmap.module.dismap import dismap
+from lib.vulmap.module.dismap import dismap_getwebapps
+from lib.vulmap.module.banner import vul_list
+from lib.vulmap.module.proxy import proxy_set
+from lib.vulmap.module.allcheck import url_check
+from lib.vulmap.module.allcheck import survival_check
+from lib.vulmap.module.api.fofa import fofa
+from lib.vulmap.module.api.dns import dns_result, dns_request
+from lib.vulmap.module.api.shodan import shodan_api
+from lib.vulmap.core.scan import scan
+from lib.vulmap.identify.identify import Identify
 from concurrent.futures import ThreadPoolExecutor, wait, ALL_COMPLETED
 
 

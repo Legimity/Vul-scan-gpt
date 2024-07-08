@@ -4,9 +4,9 @@ import os
 import sys
 import tarfile
 import sysconfig
-from module.time import now
-from module.color import color
-from module.banner import banner
+from lib.vulmap.module.time import now
+from lib.vulmap.module.color import color
+from lib.vulmap.module.banner import banner
 
 
 

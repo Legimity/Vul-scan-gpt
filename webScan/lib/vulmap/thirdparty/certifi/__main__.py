@@ -1,6 +1,6 @@
 import argparse
 
-from thirdparty.certifi import contents, where
+from lib.vulmap.thirdparty.certifi import contents, where
 
 parser = argparse.ArgumentParser()
 parser.add_argument("-c", "--contents", action="store_true")

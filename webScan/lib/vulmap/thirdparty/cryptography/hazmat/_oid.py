@@ -4,7 +4,7 @@
 
 from __future__ import absolute_import, division, print_function
 
-from thirdparty.cryptography import utils
+from lib.vulmap.thirdparty.cryptography import utils
 
 
 class ObjectIdentifier(object):
@@ -70,7 +70,7 @@ class ObjectIdentifier(object):
     @property
     def _name(self):
         # Lazy import to avoid an import cycle
-        from thirdparty.cryptography.x509.oid import _OID_NAMES
+        from lib.vulmap.thirdparty.cryptography.x509.oid import _OID_NAMES
 
         return _OID_NAMES.get(self, "Unknown OID")
 

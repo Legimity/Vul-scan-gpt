@@ -3,12 +3,12 @@
 import re
 import sys
 import json
-from thirdparty.pysocks import socks
+from lib.vulmap.thirdparty.pysocks import socks
 import socket
-from thirdparty import requests
-from module import globals
-from module.time import now
-from module.color import color
+from lib.vulmap.thirdparty import requests
+from lib.vulmap.module import globals
+from lib.vulmap.module.time import now
+from lib.vulmap.module.color import color
 
 
 def proxy_set(pr, pr_mode):

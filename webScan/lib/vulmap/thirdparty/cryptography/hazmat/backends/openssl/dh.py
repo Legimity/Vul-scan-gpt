@@ -4,10 +4,10 @@
 
 from __future__ import absolute_import, division, print_function
 
-from thirdparty.cryptography import utils
-from thirdparty.cryptography.exceptions import UnsupportedAlgorithm, _Reasons
-from thirdparty.cryptography.hazmat.primitives import serialization
-from thirdparty.cryptography.hazmat.primitives.asymmetric import dh
+from lib.vulmap.thirdparty.cryptography import utils
+from lib.vulmap.thirdparty.cryptography.exceptions import UnsupportedAlgorithm, _Reasons
+from lib.vulmap.thirdparty.cryptography.hazmat.primitives import serialization
+from lib.vulmap.thirdparty.cryptography.hazmat.primitives.asymmetric import dh
 
 
 def _dh_params_dup(dh_cdata, backend):

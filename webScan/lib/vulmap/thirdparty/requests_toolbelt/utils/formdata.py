@@ -20,8 +20,8 @@ def urlencode(query, *args, **kwargs):
 
     .. code-block:: python
 
-        from thirdparty import requests
-        from thirdparty.requests_toolbelt.utils import formdata
+        from lib.vulmap.thirdparty import requests
+        from lib.vulmap.thirdparty.requests_toolbelt.utils import formdata
 
         query = {
            'my_dict': {
@@ -45,8 +45,8 @@ def urlencode(query, *args, **kwargs):
 
     .. code-block:: python
 
-        from thirdparty import requests
-        from thirdparty.requests_toolbelt.utils import formdata
+        from lib.vulmap.thirdparty import requests
+        from lib.vulmap.thirdparty.requests_toolbelt.utils import formdata
 
         query = [
             ('my_list', [

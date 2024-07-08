@@ -1,5 +1,5 @@
 """Provide a compatibility layer for requests.auth.HTTPDigestAuth."""
-from thirdparty import requests
+from lib.vulmap.thirdparty import requests
 
 
 class _ThreadingDescriptor(object):

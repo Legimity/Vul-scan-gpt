@@ -4,10 +4,10 @@
 
 from __future__ import absolute_import, division, print_function
 
-from thirdparty.cryptography import utils
-from thirdparty.cryptography.exceptions import InvalidTag, UnsupportedAlgorithm, _Reasons
-from thirdparty.cryptography.hazmat.primitives import ciphers
-from thirdparty.cryptography.hazmat.primitives.ciphers import modes
+from lib.vulmap.thirdparty.cryptography import utils
+from lib.vulmap.thirdparty.cryptography.exceptions import InvalidTag, UnsupportedAlgorithm, _Reasons
+from lib.vulmap.thirdparty.cryptography.hazmat.primitives import ciphers
+from lib.vulmap.thirdparty.cryptography.hazmat.primitives.ciphers import modes
 
 
 @utils.register_interface(ciphers.CipherContext)

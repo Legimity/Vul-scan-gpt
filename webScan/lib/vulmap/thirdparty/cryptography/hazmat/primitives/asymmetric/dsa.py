@@ -8,8 +8,8 @@ import abc
 
 import six
 
-from thirdparty.cryptography import utils
-from thirdparty.cryptography.hazmat.backends import _get_backend
+from lib.vulmap.thirdparty.cryptography import utils
+from lib.vulmap.thirdparty.cryptography.hazmat.backends import _get_backend
 
 
 @six.add_metaclass(abc.ABCMeta)

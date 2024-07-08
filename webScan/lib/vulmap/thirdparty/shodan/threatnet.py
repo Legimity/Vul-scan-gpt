@@ -1,4 +1,4 @@
-from thirdparty import requests
+from lib.vulmap.thirdparty import requests
 import json
 
 from .exception import APIError

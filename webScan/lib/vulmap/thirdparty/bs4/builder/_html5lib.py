@@ -7,22 +7,22 @@ __all__ = [
 
 import warnings
 import re
-from thirdparty.bs4.builder import (
+from lib.vulmap.thirdparty.bs4.builder import (
     PERMISSIVE,
     HTML,
     HTML_5,
     HTMLTreeBuilder,
     )
-from thirdparty.bs4.element import (
+from lib.vulmap.thirdparty.bs4.element import (
     NamespacedAttribute,
     nonwhitespace_re,
 )
-from thirdparty import html5lib
-from thirdparty.html5lib.constants import (
+from lib.vulmap.thirdparty import html5lib
+from lib.vulmap.thirdparty.html5lib.constants import (
     namespaces,
     prefixes,
     )
-from thirdparty.bs4.element import (
+from lib.vulmap.thirdparty.bs4.element import (
     Comment,
     Doctype,
     NavigableString,
@@ -31,11 +31,11 @@ from thirdparty.bs4.element import (
 
 try:
     # Pre-0.99999999
-    from thirdparty.html5lib.treebuilders import _base as treebuilder_base
+    from lib.vulmap.thirdparty.html5lib.treebuilders import _base as treebuilder_base
     new_html5lib = False
 except ImportError as e:
     # 0.99999999 and up
-    from thirdparty.html5lib.treebuilders import base as treebuilder_base
+    from lib.vulmap.thirdparty.html5lib.treebuilders import base as treebuilder_base
     new_html5lib = True
 
 class HTML5TreeBuilder(HTMLTreeBuilder):
@@ -120,7 +120,7 @@ class TreeBuilderForHtml5lib(treebuilder_base.TreeBuilder):
         if soup:
             self.soup = soup
         else:
-            from thirdparty.bs4 import BeautifulSoup
+            from lib.vulmap.thirdparty.bs4 import BeautifulSoup
             # TODO: Why is the parser 'html.parser' here? To avoid an
             # infinite loop?
             self.soup = BeautifulSoup(
@@ -166,7 +166,7 @@ class TreeBuilderForHtml5lib(treebuilder_base.TreeBuilder):
         return TextNode(Comment(data), self.soup)
 
     def fragmentClass(self):
-        from thirdparty.bs4 import BeautifulSoup
+        from lib.vulmap.thirdparty.bs4 import BeautifulSoup
         # TODO: Why is the parser 'html.parser' here? To avoid an
         # infinite loop?
         self.soup = BeautifulSoup("", "html.parser")
@@ -184,7 +184,7 @@ class TreeBuilderForHtml5lib(treebuilder_base.TreeBuilder):
         return treebuilder_base.TreeBuilder.getFragment(self).element
 
     def testSerializer(self, element):
-        from thirdparty.bs4 import BeautifulSoup
+        from lib.vulmap.thirdparty.bs4 import BeautifulSoup
         rv = []
         doctype_re = re.compile(r'^(.*?)(?: PUBLIC "(.*?)"(?: "(.*?)")?| SYSTEM "(.*?)")?$')
 

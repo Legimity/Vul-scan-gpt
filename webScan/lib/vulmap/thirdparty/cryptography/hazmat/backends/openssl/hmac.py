@@ -5,13 +5,13 @@
 from __future__ import absolute_import, division, print_function
 
 
-from thirdparty.cryptography import utils
-from thirdparty.cryptography.exceptions import (
+from lib.vulmap.thirdparty.cryptography import utils
+from lib.vulmap.thirdparty.cryptography.exceptions import (
     InvalidSignature,
     UnsupportedAlgorithm,
     _Reasons,
 )
-from thirdparty.cryptography.hazmat.primitives import constant_time, hashes
+from lib.vulmap.thirdparty.cryptography.hazmat.primitives import constant_time, hashes
 
 
 @utils.register_interface(hashes.HashContext)

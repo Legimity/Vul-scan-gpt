@@ -15,8 +15,8 @@ from cryptography.hazmat.primitives.serialization import Encoding
 from cryptography.hazmat.backends import default_backend
 
 from datetime import datetime
-from thirdparty.requests.adapters import HTTPAdapter
-from thirdparty import requests
+from lib.vulmap.thirdparty.requests.adapters import HTTPAdapter
+from lib.vulmap.thirdparty import requests
 
 from .._compat import PyOpenSSLContext
 from .. import exceptions as exc
@@ -72,8 +72,8 @@ class X509Adapter(HTTPAdapter):
 
     Usage::
 
-      >>> from thirdparty import requests
-      >>> from thirdparty.requests_toolbelt.adapters.x509 import X509Adapter
+      >>> from lib.vulmap.thirdparty import requests
+      >>> from lib.vulmap.thirdparty.requests_toolbelt.adapters.x509 import X509Adapter
       >>> s = requests.Session()
       >>> a = X509Adapter(max_retries=3,
                 cert_bytes=b'...', pk_bytes=b'...', encoding='...'

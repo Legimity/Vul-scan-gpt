@@ -4,7 +4,7 @@
 This file contains an implementation of a Transport Adapter that validates
 the fingerprints of SSL certificates presented upon connection.
 """
-from thirdparty.requests.adapters import HTTPAdapter
+from lib.vulmap.thirdparty.requests.adapters import HTTPAdapter
 
 from .._compat import poolmanager
 
@@ -18,9 +18,9 @@ class FingerprintAdapter(HTTPAdapter):
 
     .. code-block:: python
 
-        from thirdparty import requests
+        from lib.vulmap.thirdparty import requests
         import ssl
-        from thirdparty.requests_toolbelt.adapters.fingerprint import FingerprintAdapter
+        from lib.vulmap.thirdparty.requests_toolbelt.adapters.fingerprint import FingerprintAdapter
 
         twitter_fingerprint = '...'
         s = requests.Session()

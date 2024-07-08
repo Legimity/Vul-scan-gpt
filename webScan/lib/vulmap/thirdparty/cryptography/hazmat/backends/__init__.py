@@ -12,7 +12,7 @@ def default_backend():
     global _default_backend
 
     if _default_backend is None:
-        from thirdparty.cryptography.hazmat.backends.openssl.backend import backend
+        from lib.vulmap.thirdparty.cryptography.hazmat.backends.openssl.backend import backend
 
         _default_backend = backend
 

@@ -4,9 +4,9 @@
 
 from __future__ import absolute_import, division, print_function
 
-from thirdparty.cryptography import exceptions, utils
-from thirdparty.cryptography.hazmat.primitives import serialization
-from thirdparty.cryptography.hazmat.primitives.asymmetric.ed448 import (
+from lib.vulmap.thirdparty.cryptography import exceptions, utils
+from lib.vulmap.thirdparty.cryptography.hazmat.primitives import serialization
+from lib.vulmap.thirdparty.cryptography.hazmat.primitives.asymmetric.ed448 import (
     Ed448PrivateKey,
     Ed448PublicKey,
 )

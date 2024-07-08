@@ -39,7 +39,7 @@ def get_download_file_path(response, path):
 
     If path is a full file path, return it.
 
-    :param response: A Response object from thirdparty.requests
+    :param response: A Response object from lib.vulmap.thirdparty.requests
     :type response: requests.models.Response
     :param str path: Directory or file path.
     :returns: full file path to download as
@@ -92,9 +92,9 @@ def stream_response_to_file(response, path=None, chunksize=_DEFAULT_CHUNKSIZE):
 
     .. code-block:: python
 
-        from thirdparty import requests
-        from thirdparty.requests_toolbelt import exceptions
-        from thirdparty.requests_toolbelt.downloadutils import stream
+        from lib.vulmap.thirdparty import requests
+        from lib.vulmap.thirdparty.requests_toolbelt import exceptions
+        from lib.vulmap.thirdparty.requests_toolbelt.downloadutils import stream
 
         r = requests.get(url, stream=True)
         try:
@@ -109,8 +109,8 @@ def stream_response_to_file(response, path=None, chunksize=_DEFAULT_CHUNKSIZE):
 
     .. code-block:: python
 
-        from thirdparty import requests
-        from thirdparty.requests_toolbelt.downloadutils import stream
+        from lib.vulmap.thirdparty import requests
+        from lib.vulmap.thirdparty.requests_toolbelt.downloadutils import stream
 
         r = requests.get(url, stream=True)
         filename = stream.stream_response_to_file(r, path='myfile')
@@ -124,8 +124,8 @@ def stream_response_to_file(response, path=None, chunksize=_DEFAULT_CHUNKSIZE):
 
     .. code-block:: python
 
-        from thirdparty import requests
-        from thirdparty.requests_toolbelt.downloadutils import stream
+        from lib.vulmap.thirdparty import requests
+        from lib.vulmap.thirdparty.requests_toolbelt.downloadutils import stream
 
         with open('myfile', 'wb') as fd:
             r = requests.get(url, stream=True)
@@ -136,15 +136,15 @@ def stream_response_to_file(response, path=None, chunksize=_DEFAULT_CHUNKSIZE):
     .. code-block:: python
 
         import io
-        from thirdparty import requests
-        from thirdparty.requests_toolbelt.downloadutils import stream
+        from lib.vulmap.thirdparty import requests
+        from lib.vulmap.thirdparty.requests_toolbelt.downloadutils import stream
 
         b = io.BytesIO()
         r = requests.get(url, stream=True)
         filename = stream.stream_response_to_file(r, path=b)
         assert filename is None
 
-    :param response: A Response object from thirdparty.requests
+    :param response: A Response object from lib.vulmap.thirdparty.requests
     :type response: requests.models.Response
     :param path: *(optional)*, Either a string with the path to the location
         to save the response content, or a file-like object expecting bytes.

@@ -2,7 +2,7 @@
 # -*- coding: utf-8 -*-
 # author: zhzyker
 # github: https://github.com/zhzyker/vulmap
-from module.color import color
+from lib.vulmap.module.color import color
 import random
 
 banner_1 = color.yellow("""                   __

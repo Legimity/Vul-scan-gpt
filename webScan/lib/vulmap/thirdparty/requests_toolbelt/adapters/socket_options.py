@@ -4,8 +4,8 @@ import socket
 import warnings
 import sys
 
-from thirdparty import requests
-from thirdparty.requests import adapters
+from lib.vulmap.thirdparty import requests
+from lib.vulmap.thirdparty.requests import adapters
 
 from .._compat import connection
 from .._compat import poolmanager
@@ -21,8 +21,8 @@ class SocketOptionsAdapter(adapters.HTTPAdapter):
     Example usage::
 
         >>> import socket
-        >>> from thirdparty import requests
-        >>> from thirdparty.requests_toolbelt.adapters import socket_options
+        >>> from lib.vulmap.thirdparty import requests
+        >>> from lib.vulmap.thirdparty.requests_toolbelt.adapters import socket_options
         >>> s = requests.Session()
         >>> opts = [(socket.IPPROTO_TCP, socket.TCP_NODELAY, 0)]
         >>> adapter = socket_options.SocketOptionsAdapter(socket_options=opts)
@@ -90,7 +90,7 @@ class TCPKeepAliveAdapter(SocketOptionsAdapter):
 
     You can use this adapter like so::
 
-       >>> from thirdparty.requests_toolbelt.adapters import socket_options
+       >>> from lib.vulmap.thirdparty.requests_toolbelt.adapters import socket_options
        >>> tcp = socket_options.TCPKeepAliveAdapter(idle=120, interval=10)
        >>> s = requests.Session()
        >>> s.mount('http://', tcp)

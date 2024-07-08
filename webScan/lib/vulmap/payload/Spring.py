@@ -1,12 +1,12 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
 import time
-from thirdparty import requests
+from lib.vulmap.thirdparty import requests
 import threading
-from module import globals
-from core.verify import verify
-from thirdparty.requests_toolbelt.utils import dump
-from module.api.dns import dns_result, dns_request
+from lib.vulmap.module import globals
+from lib.vulmap.core.verify import verify
+from lib.vulmap.thirdparty.requests_toolbelt.utils import dump
+from lib.vulmap.module.api.dns import dns_result, dns_request
 
 
 class Spring():

@@ -1,6 +1,6 @@
 """This module provides functions for dumping information about responses."""
 import collections
-from thirdparty.requests import compat
+from lib.vulmap.thirdparty.requests import compat
 
 
 __all__ = ('dump_response', 'dump_all')
@@ -122,8 +122,8 @@ def dump_response(response, request_prefix=b'< ', response_prefix=b'> ',
 
     Example::
 
-        from thirdparty import requests
-        from thirdparty.requests_toolbelt.utils import dump
+        from lib.vulmap.thirdparty import requests
+        from lib.vulmap.thirdparty.requests_toolbelt.utils import dump
 
         resp = requests.get('https://api.github.com/users/sigmavirus24')
         data = dump.dump_response(resp)
@@ -166,8 +166,8 @@ def dump_all(response, request_prefix=b'< ', response_prefix=b'> '):
 
     Example::
 
-        from thirdparty import requests
-        from thirdparty.requests_toolbelt.utils import dump
+        from lib.vulmap.thirdparty import requests
+        from lib.vulmap.thirdparty.requests_toolbelt.utils import dump
 
         resp = requests.get('https://httpbin.org/redirect/5')
         data = dump.dump_all(resp)

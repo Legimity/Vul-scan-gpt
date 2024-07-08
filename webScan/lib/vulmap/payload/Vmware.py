@@ -3,13 +3,13 @@
 import os
 import sys
 import threading
-from module.api.dns import dns_request
-from module.api.dns import dns_result
-from thirdparty import requests
-from thirdparty.requests.compat import urljoin
-from module import globals
-from core.verify import verify
-from thirdparty.requests_toolbelt.utils import dump
+from lib.vulmap.module.api.dns import dns_request
+from lib.vulmap.module.api.dns import dns_result
+from lib.vulmap.thirdparty import requests
+from lib.vulmap.thirdparty.requests.compat import urljoin
+from lib.vulmap.module import globals
+from lib.vulmap.core.verify import verify
+from lib.vulmap.thirdparty.requests_toolbelt.utils import dump
 
 
 class Vmware():

@@ -8,7 +8,7 @@ This module handles import compatibility issues between Python 2 and
 Python 3.
 """
 
-from thirdparty import chardet
+from lib.vulmap.thirdparty import chardet
 
 import sys
 
