@@ -1,7 +1,7 @@
 from gpt.analyzer import PortScanAnalyzer
 from portScan.port_scan import PortScanner
 from softwareScan.software_scan import SoftwareScanner
-from webScan.web_scan import WebScanner  # TODO: need to refine result
+# from webScan.web_scan import WebScanner  # TODO: need to refine result
 
 import argparse
 from utils.logger import ColoredLogger
@@ -40,19 +40,19 @@ def parse_arguments():
 def main():
     args = parse_arguments()
     
-    # Nmap port scan 端口扫描
-    logger.info("Starting Nmap port scan...")
-    port_scan = PortScanner()
-    analyzer = PortScanAnalyzer()
-    response = port_scan.scanner(args.ip, args.port, args.choice, analyzer)
-    print(response)
+    # # Nmap port scan 端口扫描
+    # logger.info("Starting Nmap port scan...")
+    # port_scan = PortScanner()
+    # analyzer = PortScanAnalyzer()
+    # response = port_scan.scanner(args.ip, args.port, args.choice, analyzer)
+    # print(response)
 
-    # webScan
-    logger.info("Starting Web scan...")
-    web_scan = WebScanner(target_url=args.ip)
-    # TODO: 这里应该返回了webScan的扫描结果，需要进一步交给gpt处理
-    result = web_scan.run()
-    print(result)
+    # # webScan
+    # logger.info("Starting Web scan...")
+    # web_scan = WebScanner(target_url=args.ip)
+    # # TODO: 这里应该返回了webScan的扫描结果，需要进一步交给gpt处理
+    # result = web_scan.run()
+    # print(result)
 
     # nikto software-vul scan
     logger.info("Starting Nikto software scan...")

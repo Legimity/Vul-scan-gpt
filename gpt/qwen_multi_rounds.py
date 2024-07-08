@@ -98,7 +98,17 @@ class nmapScanner(BaseTool):
   # def sqlmapExploit(ip: Optional[str],port:Optional[str]) -> str:
   #     return "Got access to the database "
 
-# 初始化bot
+# # 初始化bot
+# # agent的提示词指令
+# system_instruction = '''You are a helpful webscanner assistant.
+# After receiving the user's request, you should:
+# - first use nmap to scan the network for a given URL and port,
+# - then use nikto to find the vulnerabilities of the host,
+# - and use sqlmapExploit to gain access to database.
+# - Finally, you should write a report to the user to summarize the results of the scan and exploitation.
+# '''
+
+
 def init_agent_service():
     llm_cfg = {'model': 'qwen-max',
                'model_server': 'dashscope',
@@ -146,6 +156,7 @@ def app_tui():
         response = []
         for response in bot.run(messages):
             print('bot response:', response)
+        logger.info(f'bot response: {response}')
         messages.extend(response)
         max_response_rounds-=1
 
