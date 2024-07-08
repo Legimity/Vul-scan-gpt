@@ -8,10 +8,10 @@ class SoftwareScanner:
     
 
     # 需要提供target
-    def nikto_scanner(self, target):
+    def nikto_scanner(self, target,port ):
         # 调用 Nikto 并捕获输出
         result = subprocess.run(
-            ["perl", self.nikto_path, "-h", target],
+            ["perl", self.nikto_path, "-h", target,"-port",port],
             stdout=subprocess.PIPE,
             stderr=subprocess.PIPE,
             text=True,

@@ -41,7 +41,7 @@ class WebScan:
         # print("Struct2Scan output",struc2scan_output)
 
         # print(type(output1),type(output2),type(output3))
-        result=f'tpscan_output is :{tpscan_output}\n vulmap_output is :{vulmap_output}\n struc2scan_output is:{struc2scan_output}'
+        result=f'The result contain the report of three toolts: tpscan_output is :{tpscan_output}\n vulmap_output is :{vulmap_output}\n struc2scan_output is:{struc2scan_output}'
 
         return result
 

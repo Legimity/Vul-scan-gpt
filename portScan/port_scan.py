@@ -34,3 +34,19 @@ class PortScanner:
         analyze_data = DataProcessor.process_nmap_result(scan_result)
         response = analyzer.llama(str(analyze_data))
         return response
+
+
+class nmapScanner():
+  
+  def run(self, 
+          ip: Optional[str],
+        port: Optional[str],) -> str:
+  
+     
+      # Your code here to perform the nmap scan
+      nm.scan(ip, port, arguments='"-Pn -T4 -sV -sT"')
+      json_data = nm.analyse_nmap_xml_scan()
+      scan_result = json_data["scan"]
+      # logger.info(f"Scanning the network for a given URL:{ip} and port :{port}.")
+      return scan_result
+      # return "the host is up and port is open"

@@ -21,6 +21,8 @@ print(root_path)
 sys.path.append(str(root_path))
 from utils.logger import ColoredLogger
 logger = ColoredLogger().get_logger()
+from utils.banner import banner
+print(banner())
 
 
 from softwareScan.software_scan import SoftwareScanner
@@ -62,11 +64,18 @@ class niktoScanner(BaseTool):
       'type': 'string',
       'description':'Detailed description of the desired host ip, in English',
       'required': True
+  },
+  {
+      'name': 'port',
+      'type': 'string',
+      'description':'Detailed description of the desired host port to be scanned',
+      'required': True
   }]
   def call(self, params: str, **kwargs) -> str:
         ip= json5.loads(params)['ip']
+        port = json5.loads(params)['port']
         softwareScanner = SoftwareScanner()
-        result_to_be_analyse_by_gpt = softwareScanner.nikto_scanner(target=ip)
+        result_to_be_analyse_by_gpt = softwareScanner.nikto_scanner(target=ip, port=port)
         return  result_to_be_analyse_by_gpt
 
 
@@ -110,7 +119,9 @@ def init_agent_service():
     llm_cfg = {'model': 'qwen-max',
                'model_server': 'dashscope',
               # 'api_key': os.getenv('DASHSCOPE_API_KEY'),
-               'api_key': api_key,}
+               'api_key': api_key,
+               "max input tokens":15000,
+               }
     
     # tools = ['nmapScan', 'niktoScan','sqlmapExploit']
     tools = ['nmapScan','niktoScan','sqlmapExploit','overallWebScanner']
@@ -123,7 +134,7 @@ def init_agent_service():
         # 'Scanning the network for a given URL:127.0.0.1 and port 443 and analyze the vulnerabilties of the host.Then use the vulnerablities to get access to the database.',
         # TODO: system message 应该可以控制ip 和port
         system_message='''You are a helpful webscanner assistant.
-          After receiving the user's request, you should:
+          After receiving the user's request, you should finish the following tasks:
           - first use nmap to scan the network for a given URL and port,
           - then use nikto to find the vulnerabilities of the host,
           - then use overallWebScanner to scan the web vulnerabilities of the host,
