@@ -3,15 +3,15 @@
 import re
 import http.client
 import base64
-from thirdparty import requests
+from lib.vulmap.thirdparty import requests
 import threading
 import http.client
-from module import globals
-from core.verify import verify
-from core.verify import misinformation
-from module.md5 import random_md5
-from thirdparty.requests_toolbelt.utils import dump
-from module.api.dns import dns_result, dns_request
+from lib.vulmap.module import globals
+from lib.vulmap.core.verify import verify
+from lib.vulmap.core.verify import misinformation
+from lib.vulmap.module.md5 import random_md5
+from lib.vulmap.thirdparty.requests_toolbelt.utils import dump
+from lib.vulmap.module.api.dns import dns_result, dns_request
 
 
 class ApacheStruts2():

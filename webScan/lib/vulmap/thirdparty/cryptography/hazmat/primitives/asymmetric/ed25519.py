@@ -8,7 +8,7 @@ import abc
 
 import six
 
-from thirdparty.cryptography.exceptions import UnsupportedAlgorithm, _Reasons
+from lib.vulmap.thirdparty.cryptography.exceptions import UnsupportedAlgorithm, _Reasons
 
 
 _ED25519_KEY_SIZE = 32
@@ -19,7 +19,7 @@ _ED25519_SIG_SIZE = 64
 class Ed25519PublicKey(object):
     @classmethod
     def from_public_bytes(cls, data):
-        from thirdparty.cryptography.hazmat.backends.openssl.backend import backend
+        from lib.vulmap.thirdparty.cryptography.hazmat.backends.openssl.backend import backend
 
         if not backend.ed25519_supported():
             raise UnsupportedAlgorithm(
@@ -46,7 +46,7 @@ class Ed25519PublicKey(object):
 class Ed25519PrivateKey(object):
     @classmethod
     def generate(cls):
-        from thirdparty.cryptography.hazmat.backends.openssl.backend import backend
+        from lib.vulmap.thirdparty.cryptography.hazmat.backends.openssl.backend import backend
 
         if not backend.ed25519_supported():
             raise UnsupportedAlgorithm(
@@ -58,7 +58,7 @@ class Ed25519PrivateKey(object):
 
     @classmethod
     def from_private_bytes(cls, data):
-        from thirdparty.cryptography.hazmat.backends.openssl.backend import backend
+        from lib.vulmap.thirdparty.cryptography.hazmat.backends.openssl.backend import backend
 
         if not backend.ed25519_supported():
             raise UnsupportedAlgorithm(

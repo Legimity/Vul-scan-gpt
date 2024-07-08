@@ -9,14 +9,14 @@ import ipaddress
 
 import six
 
-from thirdparty.cryptography import utils, x509
-from thirdparty.cryptography.hazmat.backends.openssl.decode_asn1 import (
+from lib.vulmap.thirdparty.cryptography import utils, x509
+from lib.vulmap.thirdparty.cryptography.hazmat.backends.openssl.decode_asn1 import (
     _CRL_ENTRY_REASON_ENUM_TO_CODE,
     _DISTPOINT_TYPE_FULLNAME,
     _DISTPOINT_TYPE_RELATIVENAME,
 )
-from thirdparty.cryptography.x509.name import _ASN1Type
-from thirdparty.cryptography.x509.oid import (
+from lib.vulmap.thirdparty.cryptography.x509.name import _ASN1Type
+from lib.vulmap.thirdparty.cryptography.x509.oid import (
     CRLEntryExtensionOID,
     ExtensionOID,
     OCSPExtensionOID,

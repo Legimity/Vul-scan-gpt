@@ -6,9 +6,9 @@ from __future__ import absolute_import, division, print_function
 
 import functools
 
-from thirdparty.cryptography import utils, x509
-from thirdparty.cryptography.exceptions import UnsupportedAlgorithm
-from thirdparty.cryptography.hazmat.backends.openssl.decode_asn1 import (
+from lib.vulmap.thirdparty.cryptography import utils, x509
+from lib.vulmap.thirdparty.cryptography.exceptions import UnsupportedAlgorithm
+from lib.vulmap.thirdparty.cryptography.hazmat.backends.openssl.decode_asn1 import (
     _CRL_ENTRY_REASON_CODE_TO_ENUM,
     _asn1_integer_to_int,
     _asn1_string_to_bytes,
@@ -16,9 +16,9 @@ from thirdparty.cryptography.hazmat.backends.openssl.decode_asn1 import (
     _obj2txt,
     _parse_asn1_generalized_time,
 )
-from thirdparty.cryptography.hazmat.backends.openssl.x509 import _Certificate
-from thirdparty.cryptography.hazmat.primitives import serialization
-from thirdparty.cryptography.x509.ocsp import (
+from lib.vulmap.thirdparty.cryptography.hazmat.backends.openssl.x509 import _Certificate
+from lib.vulmap.thirdparty.cryptography.hazmat.primitives import serialization
+from lib.vulmap.thirdparty.cryptography.x509.ocsp import (
     OCSPCertStatus,
     OCSPRequest,
     OCSPResponse,

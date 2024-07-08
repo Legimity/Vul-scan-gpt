@@ -11,7 +11,7 @@ This holds all the implementation details of the MultipartDecoder
 import sys
 import email.parser
 from .encoder import encode_with
-from thirdparty.requests.structures import CaseInsensitiveDict
+from lib.vulmap.thirdparty.requests.structures import CaseInsensitiveDict
 
 
 def _split_on_find(content, bound):
@@ -79,8 +79,8 @@ class MultipartDecoder(object):
 
     The basic usage is::
 
-        from thirdparty import requests
-        from thirdparty.requests_toolbelt import MultipartDecoder
+        from lib.vulmap.thirdparty import requests
+        from lib.vulmap.thirdparty.requests_toolbelt import MultipartDecoder
 
         response = request.get(url)
         decoder = MultipartDecoder.from_response(response)
@@ -89,7 +89,7 @@ class MultipartDecoder(object):
 
     If the multipart content is not from a response, basic usage is::
 
-        from thirdparty.requests_toolbelt import MultipartDecoder
+        from lib.vulmap.thirdparty.requests_toolbelt import MultipartDecoder
 
         decoder = MultipartDecoder(content, content_type)
         for part in decoder.parts:

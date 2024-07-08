@@ -1,4 +1,4 @@
 # Ignore all .pyc files
 *.pyc
-.idea
-.DS_Store
+.env
+.idea/

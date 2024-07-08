@@ -4,7 +4,7 @@
 
 from __future__ import absolute_import, division, print_function
 
-from thirdparty.cryptography.hazmat.primitives.serialization.base import (
+from lib.vulmap.thirdparty.cryptography.hazmat.primitives.serialization.base import (
     BestAvailableEncryption,
     Encoding,
     KeySerializationEncryption,
@@ -19,7 +19,7 @@ from thirdparty.cryptography.hazmat.primitives.serialization.base import (
     load_pem_private_key,
     load_pem_public_key,
 )
-from thirdparty.cryptography.hazmat.primitives.serialization.ssh import (
+from lib.vulmap.thirdparty.cryptography.hazmat.primitives.serialization.ssh import (
     load_ssh_private_key,
     load_ssh_public_key,
 )

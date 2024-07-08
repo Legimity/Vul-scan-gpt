@@ -1471,7 +1471,6 @@ def main(info, version, url, file, name, data, header, encode, proxy, exec, reve
          workers, webpath):
     """Struts2批量扫描利用工具"""
     global proxies, is_quiet, _tiemout, process
-    click.secho(banner, fg='red')
     if not encode:
         encode = 'UTF-8'
     if info:
@@ -1556,8 +1555,15 @@ def main(info, version, url, file, name, data, header, encode, proxy, exec, reve
         exit(0)
 
 class Scan:
-    def run(self,target_url):
-        main()
+    def run(self,target_url:str):
+        target_url=target_url.strip("/")+"/"
+        try:
+            scan_one(target_url)
+        except KeyboardInterrupt as e:
+            exit(0)
+        except Exception as e:
+            click.secho("[ERROR] {error}".format(error=e), fg='red')
+            exit(0)
 
 if __name__ == '__main__':
     try:

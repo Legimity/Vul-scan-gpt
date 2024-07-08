@@ -4,46 +4,46 @@ from gevent import monkey
 
 monkey.patch_all()
 from gevent.pool import Pool
-from webScan.lib.TPscan.plugins.thinkphp_checkcode_time_sqli import (
+from lib.TPscan.plugins.thinkphp_checkcode_time_sqli import (
     thinkphp_checkcode_time_sqli_verify,
 )
-from webScan.lib.TPscan.plugins.thinkphp_construct_code_exec import (
+from lib.TPscan.plugins.thinkphp_construct_code_exec import (
     thinkphp_construct_code_exec_verify,
 )
-from webScan.lib.TPscan.plugins.thinkphp_construct_debug_rce import (
+from lib.TPscan.plugins.thinkphp_construct_debug_rce import (
     thinkphp_construct_debug_rce_verify,
 )
-from webScan.lib.TPscan.plugins.thinkphp_debug_index_ids_sqli import (
+from lib.TPscan.plugins.thinkphp_debug_index_ids_sqli import (
     thinkphp_debug_index_ids_sqli_verify,
 )
-from webScan.lib.TPscan.plugins.thinkphp_driver_display_rce import (
+from lib.TPscan.plugins.thinkphp_driver_display_rce import (
     thinkphp_driver_display_rce_verify,
 )
-from webScan.lib.TPscan.plugins.thinkphp_index_construct_rce import (
+from lib.TPscan.plugins.thinkphp_index_construct_rce import (
     thinkphp_index_construct_rce_verify,
 )
-from webScan.lib.TPscan.plugins.thinkphp_index_showid_rce import (
+from lib.TPscan.plugins.thinkphp_index_showid_rce import (
     thinkphp_index_showid_rce_verify,
 )
-from webScan.lib.TPscan.plugins.thinkphp_invoke_func_code_exec import (
+from lib.TPscan.plugins.thinkphp_invoke_func_code_exec import (
     thinkphp_invoke_func_code_exec_verify,
 )
-from webScan.lib.TPscan.plugins.thinkphp_lite_code_exec import (
+from lib.TPscan.plugins.thinkphp_lite_code_exec import (
     thinkphp_lite_code_exec_verify,
 )
-from webScan.lib.TPscan.plugins.thinkphp_method_filter_code_exec import (
+from lib.TPscan.plugins.thinkphp_method_filter_code_exec import (
     thinkphp_method_filter_code_exec_verify,
 )
-from webScan.lib.TPscan.plugins.thinkphp_multi_sql_leak import (
+from lib.TPscan.plugins.thinkphp_multi_sql_leak import (
     thinkphp_multi_sql_leak_verify,
 )
-from webScan.lib.TPscan.plugins.thinkphp_pay_orderid_sqli import (
+from lib.TPscan.plugins.thinkphp_pay_orderid_sqli import (
     thinkphp_pay_orderid_sqli_verify,
 )
-from webScan.lib.TPscan.plugins.thinkphp_request_input_rce import (
+from lib.TPscan.plugins.thinkphp_request_input_rce import (
     thinkphp_request_input_rce_verify,
 )
-from webScan.lib.TPscan.plugins.thinkphp_view_recent_xff_sqli import (
+from lib.TPscan.plugins.thinkphp_view_recent_xff_sqli import (
     thinkphp_view_recent_xff_sqli_verify,
 )
 

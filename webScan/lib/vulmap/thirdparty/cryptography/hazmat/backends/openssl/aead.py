@@ -4,7 +4,7 @@
 
 from __future__ import absolute_import, division, print_function
 
-from thirdparty.cryptography.exceptions import InvalidTag
+from lib.vulmap.thirdparty.cryptography.exceptions import InvalidTag
 
 
 _ENCRYPT = 1
@@ -12,7 +12,7 @@ _DECRYPT = 0
 
 
 def _aead_cipher_name(cipher):
-    from thirdparty.cryptography.hazmat.primitives.ciphers.aead import (
+    from lib.vulmap.thirdparty.cryptography.hazmat.primitives.ciphers.aead import (
         AESCCM,
         AESGCM,
         ChaCha20Poly1305,
@@ -100,7 +100,7 @@ def _process_data(backend, ctx, data):
 
 
 def _encrypt(backend, cipher, nonce, data, associated_data, tag_length):
-    from thirdparty.cryptography.hazmat.primitives.ciphers.aead import AESCCM
+    from lib.vulmap.thirdparty.cryptography.hazmat.primitives.ciphers.aead import AESCCM
 
     cipher_name = _aead_cipher_name(cipher)
     ctx = _aead_setup(
@@ -128,7 +128,7 @@ def _encrypt(backend, cipher, nonce, data, associated_data, tag_length):
 
 
 def _decrypt(backend, cipher, nonce, data, associated_data, tag_length):
-    from thirdparty.cryptography.hazmat.primitives.ciphers.aead import AESCCM
+    from lib.vulmap.thirdparty.cryptography.hazmat.primitives.ciphers.aead import AESCCM
 
     if len(data) < tag_length:
         raise InvalidTag

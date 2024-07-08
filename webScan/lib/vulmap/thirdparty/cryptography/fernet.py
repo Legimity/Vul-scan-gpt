@@ -12,12 +12,12 @@ import time
 
 import six
 
-from thirdparty.cryptography import utils
-from thirdparty.cryptography.exceptions import InvalidSignature
-from thirdparty.cryptography.hazmat.backends import _get_backend
-from thirdparty.cryptography.hazmat.primitives import hashes, padding
-from thirdparty.cryptography.hazmat.primitives.ciphers import Cipher, algorithms, modes
-from thirdparty.cryptography.hazmat.primitives.hmac import HMAC
+from lib.vulmap.thirdparty.cryptography import utils
+from lib.vulmap.thirdparty.cryptography.exceptions import InvalidSignature
+from lib.vulmap.thirdparty.cryptography.hazmat.backends import _get_backend
+from lib.vulmap.thirdparty.cryptography.hazmat.primitives import hashes, padding
+from lib.vulmap.thirdparty.cryptography.hazmat.primitives.ciphers import Cipher, algorithms, modes
+from lib.vulmap.thirdparty.cryptography.hazmat.primitives.hmac import HMAC
 
 
 class InvalidToken(Exception):

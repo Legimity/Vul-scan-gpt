@@ -14,14 +14,14 @@ except ImportError as e:
 from io import BytesIO
 from io import StringIO
 from lxml import etree
-from thirdparty.bs4.element import (
+from lib.vulmap.thirdparty.bs4.element import (
     Comment,
     Doctype,
     NamespacedAttribute,
     ProcessingInstruction,
     XMLProcessingInstruction,
 )
-from thirdparty.bs4.builder import (
+from lib.vulmap.thirdparty.bs4.builder import (
     FAST,
     HTML,
     HTMLTreeBuilder,
@@ -29,7 +29,7 @@ from thirdparty.bs4.builder import (
     ParserRejectedMarkup,
     TreeBuilder,
     XML)
-from thirdparty.bs4.dammit import EncodingDetector
+from lib.vulmap.thirdparty.bs4.dammit import EncodingDetector
 
 LXML = 'lxml'
 

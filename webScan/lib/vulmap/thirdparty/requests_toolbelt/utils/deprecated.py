@@ -3,7 +3,7 @@
 import re
 import sys
 
-from thirdparty.requests import utils
+from lib.vulmap.thirdparty.requests import utils
 
 find_charset = re.compile(
     br'<meta.*?charset=["\']*(.+?)["\'>]', flags=re.I
@@ -23,8 +23,8 @@ def get_encodings_from_content(content):
 
     .. code-block:: python
 
-        from thirdparty import requests
-        from thirdparty.requests_toolbelt.utils import deprecated
+        from lib.vulmap.thirdparty import requests
+        from lib.vulmap.thirdparty.requests_toolbelt.utils import deprecated
 
         r = requests.get(url)
         encodings = deprecated.get_encodings_from_content(r)
@@ -51,8 +51,8 @@ def get_unicode_from_response(response):
 
     .. code-block:: python
 
-        from thirdparty import requests
-        from thirdparty.requests_toolbelt.utils import deprecated
+        from lib.vulmap.thirdparty import requests
+        from lib.vulmap.thirdparty.requests_toolbelt.utils import deprecated
 
         r = requests.get(url)
         text = deprecated.get_unicode_from_response(r)

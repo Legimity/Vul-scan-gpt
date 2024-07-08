@@ -1,9 +1,11 @@
 import subprocess
 import logging
-
+import os
 
 class SoftwareScanner:
-    nikto_path = "./nikto/program/nikto.pl"
+    # nikto_path = "./nikto/program/nikto.pl"
+    nikto_path=os.path.join(os.path.dirname(__file__), "nikto/program/nikto.pl")
+    
 
     # 需要提供target
     def nikto_scanner(self, target):
@@ -19,3 +21,7 @@ class SoftwareScanner:
             logging.error("Software scan Error:", result.stderr)
         else:
             return result.stdout
+
+if __name__ == "__main__":
+    path=os.path.join(os.path.dirname(__file__), "nikto/program/nikto.pl")
+    print(path)

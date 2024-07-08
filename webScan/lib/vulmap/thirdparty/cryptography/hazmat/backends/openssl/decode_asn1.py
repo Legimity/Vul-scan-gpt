@@ -9,11 +9,11 @@ import ipaddress
 
 import six
 
-from thirdparty.cryptography import x509
-from thirdparty.cryptography.hazmat._der import DERReader, INTEGER, NULL, SEQUENCE
-from thirdparty.cryptography.x509.extensions import _TLS_FEATURE_TYPE_TO_ENUM
-from thirdparty.cryptography.x509.name import _ASN1_TYPE_TO_ENUM
-from thirdparty.cryptography.x509.oid import (
+from lib.vulmap.thirdparty.cryptography import x509
+from lib.vulmap.thirdparty.cryptography.hazmat._der import DERReader, INTEGER, NULL, SEQUENCE
+from lib.vulmap.thirdparty.cryptography.x509.extensions import _TLS_FEATURE_TYPE_TO_ENUM
+from lib.vulmap.thirdparty.cryptography.x509.name import _ASN1_TYPE_TO_ENUM
+from lib.vulmap.thirdparty.cryptography.x509.oid import (
     CRLEntryExtensionOID,
     CertificatePoliciesOID,
     ExtensionOID,
@@ -645,7 +645,7 @@ def _decode_inhibit_any_policy(backend, asn1_int):
 
 
 def _decode_scts(backend, asn1_scts):
-    from thirdparty.cryptography.hazmat.backends.openssl.x509 import (
+    from lib.vulmap.thirdparty.cryptography.hazmat.backends.openssl.x509 import (
         _SignedCertificateTimestamp,
     )
 

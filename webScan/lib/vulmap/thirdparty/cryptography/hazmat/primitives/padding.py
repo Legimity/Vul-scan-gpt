@@ -8,9 +8,9 @@ import abc
 
 import six
 
-from thirdparty.cryptography import utils
-from thirdparty.cryptography.exceptions import AlreadyFinalized
-from thirdparty.cryptography.hazmat.bindings._padding import lib
+from lib.vulmap.thirdparty.cryptography import utils
+from lib.vulmap.thirdparty.cryptography.exceptions import AlreadyFinalized
+from lib.vulmap.thirdparty.cryptography.hazmat.bindings._padding import lib
 
 
 @six.add_metaclass(abc.ABCMeta)

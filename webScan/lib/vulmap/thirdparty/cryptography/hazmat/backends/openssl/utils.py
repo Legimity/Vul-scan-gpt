@@ -6,9 +6,9 @@ from __future__ import absolute_import, division, print_function
 
 import warnings
 
-from thirdparty.cryptography import utils
-from thirdparty.cryptography.hazmat.primitives import hashes
-from thirdparty.cryptography.hazmat.primitives.asymmetric.utils import Prehashed
+from lib.vulmap.thirdparty.cryptography import utils
+from lib.vulmap.thirdparty.cryptography.hazmat.primitives import hashes
+from lib.vulmap.thirdparty.cryptography.hazmat.primitives.asymmetric.utils import Prehashed
 
 
 def _evp_pkey_derive(backend, evp_pkey, peer_public_key):

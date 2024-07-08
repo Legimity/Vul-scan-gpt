@@ -11,10 +11,10 @@ There are two ways to use this library:
 
    .. code-block:: python
 
-       >>> from thirdparty import requests
+       >>> from lib.vulmap.thirdparty import requests
        >>> import ssl
-       >>> from thirdparty import requests.packages.urllib3.contrib.appengine as ul_appengine
-       >>> from thirdparty.requests_toolbelt.adapters import appengine
+       >>> from lib.vulmap.thirdparty import requests.packages.urllib3.contrib.appengine as ul_appengine
+       >>> from lib.vulmap.thirdparty.requests_toolbelt.adapters import appengine
        >>> s = requests.Session()
        >>> if ul_appengine.is_appengine_sandbox():
        ...    s.mount('http://', appengine.AppEngineAdapter())
@@ -25,7 +25,7 @@ There are two ways to use this library:
 
    .. code-block:: python
 
-       >>> from thirdparty.requests_toolbelt.adapters import appengine
+       >>> from lib.vulmap.thirdparty.requests_toolbelt.adapters import appengine
        >>> appengine.monkeypatch()
 
 which will ensure all requests.Session objects use AppEngineAdapter properly.
@@ -33,10 +33,10 @@ which will ensure all requests.Session objects use AppEngineAdapter properly.
 You are also able to :ref:`disable certificate validation <insecure_appengine>`
 when monkey-patching.
 """
-from thirdparty import requests
+from lib.vulmap.thirdparty import requests
 import warnings
-from thirdparty.requests import adapters
-from thirdparty.requests import sessions
+from lib.vulmap.thirdparty.requests import adapters
+from lib.vulmap.thirdparty.requests import sessions
 
 from .. import exceptions as exc
 from .._compat import gaecontrib

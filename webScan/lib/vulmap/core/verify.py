@@ -1,10 +1,10 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
 import re
-from module import globals
-from module.time import now
-from module.color import color
-from module.output import output
+from lib.vulmap.module import globals
+from lib.vulmap.module.time import now
+from lib.vulmap.module.color import color
+from lib.vulmap.module.output import output
 
 
 class Verification:

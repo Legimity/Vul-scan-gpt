@@ -1,2 +1,2 @@
-from thirdparty.shodan.client import Shodan
-from thirdparty.shodan.exception import APIError
+from lib.vulmap.thirdparty.shodan.client import Shodan
+from lib.vulmap.thirdparty.shodan.exception import APIError

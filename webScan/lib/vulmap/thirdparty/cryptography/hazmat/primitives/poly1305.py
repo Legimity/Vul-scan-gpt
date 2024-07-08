@@ -5,8 +5,8 @@
 from __future__ import absolute_import, division, print_function
 
 
-from thirdparty.cryptography import utils
-from thirdparty.cryptography.exceptions import (
+from lib.vulmap.thirdparty.cryptography import utils
+from lib.vulmap.thirdparty.cryptography.exceptions import (
     AlreadyFinalized,
     UnsupportedAlgorithm,
     _Reasons,
@@ -15,7 +15,7 @@ from thirdparty.cryptography.exceptions import (
 
 class Poly1305(object):
     def __init__(self, key):
-        from thirdparty.cryptography.hazmat.backends.openssl.backend import backend
+        from lib.vulmap.thirdparty.cryptography.hazmat.backends.openssl.backend import backend
 
         if not backend.poly1305_supported():
             raise UnsupportedAlgorithm(

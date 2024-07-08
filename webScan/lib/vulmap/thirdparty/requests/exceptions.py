@@ -6,7 +6,7 @@ requests.exceptions
 
 This module contains the set of Requests' exceptions.
 """
-from thirdparty.urllib3.exceptions import HTTPError as BaseHTTPError
+from lib.vulmap.thirdparty.urllib3.exceptions import HTTPError as BaseHTTPError
 
 
 class RequestException(IOError):

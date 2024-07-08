@@ -4,9 +4,9 @@ import re
 import time
 import json
 import os.path
-from module.time import now
-from module.color import color
-from module import globals
+from lib.vulmap.module.time import now
+from lib.vulmap.module.color import color
+from lib.vulmap.module import globals
 from urllib.parse import urlparse
 
 

@@ -4,7 +4,7 @@
 
 from __future__ import absolute_import, division, print_function
 
-from thirdparty.cryptography.hazmat.primitives.ciphers.base import (
+from lib.vulmap.thirdparty.cryptography.hazmat.primitives.ciphers.base import (
     AEADCipherContext,
     AEADDecryptionContext,
     AEADEncryptionContext,

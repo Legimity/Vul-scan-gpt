@@ -5,8 +5,8 @@
 from __future__ import absolute_import, division, print_function
 
 
-from thirdparty.cryptography.exceptions import InvalidSignature
-from thirdparty.cryptography.hazmat.primitives import constant_time
+from lib.vulmap.thirdparty.cryptography.exceptions import InvalidSignature
+from lib.vulmap.thirdparty.cryptography.hazmat.primitives import constant_time
 
 
 _POLY1305_TAG_SIZE = 16

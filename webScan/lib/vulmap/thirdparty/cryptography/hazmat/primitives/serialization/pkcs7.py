@@ -6,11 +6,11 @@ from __future__ import absolute_import, division, print_function
 
 from enum import Enum
 
-from thirdparty.cryptography import x509
-from thirdparty.cryptography.hazmat.backends import _get_backend
-from thirdparty.cryptography.hazmat.primitives import hashes, serialization
-from thirdparty.cryptography.hazmat.primitives.asymmetric import ec, rsa
-from thirdparty.cryptography.utils import _check_byteslike
+from lib.vulmap.thirdparty.cryptography import x509
+from lib.vulmap.thirdparty.cryptography.hazmat.backends import _get_backend
+from lib.vulmap.thirdparty.cryptography.hazmat.primitives import hashes, serialization
+from lib.vulmap.thirdparty.cryptography.hazmat.primitives.asymmetric import ec, rsa
+from lib.vulmap.thirdparty.cryptography.utils import _check_byteslike
 
 
 def load_pem_pkcs7_certificates(data):

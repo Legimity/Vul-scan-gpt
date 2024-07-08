@@ -8,14 +8,14 @@ import abc
 
 import six
 
-from thirdparty.cryptography.exceptions import UnsupportedAlgorithm, _Reasons
+from lib.vulmap.thirdparty.cryptography.exceptions import UnsupportedAlgorithm, _Reasons
 
 
 @six.add_metaclass(abc.ABCMeta)
 class X25519PublicKey(object):
     @classmethod
     def from_public_bytes(cls, data):
-        from thirdparty.cryptography.hazmat.backends.openssl.backend import backend
+        from lib.vulmap.thirdparty.cryptography.hazmat.backends.openssl.backend import backend
 
         if not backend.x25519_supported():
             raise UnsupportedAlgorithm(
@@ -36,7 +36,7 @@ class X25519PublicKey(object):
 class X25519PrivateKey(object):
     @classmethod
     def generate(cls):
-        from thirdparty.cryptography.hazmat.backends.openssl.backend import backend
+        from lib.vulmap.thirdparty.cryptography.hazmat.backends.openssl.backend import backend
 
         if not backend.x25519_supported():
             raise UnsupportedAlgorithm(
@@ -47,7 +47,7 @@ class X25519PrivateKey(object):
 
     @classmethod
     def from_private_bytes(cls, data):
-        from thirdparty.cryptography.hazmat.backends.openssl.backend import backend
+        from lib.vulmap.thirdparty.cryptography.hazmat.backends.openssl.backend import backend
 
         if not backend.x25519_supported():
             raise UnsupportedAlgorithm(

@@ -9,9 +9,9 @@ import warnings
 
 import six
 
-from thirdparty.cryptography import utils
-from thirdparty.cryptography.hazmat._oid import ObjectIdentifier
-from thirdparty.cryptography.hazmat.backends import _get_backend
+from lib.vulmap.thirdparty.cryptography import utils
+from lib.vulmap.thirdparty.cryptography.hazmat._oid import ObjectIdentifier
+from lib.vulmap.thirdparty.cryptography.hazmat.backends import _get_backend
 
 
 class EllipticCurveOID(object):
@@ -166,7 +166,7 @@ class EllipticCurvePublicKey(object):
         if six.indexbytes(data, 0) not in [0x02, 0x03, 0x04]:
             raise ValueError("Unsupported elliptic curve point type")
 
-        from thirdparty.cryptography.hazmat.backends.openssl.backend import backend
+        from lib.vulmap.thirdparty.cryptography.hazmat.backends.openssl.backend import backend
 
         return backend.load_elliptic_curve_public_bytes(curve, data)
 

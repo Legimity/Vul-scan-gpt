@@ -10,24 +10,24 @@ urllib3 without providing a shim.
 """
 import sys
 
-from thirdparty import requests
+from lib.vulmap.thirdparty import requests
 
 try:
-    from thirdparty.urllib3 import fields
-    from thirdparty.urllib3 import filepost
-    from thirdparty.urllib3 import poolmanager
+    from lib.vulmap.thirdparty.urllib3 import fields
+    from lib.vulmap.thirdparty.urllib3 import filepost
+    from lib.vulmap.thirdparty.urllib3 import poolmanager
 except ImportError:
-    from thirdparty.urllib3 import fields
-    from thirdparty.urllib3 import filepost
-    from thirdparty.urllib3 import poolmanager
+    from lib.vulmap.thirdparty.urllib3 import fields
+    from lib.vulmap.thirdparty.urllib3 import filepost
+    from lib.vulmap.thirdparty.urllib3 import poolmanager
 
 try:
-    from thirdparty.urllib3.connection import HTTPConnection
-    from thirdparty.urllib3 import connection
+    from lib.vulmap.thirdparty.urllib3.connection import HTTPConnection
+    from lib.vulmap.thirdparty.urllib3 import connection
 except ImportError:
     try:
-        from thirdparty.urllib3.connection import HTTPConnection
-        from thirdparty.urllib3 import connection
+        from lib.vulmap.thirdparty.urllib3.connection import HTTPConnection
+        from lib.vulmap.thirdparty.urllib3 import connection
     except ImportError:
         HTTPConnection = None
         connection = None
@@ -37,27 +37,27 @@ if requests.__build__ < 0x020300:
     timeout = None
 else:
     try:
-        from thirdparty.urllib3.util import timeout
+        from lib.vulmap.thirdparty.urllib3.util import timeout
     except ImportError:
-        from thirdparty.urllib3.util import timeout
+        from lib.vulmap.thirdparty.urllib3.util import timeout
 
 if requests.__build__ < 0x021000:
     gaecontrib = None
 else:
     try:
-        from thirdparty.urllib3.contrib import appengine as gaecontrib
+        from lib.vulmap.thirdparty.urllib3.contrib import appengine as gaecontrib
     except ImportError:
-        from thirdparty.urllib3.contrib import appengine as gaecontrib
+        from lib.vulmap.thirdparty.urllib3.contrib import appengine as gaecontrib
 
 if requests.__build__ < 0x021200:
     PyOpenSSLContext = None
 else:
     try:
-        from thirdparty.urllib3.contrib.pyopenssl \
+        from lib.vulmap.thirdparty.urllib3.contrib.pyopenssl \
                 import PyOpenSSLContext
     except ImportError:
         try:
-            from thirdparty.urllib3.contrib.pyopenssl import PyOpenSSLContext
+            from lib.vulmap.thirdparty.urllib3.contrib.pyopenssl import PyOpenSSLContext
         except ImportError:
             PyOpenSSLContext = None
 

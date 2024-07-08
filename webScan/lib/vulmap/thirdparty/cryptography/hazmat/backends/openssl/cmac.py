@@ -5,14 +5,14 @@
 from __future__ import absolute_import, division, print_function
 
 
-from thirdparty.cryptography import utils
-from thirdparty.cryptography.exceptions import (
+from lib.vulmap.thirdparty.cryptography import utils
+from lib.vulmap.thirdparty.cryptography.exceptions import (
     InvalidSignature,
     UnsupportedAlgorithm,
     _Reasons,
 )
-from thirdparty.cryptography.hazmat.primitives import constant_time
-from thirdparty.cryptography.hazmat.primitives.ciphers.modes import CBC
+from lib.vulmap.thirdparty.cryptography.hazmat.primitives import constant_time
+from lib.vulmap.thirdparty.cryptography.hazmat.primitives.ciphers.modes import CBC
 
 
 class _CMACContext(object):

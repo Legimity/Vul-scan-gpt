@@ -703,7 +703,7 @@ class BeautifulSoup(Tag):
         return prefix + super(BeautifulSoup, self).decode(
             indent_level, eventual_encoding, formatter)
 
-# Aliases to make it easier to get started quickly, e.g. 'from thirdparty.bs4 import _soup'
+# Aliases to make it easier to get started quickly, e.g. 'from lib.vulmap.thirdparty.bs4 import _soup'
 _s = BeautifulSoup
 _soup = BeautifulSoup
 
