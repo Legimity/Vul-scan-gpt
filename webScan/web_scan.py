@@ -3,6 +3,7 @@ from lib.TPscan import TPscan
 from lib.struct2Scan import Struct2Scan
 import contextlib
 import io
+from utils.remove_ansi import remove_ansi_escape_sequences
 class WebScan:
     def __init__(self,target_url):
         self.target_url=target_url
@@ -38,6 +39,8 @@ class WebScan:
         with contextlib.redirect_stdout(f):
             vulmapScan().run(self.target_url)
         vulmap_output = f.getvalue()
+        # 处理vulmap的ansi输出
+        vulmap_output = remove_ansi_escape_sequences(vulmap_output)
         with open("result/Vulmap.txt","w",encoding="utf-8") as result_file:
             result_file.write(vulmap_output)
         # print("Vulmap output",vulmap_output)
