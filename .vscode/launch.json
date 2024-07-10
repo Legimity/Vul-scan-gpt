@@ -10,7 +10,8 @@
             "request": "launch",
             "program": "${file}",
             "console": "integratedTerminal",
-            "gevent": true // 新增参数
+            "gevent": true,// 新增参数
+            "args": ["-u","http://127.0.0.1:8080/login.action"]
         }
     ]
 }

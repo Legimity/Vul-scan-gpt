@@ -1,5 +1,5 @@
 # Ignore all .pyc files
-*/*.pyc
 .env
 */.idea/
 */test
+**/*.pyc
