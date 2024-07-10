@@ -37,7 +37,7 @@ def thinkphp_invoke_func_code_exec_verify(url):
                 pocdict['vulnurl'] = vurl
                 pocdict['proof'] = '56540676a129760a3'
                 pocdict['response'] = req.text
-                print(pocdict)
+                return pocdict
 
         except:
             pass

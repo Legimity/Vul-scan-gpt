@@ -29,7 +29,7 @@ def thinkphp_index_construct_rce_verify(url):
             pocdict['payload'] = payload
             pocdict['proof'] = '56540676a129760a3ea'
             pocdict['response'] = req.text
-            print(pocdict)
+            return pocdict
 
     except:
         pass
