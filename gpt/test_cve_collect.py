@@ -1,8 +1,4 @@
-__author__ = 'https://github.com/password123456/'
-__date__ = '2024.02.27'
-__version__ = '1.0.4'
-__status__ = 'Production'
-
+# 可用，但是cve details需要翻墙
 import os
 import sys
 import re
