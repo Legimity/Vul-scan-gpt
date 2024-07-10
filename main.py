@@ -3,7 +3,8 @@ from gpt.analyzer import PortScanAnalyzer
 from portScan.port_scan import PortScanner
 from softwareScan.software_scan import SoftwareScanner
 # from webScan.web_scan import WebScan  # TODO: need to refine result
-
+import sys
+sys.path.append('./webScan')
 import argparse
 from utils.logger import ColoredLogger
 import time
