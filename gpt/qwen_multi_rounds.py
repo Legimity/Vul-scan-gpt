@@ -7,11 +7,11 @@ import nmap
 from qwen_agent.llm import get_chat_model
 import dotenv
 dotenv.load_dotenv()
-from qwen_agent.agents import Assistant
 api_key=os.getenv('api_key')
-nm = nmap.PortScanner()
+from qwen_agent.agents import Assistant
 from qwen_agent.tools.base import BaseTool, register_tool
 import json5
+
 # 配置日志记录器
 import sys
 from pathlib import Path
@@ -43,7 +43,8 @@ class nmapScanner(BaseTool):
       'required': True
   }]
   def call(self, params: str, **kwargs) -> str:
-      logger.info("params:",params)
+      nm = nmap.PortScanner()
+      # logger.info("params:",params)
       ip = json5.loads(params)['ip']
       # ip = params.get('ip')
       port = json5.loads(params)['port']
@@ -120,7 +121,7 @@ def init_agent_service():
                'model_server': 'dashscope',
               # 'api_key': os.getenv('DASHSCOPE_API_KEY'),
                'api_key': api_key,
-               "max input tokens":15000,
+               "max_input_token":15000,
                }
     
     # tools = ['nmapScan', 'niktoScan','sqlmapExploit']
