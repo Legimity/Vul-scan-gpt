@@ -35,7 +35,7 @@ def thinkphp_checkcode_time_sqli_verify(url):
             pocdict['payload'] = payload
             pocdict['proof'] = 'time sleep 15'
             pocdict['response'] = req.text
-            print(pocdict)
+            return pocdict
 
     except:
         pass

