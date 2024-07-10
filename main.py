@@ -27,7 +27,7 @@ def parse_arguments():
         "--choice",
         type=int,
         default=3,
-        help="Enter choice of scan (1-5):\n\
+        help="Enter choice of nmap scan (1-5):\n\
         1: Host Discover (-sP -T4) - Only performs host discovery\n \
         2: TCP SYN Scan (-Pn -sV -T4 -sS) - Recommended, most common, requires root\n\
         3: TCP Connect() Scan (-Pn -T4 -sV -sT) - Uses system call, full TCP connection, will be logged\n\
@@ -73,18 +73,18 @@ def main():
     # TODO: 这里应该返回了webScan的扫描结果，需要进一步交给gpt处理
     print(webscan_result)
 
-    # nikto software-vul scan
-    logger.info("Starting Nikto software scan...")
-    start_time = time.time()
-    softwareScanner = SoftwareScanner()
-    to_be_analyse_by_gpt = softwareScanner.nikto_scanner(target=args.ip,port=args.port)
-    end_time = time.time()
-    execution_time = end_time - start_time
-    # time count, nikto may cost many time i'm afraid
-    logger.info(f"Execution time: {execution_time} seconds")
-    # [21:42:28] - INFO - Execution time: 670.4677515029907 seconds?????
-    # TODO：这里返回了nikto的扫描结果，需要进一步交给gpt处理
-    print(to_be_analyse_by_gpt)
+    # # nikto software-vul scan
+    # logger.info("Starting Nikto software scan...")
+    # start_time = time.time()
+    # softwareScanner = SoftwareScanner()
+    # to_be_analyse_by_gpt = softwareScanner.nikto_scanner(target=args.ip,port=args.port)
+    # end_time = time.time()
+    # execution_time = end_time - start_time
+    # # time count, nikto may cost many time i'm afraid
+    # logger.info(f"Execution time: {execution_time} seconds")
+    # # [21:42:28] - INFO - Execution time: 670.4677515029907 seconds?????
+    # # TODO：这里返回了nikto的扫描结果，需要进一步交给gpt处理
+    # print(to_be_analyse_by_gpt)
 
 
 if __name__ == "__main__":

@@ -1,8 +1,8 @@
-# 🌟Vul-scan-gpt
+# 🌟 Vul-scan-gpt
 
 We intend to build a tool to automate the penetration process.
 
-## Description of folders
+## 🗂️ Description of files
 
 - gpt: use gpt to analyse the scan repos
 - portScan: scan ports and alive hosts
@@ -10,6 +10,7 @@ We intend to build a tool to automate the penetration process.
 - sysScan: scan sys vul that may contain
 - webScan: sacn web vul on the targeted host
 - utils: process inital scan result for gpt to analyse
+- conf: store the config of the program
 
 ## 🛒 Installation
 

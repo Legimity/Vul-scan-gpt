@@ -5,7 +5,10 @@ import contextlib
 import configparser
 import uuid
 import io
-from utils.remove_ansi import remove_ansi_escape_sequences
+# from utils.remove_ansi import remove_ansi_escape_sequences
+# from utils.logger import ColoredLogger
+# logger=ColoredLogger().get_logger()
+
 class WebScan:
     def __init__(self,target_url):
         self.target_url = target_url
@@ -61,10 +64,11 @@ class WebScan:
 if __name__=="__main__":  
 #     # WebScan("http://127.0.0.1:8080").run() #禅道
 #     # WebScan("http://127.0.0.1:8081").run() #帝国
-      result=WebScan("http://127.0.0.1:8082").run() #织梦
-      WebScan("http://tp5.test.com:80").run()
+    result=WebScan("http://127.0.0.1:8081").run() #织梦
+    # result=WebScan("http://tp5.test.com:80").run()
     # res = Scan().run("http://tp5.test.com:80")  # NOT OK
-    # print(res)
+    # logger.info(result)
+    print(result)
 
 
 
