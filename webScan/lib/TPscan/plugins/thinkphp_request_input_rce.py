@@ -26,7 +26,7 @@ def thinkphp_request_input_rce_verify(url):
             pocdict['vulnurl'] = vurl
             pocdict['proof'] = '56540676a129760a3ea'
             pocdict['response'] = req.text
-            print(pocdict)
+            return pocdict
 
     except:
         pass

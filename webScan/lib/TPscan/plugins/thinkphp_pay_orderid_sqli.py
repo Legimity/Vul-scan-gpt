@@ -26,7 +26,7 @@ def thinkphp_pay_orderid_sqli_verify(url):
             pocdict['vulnurl'] = vurl
             pocdict['proof'] = '56540676a129760a'
             pocdict['response'] = req.text
-            print(pocdict)
+            return pocdict
 
     except:
         pass

@@ -1,7 +1,7 @@
 # import sys
 # sys.path.append('webScan')
 
-# from webScan.web_scan import WebScan 
+from webScan.web_scan import WebScan 
 from gpt.analyzer import PortScanAnalyzer
 from portScan.port_scan import PortScanner,nmapScanner
 from softwareScan.software_scan import SoftwareScanner
@@ -58,21 +58,20 @@ def main():
     # webScan
     logger.info("Starting Web scan...")
     target_url = f'{args.ip}:{args.port}'
+    logger.info("{}".format(target_url))
 
     # 使用 subprocess 执行多条命令
-    command = 'echo Hello && python3 webScan/web_scan.py '
-    result = subprocess.run(command, shell=True, stdout=subprocess.PIPE)
-    # print(result)
-    print(result.stdout.decode())
+    # command = 'echo Hello && python webScan\web_scan.py'
+    # result = subprocess.run(command, shell=True, stdout=subprocess.PIPE)
+    # print(result.stdout.decode())
 
-    # try:
-    #     webscan_result = WebScan(target_url=target_url).run()
-    # except Exception as e:
-    #     logger.error(f"Error occurred during web scan: {str(e)}")
-    #     webscan_result = None
-    # # TODO: 这里应该返回了webScan的扫描结果，需要进一步交给gpt处理
-    # # result = web_scan.run()
-    # print(webscan_result)
+    try:
+        webscan_result = WebScan(target_url=target_url).run()
+    except Exception as e:
+        logger.error(f"Error occurred during web scan: {str(e)}")
+        webscan_result = None
+    # TODO: 这里应该返回了webScan的扫描结果，需要进一步交给gpt处理
+    print(webscan_result)
 
     # nikto software-vul scan
     logger.info("Starting Nikto software scan...")
