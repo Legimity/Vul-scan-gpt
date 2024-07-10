@@ -1,4 +1,9 @@
 # Ignore all .pyc files
 *.pyc
 .env
-.idea/
+*/.idea/
+*/test
+.vscode/
+**/__pycache__/
+
+**/*.pyc

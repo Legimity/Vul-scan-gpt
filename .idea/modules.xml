@@ -2,7 +2,7 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/.idea/vul-scab.iml" filepath="$PROJECT_DIR$/.idea/vul-scab.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/Vul-scan-gpt.iml" filepath="$PROJECT_DIR$/.idea/Vul-scan-gpt.iml" />
     </modules>
   </component>
 </project>

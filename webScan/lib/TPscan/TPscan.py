@@ -1,6 +1,8 @@
 #!/usr/bin/env python
 # coding=utf-8
 from gevent import monkey
+import sys
+sys.path.append('webScan')
 
 monkey.patch_all()
 from gevent.pool import Pool
@@ -47,9 +49,7 @@ from lib.TPscan.plugins.thinkphp_view_recent_xff_sqli import (
     thinkphp_view_recent_xff_sqli_verify,
 )
 
-import sys
 import gevent
-
 
 class Scan:
     def run(self, targeturl):
@@ -74,9 +74,22 @@ class Scan:
         pool = Pool(10)
         threads = [pool.spawn(self.pocexec, item) for item in poclist]
         gevent.joinall(threads)
-        results = [thread.value for thread in threads]
-        return results
+        tpscan_output = [{
+            "vulnname":thread.value["vulnname"],
+            "isvul":thread.value["isvul"],
+            "vulnurl":thread.value["vulnurl"],
+            "payload":thread.value["payload"],
+            "proof":thread.value["proof"]
+            } for thread in threads if thread.value != None]
+        return tpscan_output
 
     def pocexec(self, pocstr):
-        exec(pocstr)
+        pocdict = eval(pocstr)
         gevent.sleep(0)
+        return pocdict
+
+# if __name__ == "__main__":
+# #     # res = Scan().run("http://127.0.0.1:80/tp5/public/index.php") #ok
+# #     # res = Scan().run("http://127.0.0.1:80/tp5/public/") # ok
+#     res = Scan().run("http://tp5.test.com:80")  # NOT OK
+#     print(res)

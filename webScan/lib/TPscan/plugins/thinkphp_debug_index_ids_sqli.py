@@ -27,7 +27,7 @@ def thinkphp_debug_index_ids_sqli_verify(url):
             pocdict['vulnurl'] = vurl
             pocdict['proof'] = '56540676a129760'
             pocdict['response'] = req.text
-            print(pocdict)
+            return pocdict
 
     except:
         pass
