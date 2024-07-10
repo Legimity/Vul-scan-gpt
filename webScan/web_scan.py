@@ -1,34 +1,58 @@
 import json
-from lib.vulmap import  vulmapScan
-from lib.TPscan.TPscan import Scan 
-import contextlib
+import sys
+import importlib
+from lib.vulmap import  vulmapScan 
 import configparser
 import uuid
 import io
 from utils.remove_ansi import remove_ansi_escape_sequences
+sys.path.append('./')
+from utils.logger import ColoredLogger
+
+logger = ColoredLogger().get_logger()
+
 class WebScan:
-    def __init__(self,target_url):
+    def __init__(self,target_url,targe_file=None):
         self.target_url = target_url
         # 读取配置文件
         config = configparser.ConfigParser()
         config.read("./conf/conf.ini")
         self.save_path = config.get("save","save_path")
-        print(self.save_path)
+        self.tp_scan = config.get("webScan","TPscan")
+        self.struct2Scan = config.get("webScan","struct2Scan")
 
     def TPscan(self) -> dict:
         try:
+            Scan = getattr(importlib.import_module(self.tp_scan),'Scan')  
             tpscan_output = Scan().run(self.target_url)
-            print(f"{tpscan_output}")
+            logger.info(f"tpscan_output:\n{tpscan_output}")
         except Exception as e:
-            print(f"Error occurred during TPscan: {str(e)}")
+            logger.error(f"Error occurred during TPscan: {str(e)}")
         with open(self.save_path + "TPScan_" + uuid.uuid1().hex + ".json","w") as result_file:
             json.dump(tpscan_output,result_file)
         return tpscan_output
+    
+    def Struct2Scan(self) -> dict:
+        struct2scan_outputs = None
+        try:
+            Scan = getattr(importlib.import_module(self.struct2Scan),'Scan')      
+            struct2scan_outputs = Scan().run(self.target_url)
+            # logger.info(f"struct2scan_output:\n")
+            # for idx,output in enumerate(struct2scan_outputs):
+            #     logger.info(f"\n {idx}:\turl :{output['url']} \n\tvulnname:{output['vulnname']}\n\tpoc:{output['poc']}")
+        except Exception as e:
+            logger.error(f"Error occurred during Struct2Scan: {str(e)}")
+        with open(self.save_path + "Struct2Scan_" + uuid.uuid1().hex + ".json","w") as result_file:
+            json.dump(struct2scan_outputs,result_file)
+        return struct2scan_outputs
 
-    def run(self):
+    def run(self,target_url=None,targe_file=None,data = None, 
+            header = None) -> dict :
         result=''
         # TPscan 扫描
         tpscan_output = self.TPscan()
+        # Struct2Scan 扫描
+        struct2scan_output = self.Struct2Scan()
         '''
         print("----加载Vulmap----")
         f = io.StringIO()
@@ -41,28 +65,19 @@ class WebScan:
         with open(self.save_path + "Vulmap_" + uuid.uuid1().hex + ".json","w") as result_file:
             result_file.write(vulmap_output)
 
-        print("----加载Struct2Scan----")
-        from lib.struct2Scan import Struct2Scan    
-        f = io.StringIO()
-        with contextlib.redirect_stdout(f):
-            Struct2Scan.Scan().run(self.target_url)
-        struc2scan_output = f.getvalue()
-        with open(self.save_path + "Struct2Scan" + uuid.uuid1().hex + ".json","w") as result_file:
-            result_file.write(struc2scan_output)
-
-
         # print(type(output1),type(output2),type(output3))
         result=f'tpscan_output is :{tpscan_output}\n vulmap_output is :{vulmap_output}\n struc2scan_output is:{struc2scan_output}'
         # result=f'\n vulmap_output is :{vulmap_output}\n struc2scan_output is:{struc2scan_output}'
         '''
-        print(tpscan_output)
         return result
 
 if __name__=="__main__":  
-#     # WebScan("http://127.0.0.1:8080").run() #禅道
-#     # WebScan("http://127.0.0.1:8081").run() #帝国
-      result=WebScan("http://127.0.0.1:8082").run() #织梦
-      WebScan("http://tp5.test.com:80").run()
+    # WebScan("http://127.0.0.1:8080").run() #禅道
+    # WebScan("http://127.0.0.1:8081").run() #帝国
+    result=WebScan("http://127.0.0.1:8082").run() #织梦
+    print(result)
+    # WebScan("http://tp5.test.com:80").run()
+    WebScan("http://127.0.0.1:8080/login.action").run()
     # res = Scan().run("http://tp5.test.com:80")  # NOT OK
     # print(res)
 
