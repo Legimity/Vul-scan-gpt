@@ -1,16 +1,16 @@
-from lib.TPscan import TPscan
 from lib.vulmap import  vulmapScan
+from lib.TPscan import TPscan
 from lib.struct2Scan import Struct2Scan
 import contextlib
 import io
 class WebScan:
     def __init__(self,target_url):
         self.target_url=target_url
+        
     def run(self):
         # 统一用这个输出
         result=''
         # print("self.target_url",self.target_url)
-
         print("----加载TPscan----")
         # try:
         #     f = io.StringIO()
@@ -55,13 +55,13 @@ class WebScan:
         # print(type(output1),type(output2),type(output3))
         result=f'tpscan_output is :{tpscan_output}\n vulmap_output is :{vulmap_output}\n struc2scan_output is:{struc2scan_output}'
         # result=f'\n vulmap_output is :{vulmap_output}\n struc2scan_output is:{struc2scan_output}'
-
+        print(result)
         return result
 
 if __name__=="__main__":  
     # WebScan("http://127.0.0.1:8080").run() #禅道
     # WebScan("http://127.0.0.1:8081").run() #帝国
     result=WebScan("http://127.0.0.1:8082").run() #织梦
-    print(result)
+    # print(result)
 
 
