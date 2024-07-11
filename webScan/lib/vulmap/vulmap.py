@@ -10,6 +10,7 @@ from lib.vulmap.module.color import color
 from lib.vulmap.thirdparty import urllib3
 urllib3.disable_warnings()
 
+import configparser
 from typing import List, Optional, Union
 
 class VulmapArgs:
@@ -57,6 +58,9 @@ class VulmapArgs:
 class Scan:
     def __init__(self) -> None:
         self.args = VulmapArgs()  # 初始化各选项参数
+        config = configparser.ConfigParser(comment_prefixes="#")
+        config.read("./conf/conf.ini")
+
         header = {
             'Accept': 'application/x-shockwave-flash, image/gif, image/x-xbitmap, image/jpeg, image/pjpeg, '
                     'application/vnd.ms-excel, application/vnd.ms-powerpoint, application/msword, */*',
@@ -83,20 +87,20 @@ class Scan:
         globals.set_value("RESULTS", [])
 
         # 替换自己的 ceye.io 的域名和 token
-        globals.set_value("ceye_domain","s0899i.ceye.io")
-        globals.set_value("ceye_token", "f158ffc056da7a2db5f1da61f0ba253a")
+        globals.set_value("ceye_domain", config.get("vulmapConf","ceye_domain"))
+        globals.set_value("ceye_token", config.get("vulmapConf","ceye_token"))
 
         # 替换自己的 http://hyuga.co 的域名和 token
         # hyuga的域名和token可写可不写，如果不写则自动获得
-        globals.set_value("hyuga_domain", "xxxxxxxxxx")
-        globals.set_value("hyuga_token", "xxxxxxxxxx")
+        globals.set_value("hyuga_domain", config.get("vulmapConf","hyuga_domain"))
+        globals.set_value("hyuga_token", config.get("vulmapConf","hyuga_token"))
 
         # fofa 邮箱和 key，需要手动修改为自己的
-        globals.set_value("fofa_email", "om2bg0urzfyh727rrseztus2bxpe@open_wechat")
-        globals.set_value("fofa_key", "6b96942f1eaf26309d3300ccc7902800")
+        globals.set_value("fofa_email", config.get("vulmapConf", "fofa_email"))
+        globals.set_value("fofa_key", config.get("vulmapConf", "fofa_key"))
 
         # shodan key
-        globals.set_value("shodan_key", "vwUrlL9MR74Zzc6KvUIh2Xc4y46YcinF")
+        globals.set_value("shodan_key", config.get("vulmapConf", "shodan_key"))
 
     def run(self, targeturl):
         if targeturl.find("http") == -1:
