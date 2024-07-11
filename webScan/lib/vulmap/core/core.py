@@ -24,6 +24,7 @@ from concurrent.futures import ThreadPoolExecutor, wait, ALL_COMPLETED
 class Core(object):
     @staticmethod
     def control_options(args):  # 选项控制，用于处理所有选项
+        print(color.yellow("\n[*] ---------------- Running Vulmap ----------------"))
         mode = "poc"
         delay = globals.get_value("DELAY")  # 获取全局变量延时时间DELAY
         now_warn = now.timed(de=delay) + color.red_warn()

@@ -5,5 +5,7 @@
 */test
 .vscode/
 **/__pycache__/
+# Ignore all .DS_Store files of MacOS
+**/.DS_Store
 
 **/*.pyc
