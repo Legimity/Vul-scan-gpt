@@ -57,12 +57,12 @@ def main():
     # print(response)
 
     # Test nmap scan without gpt
-    # logger.info("Starting Nmap port scan...")
-    # nmap_scan = nmapScanner()
-    # nmap_result = nmap_scan.run(ip=args.ip, port=args.port)
-    # print(nmap_result)
+    logger.info("Starting Nmap port scan...")
+    nmap_scan = nmapScanner(target_ip=ip, target_port=port)
+    nmap_result = nmap_scan.run()
+    print(nmap_result)
 
-    # Test webScan
+    # # Test webScan
     logger.info("Starting Web scan...")
     target_url = f'{args.ip}:{args.port}'
     logger.info("{}".format(target_url))
@@ -73,8 +73,8 @@ def main():
     except Exception as e:
         logger.error(f"Error occurred during web scan: {str(e)}")
         webscan_result = None
-    # TODO: 这里应该返回了webScan的扫描结果，需要进一步交给gpt处理
-    print(webscan_result)
+    # # TODO: 这里应该返回了webScan的扫描结果，需要进一步交给gpt处理
+    # print(webscan_result)
 
 
     # # 使用 subprocess 执行多条命令
@@ -83,15 +83,15 @@ def main():
     # # print(result.stdout.decode())
 
     
-    # # nikto software-vul scan
-    # logger.info("Starting Nikto software scan...")
-    # start_time = time.time()
-    # softwareScanner = SoftwareScanner(target_url=ip,target_port=port)
-    # to_be_analyse_by_gpt = softwareScanner.run()
-    # end_time = time.time()
-    # execution_time = end_time - start_time
-    # # time count, nikto may cost many time i'm afraid
-    # logger.info(f"Execution time: {execution_time} seconds")
+    # Test nikto software-vul scan
+    logger.info("Starting Nikto software scan...")
+    start_time = time.time()
+    softwareScanner = SoftwareScanner(target_url=ip,target_port=port)
+    to_be_analyse_by_gpt = softwareScanner.run()
+    end_time = time.time()
+    execution_time = end_time - start_time
+    # time count, nikto may cost many time i'm afraid
+    logger.info(f"Execution time: {execution_time} seconds")
     # # TODO：这里返回了nikto的扫描结果，需要进一步交给gpt处理
     # print(to_be_analyse_by_gpt)
 
