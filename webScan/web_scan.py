@@ -17,7 +17,7 @@ class WebScan:
     def __init__(self,target_url,targe_file=None):
         self.target_url = target_url
         # 读取配置文件
-        config = configparser.ConfigParser()
+        config = configparser.ConfigParser(comment_prefixes="#")
         config.read("./conf/conf.ini")
         self.save_path = config.get("save","save_path")
         self.tp_scan = config.get("webScan","TPscan")
