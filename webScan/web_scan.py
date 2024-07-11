@@ -5,10 +5,10 @@ from lib.vulmap import  vulmapScan
 import configparser
 import uuid
 import io
-
+sys.path.append('./')
 from utils.remove_ansi import remove_ansi_escape_sequences
 from utils.logger import ColoredLogger
-sys.path.append('./')
+
 logger = ColoredLogger().get_logger()
 
 class WebScan:
@@ -50,7 +50,7 @@ class WebScan:
             header = None) -> dict :
         result=''
         # TPscan 扫描
-        tpscan_output = self.TPscan()
+        # tpscan_output = self.TPscan()
         # Struct2Scan 扫描
         struct2scan_output = self.Struct2Scan()
         '''
@@ -69,18 +69,23 @@ class WebScan:
         result=f'tpscan_output is :{tpscan_output}\n vulmap_output is :{vulmap_output}\n struc2scan_output is:{struc2scan_output}'
         # result=f'\n vulmap_output is :{vulmap_output}\n struc2scan_output is:{struc2scan_output}'
         '''
-        return result
+        return struct2scan_output
 
 if __name__=="__main__":  
+    # test tpscan
     # WebScan("http://127.0.0.1:8080").run() #禅道
     # WebScan("http://127.0.0.1:8081").run() #帝国
-    result=WebScan("http://127.0.0.1:8082").run() #织梦
+    # result=WebScan("http://127.0.0.1:8082").run() #织梦
     
-    # WebScan("http://tp5.test.com:80").run()
+    # result=WebScan("http://tp5.test.com:80").run()
+    result=WebScan("http://127.0.0.1:8080").run()
 
     # test struc2scan
-    WebScan("http://127.0.0.1:8080/login.action").run()
-    # res = Scan().run("http://tp5.test.com:80")  # NOT OK
+    # result=WebScan("http://127.0.0.1:8080/login.action").run()
+    # result=WebScan("localhost:8082/dede").run()
+    # result=WebScan("localhost:8081/e/admin").run()
+    
+    
     # logger.info(result)
     print(result)
 

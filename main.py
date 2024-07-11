@@ -1,5 +1,5 @@
-# import sys
-# sys.path.append('webScan')
+import sys
+sys.path.append('webScan')
 
 from webScan.web_scan import WebScan 
 from gpt.analyzer import PortScanAnalyzer
@@ -67,6 +67,7 @@ def main():
 
     try:
         webscan_result = WebScan(target_url=target_url).run()
+        print(webscan_result)
     except Exception as e:
         logger.error(f"Error occurred during web scan: {str(e)}")
         webscan_result = None
