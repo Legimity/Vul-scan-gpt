@@ -1,11 +1,13 @@
 import json
 import sys
 import importlib
-from lib.vulmap import  vulmapScan 
 import configparser
 import uuid
 import io
+import os
+
 sys.path.append('./')
+
 from utils.remove_ansi import remove_ansi_escape_sequences
 from utils.logger import ColoredLogger
 
@@ -20,10 +22,11 @@ class WebScan:
         self.save_path = config.get("save","save_path")
         self.tp_scan = config.get("webScan","TPscan")
         self.struct2Scan = config.get("webScan","struct2Scan")
+        self.vulmap = config.get("webScan","vulmap")
 
     def TPscan(self) -> dict:
         try:
-            Scan = getattr(importlib.import_module(self.tp_scan),'Scan')  
+            Scan = getattr(importlib.import_module(self.tp_scan),'Scan')
             tpscan_output = Scan().run(self.target_url)
             logger.info(f"tpscan_output:\n{tpscan_output}")
         except Exception as e:
@@ -31,11 +34,11 @@ class WebScan:
         with open(self.save_path + "TPScan_" + uuid.uuid1().hex + ".json","w") as result_file:
             json.dump(tpscan_output,result_file)
         return tpscan_output
-    
+
     def Struct2Scan(self) -> dict:
         struct2scan_outputs = None
         try:
-            Scan = getattr(importlib.import_module(self.struct2Scan),'Scan')      
+            Scan = getattr(importlib.import_module(self.struct2Scan),'Scan')
             struct2scan_outputs = Scan().run(self.target_url)
             # logger.info(f"struct2scan_output:\n")
             # for idx,output in enumerate(struct2scan_outputs):
@@ -46,13 +49,28 @@ class WebScan:
             json.dump(struct2scan_outputs,result_file)
         return struct2scan_outputs
 
-    def run(self,target_url=None,targe_file=None,data = None, 
+    def Vulmap(self) -> dict:
+        try:
+            Scan = getattr(importlib.import_module(self.vulmap),'Scan')
+            vulmap_outputs = Scan().run(self.target_url)
+            # logger.info(f"vulmap_output:\n{vulmap_output}")
+        except Exception as e:
+            logger.error(f"Error occurred during Vulmap: {str(e)}")
+        with open(self.save_path + "Vulmap_" + uuid.uuid1().hex + ".json","w") as result_file:
+            json.dump(vulmap_outputs, result_file, ensure_ascii=False)
+        return vulmap_outputs
+
+    def run(self,target_url=None,targe_file=None,data = None,
             header = None) -> dict :
         result=''
         # TPscan 扫描
         # tpscan_output = self.TPscan()
         # Struct2Scan 扫描
         struct2scan_output = self.Struct2Scan()
+        # Vulmap 扫描
+        vulmap_output = self.Vulmap()
+        #print(vulmap_output)
+
         '''
         print("----加载Vulmap----")
         f = io.StringIO()
@@ -69,7 +87,7 @@ class WebScan:
         result=f'tpscan_output is :{tpscan_output}\n vulmap_output is :{vulmap_output}\n struc2scan_output is:{struc2scan_output}'
         # result=f'\n vulmap_output is :{vulmap_output}\n struc2scan_output is:{struc2scan_output}'
         '''
-        return struct2scan_output
+        return vulmap_output
 
 if __name__=="__main__":  
     # test tpscan
@@ -87,7 +105,7 @@ if __name__=="__main__":
     
     
     # logger.info(result)
+
+    # test vulmap
+    result=WebScan("http://127.0.0.1:8161/").run()
     print(result)
-
-
-

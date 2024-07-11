@@ -9,8 +9,90 @@ from lib.vulmap.module.color import color
 from lib.vulmap.module import globals
 from urllib.parse import urlparse
 
+def parse_json(data):
+    vul_data = data["vul_data"]
+    raw_data = []
+    try:
+        if r">_<" in vul_data:
+            vul_requ = vul_data
+            vul_resp = vul_data
+            vul_path = ""
+        else:
+            raw_data.append(vul_data)
+            vul_requ = re.findall(r'([\s\S]*)\r\n> HTTP/', raw_data[0])[0]
+            vul_requ = vul_requ.replace("< ", "")
+            vul_resp = re.findall(r'\r\n> HTTP/([\s\S]*)', raw_data[0])[0]
+            vul_resp = "HTTP/" + vul_resp.replace("> ", "")
+            vul_path = re.findall(r' /(.*) HTTP', raw_data[0])[0]
+    except Exception as error:
+        print(now.timed(de=0) + color.red("[ERROR] " + error.__traceback__.tb_frame.f_globals['__file__']
+                                          + " " + str(error.__traceback__.tb_lineno)))
+        vul_path = ""
+        vul_requ = ""
+        vul_resp = ""
+
+    try:
+        vul_urls = data["vul_urls"]
+        host_port = urlparse(vul_urls)
+        vul_host = host_port.hostname
+        vul_port = host_port.port
+        # vul_u = vul_host + ":" + str(vul_port)
+        if vul_port is None and r"https://" in vul_urls:
+            vul_port = 443
+        elif vul_port is None and r"http://" in vul_urls:
+            vul_port = 80
+        if r"https://" in vul_urls:
+            if vul_port is not None:
+                vul_u = "https://" + vul_host + ":" + str(vul_port) + "/" + vul_path
+            else:
+                vul_u = "https://" + vul_host + "/" + vul_path
+        elif r"http://" in vul_urls:
+            if vul_port is not None:
+                vul_u = "http://" + vul_host + ":" + str(vul_port) + "/" + vul_path
+            else:
+                vul_u = "http://" + vul_host + "/" + vul_path
+        else:
+            vul_u = "http://" + vul_host + "/" + vul_path
+        prt_name = data["prt_name"]
+        vul_payd = data["vul_payd"]
+        vul_type = data["vul_type"]
+        vul_auth = data["cre_auth"]
+        vul_desc = data["vul_name"]
+        vul_date = int(round(time.time() * 1000))
+        json_result = []
+        json_data = {
+            "create_time": vul_date,
+            "detail": {
+                "author": vul_auth,
+                "description": vul_desc,
+                "host": vul_host,
+                "param": {},
+                "payload": vul_payd,
+                "port": vul_port,
+                "request": vul_requ,
+                "response": vul_resp,
+                "url": vul_u
+            },
+            "plugin": prt_name,
+            "target": {
+                "url": vul_urls
+            },
+            "vuln_class": vul_type
+        }
+        return json_data
+    except Exception as error:
+        print(now.timed(de=0) + color.red("[ERROR] " + error.__traceback__.tb_frame.f_globals['__file__']
+                                          + " " + str(error.__traceback__.tb_lineno)))
+        return None
 
 def output(types, item):
+    """
+    types : item 的格式 (text or json)
+    item  : 内容
+    """
+    if item and types == "json":
+        result = parse_json(item)
+        globals.set_value("RESULTS", globals.get_value("RESULTS") + [result])   # 更新结果
     try:
         o_text = globals.get_value("O_TEXT")
         o_json = globals.get_value("O_JSON")
