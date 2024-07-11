@@ -66,7 +66,7 @@ class WebScan:
         # TPscan 扫描
         # tpscan_output = self.TPscan()
         # Struct2Scan 扫描
-        struct2scan_output = self.Struct2Scan()
+        # struct2scan_output = self.Struct2Scan()
         # Vulmap 扫描
         vulmap_output = self.Vulmap()
         #print(vulmap_output)
@@ -107,5 +107,5 @@ if __name__=="__main__":
     # logger.info(result)
 
     # test vulmap
-    result=WebScan("http://127.0.0.1:8161/").run()
+    # result=WebScan("http://127.0.0.1:8161/").run()
     print(result)
