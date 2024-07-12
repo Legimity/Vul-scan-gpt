@@ -17,7 +17,7 @@ class WebScan:
     def __init__(self,target_url,targe_file=None):
         self.target_url = target_url
         # 读取配置文件
-        config = configparser.ConfigParser()
+        config = configparser.ConfigParser(comment_prefixes="#")
         config.read("./conf/conf.ini")
         self.save_path = config.get("save","save_path")
         self.tp_scan = config.get("webScan","TPscan")
@@ -64,9 +64,9 @@ class WebScan:
             header = None) -> dict :
         result=''
         # TPscan 扫描
-        tpscan_output = self.TPscan()
+        # tpscan_output = self.TPscan()
         # Struct2Scan 扫描
-        struct2scan_output = self.Struct2Scan()
+        # struct2scan_output = self.Struct2Scan()
         # Vulmap 扫描
         vulmap_output = self.Vulmap()
         #print(vulmap_output)
@@ -87,18 +87,25 @@ class WebScan:
         result=f'tpscan_output is :{tpscan_output}\n vulmap_output is :{vulmap_output}\n struc2scan_output is:{struc2scan_output}'
         # result=f'\n vulmap_output is :{vulmap_output}\n struc2scan_output is:{struc2scan_output}'
         '''
-        return result
+        return vulmap_output
 
-if __name__=="__main__":
+if __name__=="__main__":  
+    # test tpscan
     # WebScan("http://127.0.0.1:8080").run() #禅道
     # WebScan("http://127.0.0.1:8081").run() #帝国
-    # WebScan("http://127.0.0.1:8082").run() #织梦
-    # WebScan("http://tp5.test.com:80").run()
+    # result=WebScan("http://127.0.0.1:8082").run() #织梦
+    
+    # result=WebScan("http://tp5.test.com:80").run()
+    result=WebScan("http://127.0.0.1:8080").run()
 
-    # 测试 struc2scan
-    # WebScan("http://127.0.0.1:8080/login.action").run()
-    # res = Scan().run("http://tp5.test.com:80")  # NOT OK
+    # test struc2scan
+    # result=WebScan("http://127.0.0.1:8080/login.action").run()
+    # result=WebScan("localhost:8082/dede").run()
+    # result=WebScan("localhost:8081/e/admin").run()
+    
+    
     # logger.info(result)
 
-    # 测试 vulmap
-    WebScan("http://127.0.0.1:8161/").run()
+    # test vulmap
+    # result=WebScan("http://127.0.0.1:8161/").run()
+    print(result)
