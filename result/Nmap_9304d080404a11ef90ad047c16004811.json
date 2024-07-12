@@ -1,0 +1,77 @@
+[
+    {
+        "host": "127.0.0.1",
+        "state": "up",
+        "addresses": [
+            "tcp"
+        ],
+        "open_ports": [
+            {
+                "port": 22,
+                "protocol": "tcp",
+                "service": "ssh",
+                "version": "8.9p1 Ubuntu 3ubuntu0.10"
+            },
+            {
+                "port": 80,
+                "protocol": "tcp",
+                "service": "http",
+                "version": "2.4.52"
+            },
+            {
+                "port": 111,
+                "protocol": "tcp",
+                "service": "rpcbind",
+                "version": "2-4"
+            },
+            {
+                "port": 631,
+                "protocol": "tcp",
+                "service": "ipp",
+                "version": "2.4"
+            },
+            {
+                "port": 3306,
+                "protocol": "tcp",
+                "service": "nagios-nsca",
+                "version": ""
+            },
+            {
+                "port": 5432,
+                "protocol": "tcp",
+                "service": "postgresql",
+                "version": "9.6.0 or later"
+            },
+            {
+                "port": 5900,
+                "protocol": "tcp",
+                "service": "vnc",
+                "version": "5.3 or later"
+            },
+            {
+                "port": 5999,
+                "protocol": "tcp",
+                "service": "vnc",
+                "version": "5.3 or later"
+            },
+            {
+                "port": 8080,
+                "protocol": "tcp",
+                "service": "http",
+                "version": "2.4.38"
+            },
+            {
+                "port": 33060,
+                "protocol": "tcp",
+                "service": "mysqlx",
+                "version": ""
+            },
+            {
+                "port": 41929,
+                "protocol": "tcp",
+                "service": "",
+                "version": ""
+            }
+        ]
+    }
+]
