@@ -1,0 +1,77 @@
+{
+    "url": "http://127.0.0.1:8080",
+    "vulnerabilities": [
+        {
+            "id": "999986",
+            "msg": "Retrieved x-powered-by header: PHP/7.2.31.",
+            "vuln_risk": "Informational",
+            "vuln_fix": "Remove or modify the 'X-Powered-By' header to avoid exposing server-side technology information."
+        },
+        {
+            "id": "999103",
+            "msg": "The X-Content-Type-Options header is not set. This could allow the user agent to render the content of the site in a different fashion to the MIME type.",
+            "vuln_risk": "Medium",
+            "vuln_fix": "Add the 'X-Content-Type-Options: nosniff' header to prevent MIME-sniffing attacks."
+        },
+        {
+            "id": "600050",
+            "msg": "Apache/2.4.38 appears to be outdated (current is at least 2.4.59). Apache 2.2.34 is the EOL for the 2.x branch.",
+            "vuln_risk": "High",
+            "vuln_fix": "Upgrade Apache to the latest stable version to mitigate known vulnerabilities."
+        },
+        {
+            "id": "999967",
+            "msg": "Web Server returns a valid response with junk HTTP methods which may cause false positives.",
+            "vuln_risk": "Low",
+            "vuln_fix": "Implement proper request validation to reject unknown HTTP methods."
+        },
+        {
+            "id": "000544",
+            "msg": "The server install allows reading of any system file by adding an extra '/' to the URL.",
+            "vuln_risk": "Critical",
+            "vuln_fix": "Restrict directory traversal by properly sanitizing and validating input paths."
+        },
+        {
+            "id": "003584",
+            "msg": "Apache default file found.",
+            "vuln_risk": "Low",
+            "vuln_fix": "Remove or restrict access to default Apache files like '/icons/README'."
+        },
+        {
+            "id": "007227",
+            "msg": "A PHP backdoor file manager was found.",
+            "vuln_risk": "Critical",
+            "vuln_fix": "Investigate and remove unauthorized PHP scripts. Harden server and application configurations to prevent unauthorized uploads."
+        },
+        {
+            "id": "007228",
+            "msg": "A PHP backdoor file manager was found.",
+            "vuln_risk": "Critical",
+            "vuln_fix": "Investigate and remove unauthorized PHP scripts. Harden server and application configurations to prevent unauthorized uploads."
+        },
+        {
+            "id": "007229",
+            "msg": "A PHP backdoor file manager was found.",
+            "vuln_risk": "Critical",
+            "vuln_fix": "Investigate and remove unauthorized PHP scripts. Harden server and application configurations to prevent unauthorized uploads."
+        },
+        {
+            "id": "007231",
+            "msg": "A PHP backdoor file manager was found.",
+            "vuln_risk": "Critical",
+            "vuln_fix": "Investigate and remove unauthorized PHP scripts. Harden server and application configurations to prevent unauthorized uploads."
+        },
+        {
+            "id": "007234",
+            "msg": "Some D-Link router remote command execution.",
+            "vuln_risk": "Critical",
+            "vuln_fix": "If applicable, update firmware and ensure that remote management is disabled unless absolutely necessary."
+        },
+        {
+            "id": "007235",
+            "msg": "A backdoor was identified.",
+            "vuln_risk": "Critical",
+            "vuln_fix": "Immediately investigate and remove any identified backdoor scripts or applications. Conduct a thorough security audit."
+        }
+    ]
+}

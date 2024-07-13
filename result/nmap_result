@@ -1,0 +1,73 @@
+[
+    {
+        "host": "127.0.0.1",
+        "open_ports": [
+            {
+                "port": 22,
+                "service": "ssh",
+                "version": "8.9p1 Ubuntu 3ubuntu0.10",
+                "maybe_vuln": "检查OpenSSH 8.9p1是否存在已知的安全漏洞，特别关注Ubuntu特定的补丁3ubuntu0.10的相关CVE。"
+            },
+            {
+                "port": 80,
+                "service": "http",
+                "version": "2.4.52",
+                "maybe_vuln": "检查Apache HTTP Server 2.4.52是否有公开的安全漏洞，关注对应的CVE公告。"
+            },
+            {
+                "port": 111,
+                "service": "rpcbind",
+                "version": "2-4",
+                "maybe_vuln": "评估rpcbind服务版本2-4的安全性，查找是否存在已知的远程代码执行或其他高危漏洞。"
+            },
+            {
+                "port": 631,
+                "service": "ipp",
+                "version": "2.4",
+                "maybe_vuln": "调查CUPS IPP服务2.4版本是否存在已知漏洞，特别是与打印服务相关的安全问题。"
+            },
+            {
+                "port": 3306,
+                "service": "nagios-nsca",
+                "version": "",
+                "maybe_vuln": "由于版本信息缺失，无法直接判断漏洞情况。建议验证实际运行的Nagios NSCA版本并对照CVE数据库检查。"
+            },
+            {
+                "port": 5432,
+                "service": "postgresql",
+                "version": "9.6.0 or later",
+                "maybe_vuln": "检查PostgreSQL 9.6.0及之后的版本，关注是否有未修复的安全漏洞，特别是针对所使用的具体版本的CVE。"
+            },
+            {
+                "port": 5900,
+                "service": "vnc",
+                "version": "5.3 or later",
+                "maybe_vuln": "分析VNC 5.3及之后版本的潜在安全问题，注意检查远程桌面访问相关的漏洞。"
+            },
+            {
+                "port": 5999,
+                "service": "vnc",
+                "version": "5.3 or later",
+                "maybe_vuln": "同上，针对VNC的另一个实例也需要同样的安全审查。"
+            },
+            {
+                "port": 8080,
+                "service": "http",
+                "version": "2.4.38",
+                "maybe_vuln": "再次检查Apache HTTP Server，这次是2.4.38版本，确认是否存在已知的安全风险。"
+            },
+            {
+                "port": 33060,
+                "service": "mysqlx",
+                "version": "",
+                "maybe_vuln": "MySQL X Protocol版本信息缺失，需确定实际版本并检查其安全性，尤其是与MySQL相关的CVE。"
+            },
+            {
+                "port": 41929,
+                "service": "",
+                "version": "",
+                "maybe_vuln": "服务和版本信息均缺失，无法评估风险。建议进一步识别该端口上的服务并检查其安全性。"
+            }
+        ]
+    }
+]
