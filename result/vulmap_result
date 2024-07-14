@@ -1,0 +1,18 @@
+[
+    {
+        "url": "http://127.0.0.1:8161/",
+        "cve": "CVE-2015-5254",
+        "description": "Apache ActiveMQ存在反序列化漏洞，攻击者通过发送精心构造的数据包，可导致远程代码执行。",
+        "payload": "admin:admin",
+        "vuln_risk": "高风险，可能导致服务器被完全控制。",
+        "vuln_fix": "升级Apache ActiveMQ到最新版本，并禁用不必要且危险的功能，如JMX和Web管理界面；实施严格的网络访问控制，限制对ActiveMQ管理端口的访问。"
+    },
+    {
+        "url": "http://127.0.0.1:8161/",
+        "cve": "CVE-2016-3088",
+        "description": "Apache ActiveMQ存在远程代码执行漏洞，允许攻击者通过特制的HTTP请求执行任意代码。",
+        "payload": "file:///opt/activemq/webapps/api/944db815a3eb.jsp",
+        "vuln_risk": "极高风险，可直接导致服务器被完全控制，执行任意系统命令。",
+        "vuln_fix": "立即升级Apache ActiveMQ至不受影响的版本；检查并强化应用配置，避免未经验证的文件上传和执行；采用防火墙策略限制对敏感端口的访问，并监控相关日志以检测异常活动。"
+    }
+]

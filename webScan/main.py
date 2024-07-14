@@ -45,10 +45,9 @@ class WebScan:
 
         return result
 
-if __name__=="__main__":  
+if __name__=="__main__":
     # WebScan("http://127.0.0.1:8080").run() #禅道
     # WebScan("http://127.0.0.1:8081").run() #帝国
     result=WebScan("http://127.0.0.1:8082").run() #织梦
     print(result)
-
 
