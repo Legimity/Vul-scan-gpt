@@ -95,7 +95,24 @@ class ResultAnalyzer:
             logger.info("调用大模型异常:{}".format(e))
         return {}
 
-    # def analyze_result(self, tool_name, result):
+    # TODO: 只有2-3个工具的扫描结果时，也要能够进行分析，下面参数写死了5个
+    def analyze_result(self, nmap_result, tpscan_result, struct2_result, vulmap_result, nikto_result):
+        prompt = gen_all_prompt(nmap_result, tpscan_result, struct2_result, vulmap_result, nikto_result)
+        try:
+            messages = [Message(role="system", content=prompt), Message(role="user", content=Prompt.user_prompt)]
+            response = self.client.call(
+                model=self.model_name,
+                api_key=self.api_key,
+                messages=messages)
+            #content = json.loads(response["output"]["text"].strip('```json').split('```', 1)[0].strip())
+            # content = json.loads(response["output"]["text"].strip('```json').strip('```').strip())
+            content = response["output"]["text"]
+            #print(content)
+            return content
+
+        except Exception as e:
+            logger.info("调用大模型异常:{}".format(e))
+        return {}
 
 
 if __name__ == '__main__':
@@ -128,8 +145,10 @@ if __name__ == '__main__':
     # with open(result_path + "vulmap_result", 'w', encoding='utf-8') as file:
     #     file.write(json.dumps(analyze_vulmap, ensure_ascii=False, indent=4))
     #
-    analyze_nikto = ResultAnalyzer().analyze_nikto_result(nikto_result)
-    with open(result_path + "nikto_result", 'w', encoding='utf-8') as file:
-        file.write(json.dumps(analyze_nikto, ensure_ascii=False, indent=4))
-
-
+    # analyze_nikto = ResultAnalyzer().analyze_nikto_result(nikto_result)
+    # with open(result_path + "nikto_result", 'w', encoding='utf-8') as file:
+    #     file.write(json.dumps(analyze_nikto, ensure_ascii=False, indent=4))
+    analyze_all = ResultAnalyzer().analyze_result(nmap_result, tpscan_result, struct2_result, vulmap_result,
+                                                  nikto_result)
+    with open(result_path + "report", 'w', encoding='utf-8') as file:
+        file.write(analyze_all)

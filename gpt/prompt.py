@@ -60,6 +60,31 @@ class Prompt:
                            你需要按照下面指定的格式进行响应：{nikto_response_format}
                            确保response可以由python的json.loads()方法正确解析
                            """
+    final_report_prompt: str = """基于以下namp,tpscan,struct2scan,vulmap,nikto扫描结果，生成一份渗透测试报告：
+    1、项目背景和范围说明：
+      公司名称：XYZ Corp.
+      网络范围：包括内部办公室网络和公共面向客户的网站（www.xyzcorp.com）。
+    2、测试方法和工具：
+     请使用表格的形式列出测试工具的名称和其用途说明，表格如下
+     
+    3、发现的漏洞和安全问题：
+     根据提供的description字段和msg字段，提供漏洞的详细描述和存在的安全问题
+
+    4、验证和复现：
+     根据提供的method字段或者其余信息描述如何验证每个漏洞的存在以及如何复现漏洞。提供详细的步骤、工具和设置环境的说明，确保可重现性和准确性。
+
+    5、风险评估和建议：
+     根据提供的vuln_risk字段对每个漏洞进行风险评估，包括潜在的影响和可能的攻击路径。根据vuln_fix字段提供关于修复漏洞的具体建议和最佳实践策略。
+
+    6、总结和建议：
+    总结整体的渗透测试结果，提供关于系统安全状态的总体评估。包括改进安全措施的建议和策略，确保系统的安全性和稳定性。
+
+    nmap扫描结果为: {nmap_result},
+    tpscan扫描结果为: {tpscan_result},
+    struct2scan扫描结果为: {struct2_result},
+    vulmap扫描结果为: {vulmap_result},
+    nikto扫描结果为: {nikto_result}
+    """
 
     nmap_response_format: str = """
     {
@@ -140,5 +165,10 @@ def gen_nikto_prompt(nikto_result) -> str:
     return Prompt.base_prompt + Prompt.nikto_prompt.format(nikto_result=nikto_result,
                                                            nikto_response_format=Prompt.nikto_response_format)
 
-# def gen_all_prompt(all_result) -> str:
-#     return '1';
+
+def gen_all_prompt(nmap_result, tpscan_result, struct2_result, vulmap_result, nikto_result) -> str:
+    return Prompt.final_report_prompt.format(nmap_result=nmap_result,
+                                             tpscan_result=tpscan_result,
+                                             struct2_result=struct2_result,
+                                             vulmap_result=vulmap_result,
+                                             nikto_result=nikto_result)
