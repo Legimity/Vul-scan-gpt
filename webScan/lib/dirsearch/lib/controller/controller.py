@@ -178,7 +178,7 @@ class Controller:
                 )
                 exit(1)
 
-        interface.header(BANNER)
+        # interface.header(BANNER)
         interface.config(len(self.dictionary))
 
         try:

@@ -3,12 +3,14 @@ import sys
 import importlib
 import configparser
 import uuid
+import os
 import subprocess
 
 sys.path.append('./')
 
 from utils.remove_ansi import remove_ansi_escape_sequences
 from utils.logger import ColoredLogger
+
 
 logger = ColoredLogger().get_logger()
 
@@ -25,6 +27,7 @@ class WebScan:
         self.vulmap = config.get("webScan","vulmap")
         self.dirScan = config.get("webScan","dirsearch")
 
+
     def dirsearch(self):
         self.dir_search_result = f"result/dirsearch/{uuid.uuid1().hex}.json"
         subprocess.run(["python",f"{self.dirScan}dirsearch.py","-u",self.target_url,"-e","php,action,html",
@@ -32,19 +35,24 @@ class WebScan:
                         "-r",
                         "-o",self.dir_search_result,
                         "-w",r"webScan\lib\dirsearch\db\vul-scan-gpt.txt",
-                        "--format","json"])
-        
+                        "--format","json",
+                        "-x","404"])
+        if not os.path.exists(self.dir_search_result):
+            logger.info("No dirsearch result found")
+            self.dir_search_result = None
         return self.dir_search_result
         
 
     def TPscan(self) -> dict:
         try:
             Scan = getattr(importlib.import_module(self.tp_scan),'Scan')
-            tpscan_output = Scan().run(self.target_url)
-            logger.info(f"tpscan_output:\n{tpscan_output}")
+            tpscan_output = Scan().run(self.target_url,self.dir_search_result)
+            logger.info(f"tpscan_output:\n")
+            for idx, output in enumerate(tpscan_output):
+                logger.info(f"\n {idx}:\t url :{output['vulnurl']} \n\t vulnname:{output['vulnname']}\n")
         except Exception as e:
             logger.error(f"Error occurred during TPscan: {str(e)}")
-        with open(self.save_path + "TPScan_" + uuid.uuid1().hex + ".json","w") as result_file:
+        with open(self.save_path + "tpscan/TPScan_" + uuid.uuid1().hex + ".json","w") as result_file:
             json.dump(tpscan_output,result_file)
         return tpscan_output
 
@@ -55,7 +63,7 @@ class WebScan:
             struct2scan_outputs = Scan().run(self.target_url,self.dir_search_result)
             logger.info(f"struct2scan_output:\n")
             for idx, output in enumerate(struct2scan_outputs):
-                logger.info(f"\n {idx}:\t url :{output['url']} \n\t vulnname:{output['vulnname']}\n\tpoc:{output['poc']}")
+                logger.info(f"\n {idx}:\t url :{output['url']} \n\t vulnname:{output['vulnname']}\n")
         except Exception as e:
             logger.error(f"Error occurred during Struct2Scan: {str(e)}")
         with open(self.save_path + "struct2Scan/struct2Scan_" + uuid.uuid1().hex + ".json","w") as result_file:
@@ -78,34 +86,14 @@ class WebScan:
         if shouldDirScan:
             self.dirsearch()
             struct2scan_output = self.Struct2Scan()
+            tpscan_output = self.TPscan()
         else:
             struct2scan_output = self.Struct2Scan()
-        # TPscan 扫描
-        # tpscan_output = self.TPscan(self.target_url)
-        # Struct2Scan 扫描
-        # struct2scan_output = self.Struct2Scan(target_url=self.target_url,targe_file=self.dir_search_result)
+            tpscan_output = self.TPscan()
         # Vulmap 扫描
         # vulmap_output = self.Vulmap()
         #print(vulmap_output)
-        return struct2scan_output
+        return struct2scan_output,tpscan_output
 
 if __name__=="__main__":  
-    # test tpscan
-    # WebScan("http://127.0.0.1:8080").run() #禅道
-    # WebScan("http://127.0.0.1:8081").run() #帝国
-    # result=WebScan("http://127.0.0.1:8082").run() #织梦
-    
-    # result=WebScan("http://tp5.test.com:80").run()
     result=WebScan("http://127.0.0.1:8080").run(shouldDirScan=True)
-
-    # test struc2scan
-    # result=WebScan("http://127.0.0.1:8080/login.action").run()
-    # result=WebScan("localhost:8082/dede").run()
-    # result=WebScan("localhost:8081/e/admin").run()
-    
-    
-    # logger.info(result)
-
-    # test vulmap
-    # result=WebScan("http://127.0.0.1:8161/").run()
-    # print(result)

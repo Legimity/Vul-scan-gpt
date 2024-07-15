@@ -1469,7 +1469,3 @@ class Scan:
             file_res = scan_more(urls, data, header)
             result.extend(file_res)
         return result
-        
-# if __name__ == '__main__':
-#     res = Scan.run(r'result/dirsearch/699d6aad406111efb18898fa9b61d2b1.json')
-#     print(res)
