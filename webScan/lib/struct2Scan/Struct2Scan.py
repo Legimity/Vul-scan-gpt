@@ -19,6 +19,7 @@ from functools import partial
 from bs4 import BeautifulSoup
 from concurrent import futures
 import http.client
+import json
 
 http.client.HTTPConnection._http_vsn = 10
 http.client.HTTPConnection._http_vsn_str = 'HTTP/1.0'
@@ -267,9 +268,9 @@ def read_file(file_path, encoding='UTF-8'):
 def read_urls(file):
     """读取URL文件"""
     if check_file(file):
-        with open(file, 'r', encoding='UTF-8') as f:
-            urls = f.readlines()
-        urls = [url.strip() for url in urls if url and url.strip()]
+        with open(file, 'r') as f:
+            serach_results = json.load(f)['results']
+        urls = [res['url'] for res in serach_results]
         return urls
 
 
@@ -1442,14 +1443,7 @@ def scan_one(url, data = None, headers = None, encoding="UTF-8"):
         results = list(executor.map(result_return, ss))
     results = [r for r in results if r if r["isvul"]]
     click.secho('[*] ----------------results------------------'.format(url=url), fg='green')
-    # TODO - 感觉没什么用
-    # if (not results) and (not is_quiet):
-    #     click.secho('[*] {url} 未发现漏洞'.format(url=url), fg='red')
-    #     return []
     for r in results:
-        # if r.startswith("ERROR:"):
-        #     click.secho('[ERROR] {url} 访问出错: {error}'.format(url=url, error=r[6:]), fg='red')
-        # else:
         click.secho('[*] {url} 存在漏洞: {name}'.format(url=url, name= r['vulnname']), fg='red')
     return results
 
@@ -1459,48 +1453,10 @@ def scan_more(urls, data=None, headers=None, encoding="UTF-8"):
     scan = partial(scan_one, data=data, headers=headers, encoding=encoding)
     with futures.ProcessPoolExecutor(max_workers=process) as executor:
         results = list(executor.map(scan, urls))
-    return results
+    return results[0]
 
 
 CONTEXT_SETTINGS = dict(help_option_names=['-h', '--help'])
-
-
-# @click.command(context_settings=CONTEXT_SETTINGS)
-# @click.option('-u', '--url', help="URL地址")
-# @click.option('-f', '--file', help="批量扫描URL文件, 一行一个URL")
-# @click.option('-d', '--data', help="POST参数, 需要使用的payload使用{exp}填充, 如: name=test&passwd={exp}")
-# @click.option('-c', '--encode', default="UTF-8", help="页面编码, 默认UTF-8编码")
-# @click.option('-p', '--proxy', help="HTTP代理. 格式为http://ip:port")
-# @click.option('-t', '--timeout', help="HTTP超时时间, 默认10s")
-# @click.option('-w', '--workers', help="批量扫描进程数, 默认为10个进程")
-# @click.option('--header', help="HTTP请求头, 格式为: key1=value1&key2=value2")
-# @click.option('-e', '--exec', is_flag=True, help="进入命令执行shell")
-# @click.option('-q', '--quiet', is_flag=False, help="关闭打印不存在漏洞的输出，只保留存在漏洞的输出")
-# def main(info, url, file, data, header, encode, proxy, quiet, timeout,workers) -> dict :
-#     """Struts2批量扫描利用工具"""
-#     global proxies, is_quiet, _tiemout, process
-#     result  = []
-#     if not encode:
-#         encode = 'UTF-8'
-#     if info:
-#         show_info()
-#         exit(0)
-#     if proxy:
-#         proxies = {
-#             "http": proxy,
-#             "https": proxy
-#         }
-#     if quiet:
-#         is_quiet = True
-#     if timeout and check_int('timeout', timeout):
-#         _tiemout = check_int('timeout', timeout)
-#     if workers and check_int('workers', workers):
-#         process = check_int('workers', workers)
-#     if url:
-#         result = scan_one(url, data, header, encode)
-#     if file:
-#         urls = read_urls(file)
-#         result.append(scan_more(urls, data, header, encode))
 
 class Scan:
     def run(self,url = None, file = None, data = None, header = None) -> dict :
@@ -1510,9 +1466,6 @@ class Scan:
             result = scan_one(url, data, header)
         if file != None:
             urls = read_urls(file)
-            result.append(scan_more(urls, data, header))
+            file_res = scan_more(urls, data, header)
+            result.extend(file_res)
         return result
-        
-# if __name__ == '__main__':
-#     res = Scan.run("http://127.0.0.1:8080/login.action")
-#     print(res)

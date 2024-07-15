@@ -1,7 +1,9 @@
 import logging
 
-
 class ColoredLogger:
+    # 类属性，用于存储单例实例
+    _instance = None
+
     COLORS = {
         "DEBUG": "\033[94m",  # Blue
         "INFO": "\033[92m",  # Green
@@ -13,38 +15,36 @@ class ColoredLogger:
 
     class ColorFormatter(logging.Formatter):
         def __init__(self, fmt, colors):
-            super().__init__(fmt, datefmt="[%H:%M:%S]")
+            super().__init__(fmt, datefmt="%Y-%m-%d %H:%M:%S")
             self.colors = colors
 
         def format(self, record):
-            # Ensure asctime is set
-            if not hasattr(record, "asctime"):
-                record.asctime = self.formatTime(record, self.datefmt)
-            # Apply color to the log level name and timestamp
+            log_fmt = super().format(record)
             levelname_color = self.colors.get(record.levelname, self.colors["RESET"])
-            asctime_color = self.colors["RESET"]
-            record.levelname = (
-                f"{levelname_color}{record.levelname}{self.colors['RESET']}"
+            record.levelname = f"{levelname_color}{record.levelname}{self.colors['RESET']}"
+            return log_fmt
+
+    def __new__(cls, name="my_logger", level=logging.DEBUG):
+        if cls._instance is None:
+            cls._instance = super(ColoredLogger, cls).__new__(cls)
+            cls._instance._name = name
+            cls._instance._level = level
+            cls._instance._logger = None
+            cls._instance._initialize_logger()
+        return cls._instance
+
+    def _initialize_logger(self):
+        self.logger = logging.getLogger(self._name)
+        self.logger.setLevel(self._level)
+        if not self.logger.handlers:
+            ch = logging.StreamHandler()
+            ch.setLevel(self._level)
+            formatter = self.ColorFormatter(
+                "%(asctime)s - %(name)s - %(levelname)s - %(message)s",
+                self.COLORS
             )
-            record.asctime = f"{asctime_color}{record.asctime}{self.colors['RESET']}"
-            return super().format(record)
-
-    def __init__(self, name="my_logger", level=logging.DEBUG):
-        self.logger = logging.getLogger(name)
-        self.logger.setLevel(level)
-
-        # Create console handler and set level
-        ch = logging.StreamHandler()
-        ch.setLevel(level)
-
-        # Create formatter and add it to the handler
-        formatter = self.ColorFormatter(
-            "%(asctime)s - %(levelname)s - %(message)s", self.COLORS
-        )
-        ch.setFormatter(formatter)
-
-        # Add the handler to the logger
-        self.logger.addHandler(ch)
+            ch.setFormatter(formatter)
+            self.logger.addHandler(ch)
 
     def get_logger(self):
         return self.logger
