@@ -1,0 +1,15 @@
+{
+    "info": {
+        "args": "webScan/lib/dirsearch/dirsearch.py -u http://127.0.0.1:8080 -e php,action,html -t 10 -r -o result/dirsearch/be074446406411ef980298fa9b61d2b1.json -w webScan\\lib\\dirsearch\\db\\vul-scan-gpt.txt --format json",
+        "time": "Fri Jul 12 23:38:19 2024"
+    },
+    "results": [
+        {
+            "content-length": 10909,
+            "content-type": "text/html",
+            "redirect": "",
+            "status": 500,
+            "url": "http://127.0.0.1:8080/login.action"
+        }
+    ]
+}
